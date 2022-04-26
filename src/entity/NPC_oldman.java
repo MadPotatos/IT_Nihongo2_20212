@@ -17,6 +17,7 @@ public class NPC_oldman extends Entity {
         direction = "down";
         speed = 1;
         getImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -29,6 +30,13 @@ public class NPC_oldman extends Entity {
         left2 = setup("/NPC/oldman/oldman_left2");
         right1 = setup("/NPC/oldman/oldman_right1");
         right2 = setup("/NPC/oldman/oldman_right2");
+    }
+
+    public void setDialogue() {
+        dialogues[0] = "Ho ho ho";
+        dialogues[1] = "I am Yoshi the wise";
+        dialogues[2] = "I am the one who can tell you the truth";
+        dialogues[3] = "But you have to wait for game to update";
     }
 
     public void setAction() {
@@ -51,6 +59,10 @@ public class NPC_oldman extends Entity {
             actionLockCounter = 0;
         }
 
+    }
+
+    public void speak() {
+        super.speak();
     }
 
 }

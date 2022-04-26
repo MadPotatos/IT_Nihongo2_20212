@@ -17,6 +17,7 @@ public class NPC_Inspector extends Entity {
         direction = "down";
         speed = 1;
         getImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -29,6 +30,13 @@ public class NPC_Inspector extends Entity {
         left2 = setup("/NPC/inspector/inspector_left2");
         right1 = setup("/NPC/inspector/inspector_right1");
         right2 = setup("/NPC/inspector/inspector_right2");
+    }
+
+    public void setDialogue() {
+        dialogues[0] = "Oh, this is a rare occasion.";
+        dialogues[1] = "I can't remember the last time\na new visitor made their way to the village.";
+        dialogues[2] = "Very well.\nAs a inspector, I bid you welcome.";
+        dialogues[3] = "It is safe here.\nYou may let down your guard.";
     }
 
     public void setAction() {
@@ -53,4 +61,7 @@ public class NPC_Inspector extends Entity {
 
     }
 
+    public void speak() {
+        super.speak();
+    }
 }
