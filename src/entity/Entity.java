@@ -68,51 +68,74 @@ public class Entity {
 	}
 
 	public void draw(Graphics2D g2) {
+
 		BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
-		if (worldX + gp.titleSize > gp.player.worldX - gp.player.screenX
-				&& worldX - gp.titleSize < gp.player.worldX + gp.player.screenX &&
-				worldY + gp.titleSize > gp.player.worldY - gp.player.screenY
-				&& worldY - gp.titleSize < gp.player.worldY + gp.player.screenY) {
 
-			switch (direction) {
-				case "up":
-					if (spriteNum == 1) {
-						image = up1;
-					}
-					if (spriteNum == 2) {
-						image = up2;
-					}
-					break;
-				case "down":
-					if (spriteNum == 1) {
-						image = down1;
-					}
-					if (spriteNum == 2) {
-						image = down2;
-					}
-					break;
-				case "left":
-					if (spriteNum == 1) {
-						image = left1;
-					}
-					if (spriteNum == 2) {
-						image = left2;
-					}
-					break;
-				case "right":
-					if (spriteNum == 1) {
-						image = right1;
-					}
-					if (spriteNum == 2) {
-						image = right2;
-					}
-					break;
-				case "still":
-					image = still;
-					break;
-			}
+		// STOP MOVING CAMERA
+		if (gp.player.worldX < gp.player.screenX) {
+			screenX = worldX;
+		}
+		if (gp.player.worldY < gp.player.screenY) {
+			screenY = worldY;
+		}
+		int rightOffset = gp.screenWidth - gp.player.screenX;
+		if (rightOffset > gp.worldWidth - gp.player.worldX) {
+			screenX = gp.screenWidth - (gp.worldWidth - worldX);
+		}
+		int bottomOffset = gp.screenHeight - gp.player.screenY;
+		if (bottomOffset > gp.worldHeight - gp.player.worldY) {
+			screenY = gp.screenHeight - (gp.worldHeight - worldY);
+		}
+		///////////////////
+
+		switch (direction) {
+			case "up":
+				if (spriteNum == 1) {
+					image = up1;
+				}
+				if (spriteNum == 2) {
+					image = up2;
+				}
+				break;
+			case "down":
+				if (spriteNum == 1) {
+					image = down1;
+				}
+				if (spriteNum == 2) {
+					image = down2;
+				}
+				break;
+			case "left":
+				if (spriteNum == 1) {
+					image = left1;
+				}
+				if (spriteNum == 2) {
+					image = left2;
+				}
+				break;
+			case "right":
+				if (spriteNum == 1) {
+					image = right1;
+				}
+				if (spriteNum == 2) {
+					image = right2;
+				}
+				break;
+		}
+
+		if (worldX + gp.titleSize > gp.player.worldX - gp.player.screenX &&
+				worldX - gp.titleSize < gp.player.worldX + gp.player.screenX &&
+				worldY + gp.titleSize > gp.player.worldY - gp.player.screenY &&
+				worldY - gp.titleSize < gp.player.worldY + gp.player.screenY) {
+			g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
+		}
+		// If player is around the edge, draw everything
+		else if (gp.player.worldX < gp.player.screenX ||
+				gp.player.worldY < gp.player.screenY ||
+				rightOffset > gp.worldWidth - gp.player.worldX ||
+				bottomOffset > gp.worldHeight - gp.player.worldY) {
 			g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
 		}
 	}

@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPC_Inspector;
+import entity.NPC_oldman;
 import object.Boots;
 import object.Chest;
 import object.Door;
@@ -21,5 +22,8 @@ public class AssetSetter {
         gp.npc[0] = new NPC_Inspector(gp);
         gp.npc[0].worldX = gp.titleSize * 10;
         gp.npc[0].worldY = gp.titleSize * 10;
+        gp.npc[1] = new NPC_oldman(gp);
+        gp.npc[1].worldX = gp.titleSize * 35;
+        gp.npc[1].worldY = gp.titleSize * 10;
     }
 }

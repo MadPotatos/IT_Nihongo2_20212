@@ -134,8 +134,7 @@ public class Player extends Entity {
 
 	public void interactNPC(int i) {
 		if (i != 999) {
-			System.out.println("Interact with NPC");
-
+			
 		}
 	}
 

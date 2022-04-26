@@ -9,9 +9,9 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-public class NPC_Inspector extends Entity {
+public class NPC_oldman extends Entity {
 
-    public NPC_Inspector(GamePanel gp) {
+    public NPC_oldman(GamePanel gp) {
         super(gp);
         // TODO Auto-generated constructor stub
         direction = "down";
@@ -21,14 +21,14 @@ public class NPC_Inspector extends Entity {
 
     public void getImage() {
 
-        up1 = setup("/NPC/inspector/inspector_up1");
-        up2 = setup("/NPC/inspector/inspector_up2");
-        down1 = setup("/NPC/inspector/inspector_down1");
-        down2 = setup("/NPC/inspector/inspector_down2");
-        left1 = setup("/NPC/inspector/inspector_left1");
-        left2 = setup("/NPC/inspector/inspector_left2");
-        right1 = setup("/NPC/inspector/inspector_right1");
-        right2 = setup("/NPC/inspector/inspector_right2");
+        up1 = setup("/NPC/oldman/oldman_up1");
+        up2 = setup("/NPC/oldman/oldman_up2");
+        down1 = setup("/NPC/oldman/oldman_down1");
+        down2 = setup("/NPC/oldman/oldman_down2");
+        left1 = setup("/NPC/oldman/oldman_left1");
+        left2 = setup("/NPC/oldman/oldman_left2");
+        right1 = setup("/NPC/oldman/oldman_right1");
+        right2 = setup("/NPC/oldman/oldman_right2");
     }
 
     public void setAction() {
