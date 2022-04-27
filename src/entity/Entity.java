@@ -14,7 +14,7 @@ public class Entity {
 	GamePanel gp;
 	public int worldX, worldY;
 	public int speed;
-	public BufferedImage left1, left2, still, right1, right2, down1, down2, up1, up2;
+	public BufferedImage left1, left2, still, right1, right2, down1, down2, up1, up2, avatar;
 	public String direction;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
@@ -150,18 +150,18 @@ public class Entity {
 				break;
 		}
 
-		if (worldX + gp.titleSize > gp.player.worldX - gp.player.screenX &&
-				worldX - gp.titleSize < gp.player.worldX + gp.player.screenX &&
-				worldY + gp.titleSize > gp.player.worldY - gp.player.screenY &&
-				worldY - gp.titleSize < gp.player.worldY + gp.player.screenY) {
-			g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
+		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+				worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+				worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
+				worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 		}
 		// If player is around the edge, draw everything
 		else if (gp.player.worldX < gp.player.screenX ||
 				gp.player.worldY < gp.player.screenY ||
 				rightOffset > gp.worldWidth - gp.player.worldX ||
 				bottomOffset > gp.worldHeight - gp.player.worldY) {
-			g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
+			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 		}
 	}
 
@@ -170,7 +170,7 @@ public class Entity {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-			image = uTool.scaleImage(image, gp.titleSize, gp.titleSize);
+			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
 
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -26,8 +26,8 @@ public class Player extends Entity {
 		super(gp);
 		this.gp = gp;
 		this.keyH = keyH;
-		screenX = gp.screenWidth / 2 - (gp.titleSize / 2);
-		screenY = gp.screenHeight / 2 - (gp.titleSize / 2);
+		screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
+		screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 		solidArea = new Rectangle();
 		solidArea.x = 10;
 		solidArea.y = 10;
@@ -42,8 +42,8 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultValue() {
-		worldX = gp.titleSize * 15;
-		worldY = gp.titleSize * 15;
+		worldX = gp.tileSize * 15;
+		worldY = gp.tileSize * 15;
 		speed = 4;
 		direction = "still";
 	}
@@ -59,6 +59,7 @@ public class Player extends Entity {
 		right1 = setup("/Player/right1");
 		right2 = setup("/Player/right2");
 		still = setup("/Player/still");
+		avatar = setup("/Player/avatar");
 
 	}
 

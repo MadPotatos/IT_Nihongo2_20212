@@ -13,18 +13,18 @@ import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    public final int originalTitleSize = 16;
+    public final int originalTileSize = 16;
     public final int scale = 3;
-    public final int titleSize = originalTitleSize * scale;
+    public final int tileSize = originalTileSize * scale;
     public final int maxScreenCol = 16;
     public final int maxScreenRow = 12;
-    public final int screenWidth = maxScreenCol * titleSize;
-    public final int screenHeight = maxScreenRow * titleSize;
+    public final int screenWidth = maxScreenCol * tileSize;
+    public final int screenHeight = maxScreenRow * tileSize;
     // WORLD SETTING
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
-    public final int worldWidth = maxWorldCol * titleSize;
-    public final int worldHeight = maxWorldRow * titleSize;
+    public final int worldWidth = maxWorldCol * tileSize;
+    public final int worldHeight = maxWorldRow * tileSize;
 
     // FPS
     int FPS = 60;
@@ -44,13 +44,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     // GAME STATE
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.gray);
+        this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
@@ -60,8 +61,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setObject();
         aSetter.setNPC();
-        playMusic(0);
-        gameState = playState;
+        if (gameState == playState) {
+            playMusic(0);
+        }
+
+        gameState = titleState;
     }
 
     public void startGameThread() {
@@ -117,26 +121,35 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        // tile
-        tileM.draw(g2);
-        // object
-        for (int i = 0; i < obj.length; i++) {
-            if (obj[i] != null) {
-                obj[i].draw(g2, this);
-            }
+        // Title Screen
+        if (gameState == titleState) {
+            ui.draw(g2);
         }
-        // NPC
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i] != null) {
-                npc[i].draw(g2);
+        // Others
+        else {
+
+            // tile
+            tileM.draw(g2);
+            // object
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    obj[i].draw(g2, this);
+                }
             }
+            // NPC
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].draw(g2);
+                }
+            }
+
+            // player
+            player.draw(g2);
+            // ui
+            ui.draw(g2);
+            g2.dispose();
         }
 
-        // player
-        player.draw(g2);
-        // ui
-        ui.draw(g2);
-        g2.dispose();
     }
 
     public void playMusic(int i) {

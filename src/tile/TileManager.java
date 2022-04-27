@@ -80,7 +80,7 @@ public class TileManager {
         try {
             tile[index] = new Tile();
             tile[index].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/" + imageName + ".png"));
-            tile[index].image = uTool.scaleImage(tile[index].image, gp.titleSize, gp.titleSize);
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
         } catch (IOException e) {
             e.printStackTrace();
@@ -119,8 +119,8 @@ public class TileManager {
 
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
             int tileNum = mapTileNum[worldCol][worldRow];
-            int worldX = worldCol * gp.titleSize;
-            int worldY = worldRow * gp.titleSize;
+            int worldX = worldCol * gp.tileSize;
+            int worldY = worldRow * gp.tileSize;
             int screenX = worldX - gp.player.worldX + gp.player.screenX;
             int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
@@ -140,10 +140,10 @@ public class TileManager {
                 screenY = gp.screenHeight - (gp.worldHeight - worldY);
             }
 
-            if (worldX + gp.titleSize > gp.player.worldX - gp.player.screenX
-                    && worldX - gp.titleSize < gp.player.worldX + gp.player.screenX &&
-                    worldY + gp.titleSize > gp.player.worldY - gp.player.screenY
-                    && worldY - gp.titleSize < gp.player.worldY + gp.player.screenY) {
+            if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX
+                    && worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+                    worldY + gp.tileSize > gp.player.worldY - gp.player.screenY
+                    && worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
                 g2.drawImage(tile[tileNum].image, screenX, screenY, null);
             } else if (gp.player.screenX > gp.player.worldX || gp.player.screenY > gp.player.worldY
                     || rightOffset > gp.worldWidth - gp.player.worldX

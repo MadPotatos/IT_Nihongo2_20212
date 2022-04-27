@@ -13,7 +13,7 @@ public class Door extends SuperObject {
         name = "Door";
         try {
             image = ImageIO.read(getClass().getResourceAsStream("/Objects/door.png"));
-            uTool.scaleImage(image, gp.titleSize, gp.titleSize);
+            uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
 

@@ -34,16 +34,16 @@ public class SuperObject {
         if (bottomOffset > gp.worldHeight - gp.player.worldY) {
             screenY = gp.screenHeight - (gp.worldHeight - worldY);
         }
-        if (worldX + gp.titleSize > gp.player.worldX - gp.player.screenX
-                && worldX - gp.titleSize < gp.player.worldX + gp.player.screenX &&
-                worldY + gp.titleSize > gp.player.worldY - gp.player.screenY
-                && worldY - gp.titleSize < gp.player.worldY + gp.player.screenY) {
-            g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
+        if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX
+                && worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY
+                && worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
+            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         } else if (gp.player.worldX < gp.player.screenX ||
                 gp.player.worldY < gp.player.screenY ||
                 rightOffset > gp.worldWidth - gp.player.worldX ||
                 bottomOffset > gp.worldHeight - gp.player.worldY) {
-            g2.drawImage(image, screenX, screenY, gp.titleSize, gp.titleSize, null);
+            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
     }
 }
