@@ -9,11 +9,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.awt.BasicStroke;
+
+import object.Heart;
 import object.Key;
+import object.SuperObject;
 
 public class UI {
     GamePanel gp;
     Font MineCraft;
+    BufferedImage heart_full, heart_half, heart_empty;
     Graphics2D g2;
     public boolean messageOn = false;
     public String message = "";
@@ -34,6 +38,12 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        // CREATE HUD OBJECT
+        SuperObject heart = new Heart(gp);
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_empty = heart.image3;
+
     }
 
     public void showMessage(String text) {
@@ -51,15 +61,48 @@ public class UI {
         }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
-
+            drawPlayerLife();
         }
         // PAUSE STATE
         if (gp.gameState == gp.pauseState) {
+            drawPlayerLife();
             drawPauseScreen();
         }
         if (gp.gameState == gp.dialogueState) {
+            drawPlayerLife();
             drawdialogueScreen();
         }
+    }
+
+    private void drawPlayerLife() {
+
+        int x = gp.tileSize / 2;
+        int y = gp.tileSize / 2;
+        int i = 0;
+        // DRAW MAX LIFE
+        while (i < gp.player.maxLife / 2) {
+            g2.drawImage(heart_empty, x, y, null);
+            i++;
+            x += gp.tileSize;
+
+        }
+        // RESET
+        x = gp.tileSize / 2;
+        y = gp.tileSize / 2;
+        i = 0;
+        while (i < gp.player.life) {
+            g2.drawImage(heart_half, x, y, null);
+            i++;
+            if (i < gp.player.life) {
+                g2.drawImage(heart_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+
+        }
+
+        // DRAW CURRENT LIFE
+
     }
 
     private void drawTitleScreen() {
