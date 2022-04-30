@@ -8,11 +8,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
+
+import entity.Entity;
+
 import java.awt.BasicStroke;
 
 import object.Heart;
 import object.Key;
-import object.SuperObject;
 
 public class UI {
     GamePanel gp;
@@ -39,7 +41,7 @@ public class UI {
             e.printStackTrace();
         }
         // CREATE HUD OBJECT
-        SuperObject heart = new Heart(gp);
+        Entity heart = new Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_empty = heart.image3;

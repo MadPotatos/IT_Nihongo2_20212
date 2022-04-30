@@ -1,12 +1,14 @@
 package entity;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.WatchEvent;
 import java.util.Dictionary;
+import java.awt.AlphaComposite;
 
 import javax.imageio.ImageIO;
 
@@ -91,6 +93,10 @@ public class Player extends Entity {
 			// Check NPC collision
 			int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
 			interactNPC(npcIndex);
+			// Check monster collision
+			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+			contactMonster(monsterIndex);
+
 			// Check event
 			gp.eHandler.checkEvent();
 			gp.keyH.enterPressed = false;
@@ -128,7 +134,25 @@ public class Player extends Entity {
 				standCounter = 0;
 			}
 		}
+		if (invincible == true) {
+			invincibleCounter++;
+		}
+		if (invincibleCounter > 60) {
+			invincible = false;
+			invincibleCounter = 0;
+		}
+	}
 
+	private void contactMonster(int i) {
+		if (i != 999) {
+			if (invincible == false) {
+				life--;
+				gp.playSE(5);
+				invincible = true;
+				invincibleCounter = 0;
+			}
+
+		}
 	}
 
 	public void pickupObject(int i) {
@@ -204,7 +228,11 @@ public class Player extends Entity {
 		if (bottomOffset > gp.worldHeight - worldY) {
 			y = gp.screenHeight - (gp.worldHeight - worldY);
 		}
-
+		if (invincible == true) {
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+		}
 		g2.drawImage(image, x, y, null);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
 	}
 }

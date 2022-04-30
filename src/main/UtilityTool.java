@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
 
 import entity.Player;
-import object.SuperObject;
 import tile.TileManager;
 
 public class UtilityTool {
