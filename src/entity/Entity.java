@@ -2,8 +2,10 @@ package entity;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
+import java.awt.AlphaComposite;
 
 import main.GamePanel;
 import main.UtilityTool;
@@ -12,19 +14,27 @@ import java.awt.Rectangle;
 
 public class Entity {
 	GamePanel gp;
-	public int worldX, worldY;
+
 	public int speed;
 	public BufferedImage left1, left2, still, right1, right2, down1, down2, up1, up2, avatar;
-	public String direction = "down";
-	public int spriteCounter = 0;
-	public int spriteNum = 1;
-
+	public BufferedImage attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2,
+			attackUp1, attackUp2;
 	public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
 	public int solidAreaDefaultX, solidAreaDefaultY;
+	// STATE
+	public int worldX, worldY;
+	public String direction = "down";
+	boolean attacking = false;
+	public int spriteNum = 1;
 	public boolean collisionOn = false;
-	public int actionLockCounter = 0;
 	public boolean invincible = false;
+
+	// COUNTER
+	public int actionLockCounter = 0;
+	public int spriteCounter = 0;
 	public int invincibleCounter = 0;
+	// CHARACTER ATTRIBUTE
 	String dialogues[] = new String[30];
 	int dialogueIndex = 0;
 	public BufferedImage image, image2, image3;
@@ -112,6 +122,14 @@ public class Entity {
 			}
 			spriteCounter = 0;
 		}
+		if (invincible == true) {
+			invincibleCounter++;
+		}
+		if (invincibleCounter > 40) {
+			invincible = false;
+			invincibleCounter = 0;
+		}
+
 	}
 
 	public void draw(Graphics2D g2) {
@@ -171,12 +189,16 @@ public class Entity {
 				}
 				break;
 		}
+		if (invincible == true) {
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+		}
 
 		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
 				worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
 				worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
 				worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 			g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 		}
 		// If player is around the edge, draw everything
 		else if (gp.player.worldX < gp.player.screenX ||
@@ -187,12 +209,12 @@ public class Entity {
 		}
 	}
 
-	public BufferedImage setup(String imagePath) {
+	public BufferedImage setup(String imagePath, int width, int height) {
 		UtilityTool uTool = new UtilityTool();
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-			image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+			image = uTool.scaleImage(image, width, height);
 
 		} catch (IOException e) {
 			e.printStackTrace();

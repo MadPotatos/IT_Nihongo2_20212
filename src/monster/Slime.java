@@ -6,9 +6,11 @@ import entity.Entity;
 import main.GamePanel;
 
 public class Slime extends Entity {
+    GamePanel gp;
 
     public Slime(GamePanel gp) {
         super(gp);
+        this.gp = gp;
         // TODO Auto-generated constructor stub
         type = 2;
         name = "Slime";
@@ -26,14 +28,14 @@ public class Slime extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("/monsters/slime_up1");
-        up2 = setup("/monsters/slime_up2");
-        down1 = setup("/monsters/slime_down1");
-        down2 = setup("/monsters/slime_down2");
-        left1 = setup("/monsters/slime_left1");
-        left2 = setup("/monsters/slime_left2");
-        right1 = setup("/monsters/slime_right1");
-        right2 = setup("/monsters/slime_right2");
+        up1 = setup("/monsters/slime_up1", gp.tileSize, gp.tileSize);
+        up2 = setup("/monsters/slime_up2", gp.tileSize, gp.tileSize);
+        down1 = setup("/monsters/slime_down1", gp.tileSize, gp.tileSize);
+        down2 = setup("/monsters/slime_down2", gp.tileSize, gp.tileSize);
+        left1 = setup("/monsters/slime_left1", gp.tileSize, gp.tileSize);
+        left2 = setup("/monsters/slime_left2", gp.tileSize, gp.tileSize);
+        right1 = setup("/monsters/slime_right1", gp.tileSize, gp.tileSize);
+        right2 = setup("/monsters/slime_right2", gp.tileSize, gp.tileSize);
     }
 
     public void setAction() {
