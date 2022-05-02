@@ -3,6 +3,7 @@ package main;
 import entity.NPC_Inspector;
 import entity.NPC_oldman;
 import monster.Slime;
+import monster.Tanuki;
 import object.Boots;
 import object.Chest;
 import object.Door;
@@ -36,6 +37,14 @@ public class AssetSetter {
         gp.monster[1] = new Slime(gp);
         gp.monster[1].worldX = gp.tileSize * 20;
         gp.monster[1].worldY = gp.tileSize * 18;
+
+        gp.monster[2] = new Tanuki(gp);
+        gp.monster[2].worldX = gp.tileSize * 25;
+        gp.monster[2].worldY = gp.tileSize * 20;
+
+        gp.monster[3] = new Tanuki(gp);
+        gp.monster[3].worldX = gp.tileSize * 30;
+        gp.monster[3].worldY = gp.tileSize * 15;
 
     }
 }
