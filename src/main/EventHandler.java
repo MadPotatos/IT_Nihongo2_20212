@@ -17,8 +17,8 @@ public class EventHandler {
         int row = 0;
         while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
             eventRect[col][row] = new EventRect();
-            eventRect[col][row].x = 23;
-            eventRect[col][row].y = 23;
+            eventRect[col][row].x = 30;
+            eventRect[col][row].y = 30;
             eventRect[col][row].width = 2;
             eventRect[col][row].height = 2;
             eventRect[col][row].eventRectDefaultX = eventRect[col][row].x;
@@ -45,7 +45,7 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.player.attackCanceled = true;
             gp.playSE(2);
-            gp.ui.currentDialogue = "You drink from the healing pool! \n You feel better!";
+            gp.ui.currentDialogue = "Rest at the statue\n You feel better! \n Monster respawns!";
             gp.player.life = gp.player.maxLife;
             gp.aSetter.setMonster();
         }
@@ -70,6 +70,14 @@ public class EventHandler {
             }
             if (hit(1, 5, "left") == true) {
                 healingPool(1, 5, gp.dialogueState);
+            }
+            if (hit(7, 7, "any") == true) {
+                healingPool(7, 7, gp.dialogueState);
+
+            }
+            if (hit(7, 8, "any") == true) {
+                healingPool(7, 8, gp.dialogueState);
+
             }
         }
 

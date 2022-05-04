@@ -12,7 +12,7 @@ public class Tanuki extends Entity {
         super(gp);
         this.gp = gp;
         // TODO Auto-generated constructor stub
-        type = 2;
+        type = type_monster;
         name = "Tanuki";
         speed = 2;
         maxLife = 5;

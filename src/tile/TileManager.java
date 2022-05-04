@@ -72,6 +72,7 @@ public class TileManager {
         setup(42, "water06", true);
         setup(43, "water07", true);
         setup(44, "water08", true);
+        setup(45, "checkpoint", true);
 
     }
 

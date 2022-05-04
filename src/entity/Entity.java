@@ -44,10 +44,9 @@ public class Entity {
 	String dialogues[] = new String[30];
 	int dialogueIndex = 0;
 	public BufferedImage image, image2, image3;
-
 	public String name;
 	public boolean collision = false;
-	public int type; // 0 = player, 1 = npc, 2 = monster
+
 	// CHARACTER STATUS
 	public int maxLife;
 	public int life;
@@ -63,8 +62,19 @@ public class Entity {
 	public Entity currentShield;
 
 	// ITEM ATTRIBUTE
+
 	public int attackValue;
 	public int defenseValue;
+	public String description = "";
+	// Type
+	public int type; // 0 = player, 1 = npc, 2 = monster
+	public final int type_player = 0;
+	public final int type_npc = 1;
+	public final int type_monster = 2;
+	public final int type_sword = 3;
+	public final int type_axe = 4;
+	public final int type_shield = 5;
+	public final int type_consumable = 6;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -98,6 +108,9 @@ public class Entity {
 				break;
 		}
 
+	}
+
+	public void use(Entity entity) {
 	}
 
 	public void update() {
@@ -218,7 +231,7 @@ public class Entity {
 				break;
 		}
 		// Monster HP bar
-		if (type == 2 && hpBarOn == true) {
+		if (type == type_monster && hpBarOn == true) {
 			double oneScale = (double) gp.tileSize / maxLife;
 			double hpBarValue = oneScale * life;
 			g2.setColor(new Color(35, 35, 35));

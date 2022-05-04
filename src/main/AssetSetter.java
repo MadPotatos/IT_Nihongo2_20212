@@ -1,13 +1,18 @@
 package main;
 
+import java.nio.file.WatchEvent;
+
 import entity.NPC_Inspector;
 import entity.NPC_oldman;
 import monster.Slime;
 import monster.Tanuki;
+import object.Axe;
 import object.Boots;
 import object.Chest;
+import object.DStradeMark;
 import object.Door;
 import object.Key;
+import object.SteelShield;
 
 public class AssetSetter {
     GamePanel gp;
@@ -17,6 +22,29 @@ public class AssetSetter {
     }
 
     public void setObject() {
+        int i = 0;
+
+        gp.obj[i] = new Key(gp);
+        gp.obj[i].worldX = gp.tileSize * 23;
+        gp.obj[i].worldY = gp.tileSize * 20;
+        i++;
+        gp.obj[i] = new Key(gp);
+        gp.obj[i].worldX = gp.tileSize * 21;
+        gp.obj[i].worldY = gp.tileSize * 19;
+        i++;
+        gp.obj[i] = new Key(gp);
+        gp.obj[i].worldX = gp.tileSize * 26;
+        gp.obj[i].worldY = gp.tileSize * 21;
+        i++;
+
+        gp.obj[i] = new Axe(gp);
+        gp.obj[i].worldX = gp.tileSize * 20;
+        gp.obj[i].worldY = gp.tileSize * 18;
+        i++;
+
+        gp.obj[i] = new SteelShield(gp);
+        gp.obj[i].worldX = gp.tileSize * 25;
+        gp.obj[i].worldY = gp.tileSize * 24;
 
     }
 

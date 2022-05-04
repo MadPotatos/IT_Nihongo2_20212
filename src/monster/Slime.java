@@ -12,7 +12,7 @@ public class Slime extends Entity {
         super(gp);
         this.gp = gp;
         // TODO Auto-generated constructor stub
-        type = 2;
+        type = type_monster;
         name = "Slime";
         speed = 1;
         maxLife = 4;
