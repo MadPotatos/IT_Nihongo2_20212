@@ -73,8 +73,11 @@ public class Player extends Entity {
 		direction = "still";
 		// PLAYER STATUS
 		level = 1;
-		maxLife = 4;
+		maxLife = 6;
+		maxMana = 4;
+		ammo = 6;
 		life = maxLife;
+		mana = maxMana;
 		strength = 1;
 		endurance = 1;
 		exp = 0;
@@ -83,6 +86,7 @@ public class Player extends Entity {
 		currentWeapon = new BeginnerSword(gp);
 		currentShield = new WoodenShield(gp);
 		projectile = new EnergyBall(gp);
+
 		attack = getAttack(); // attack = strength + weapon attack
 		defense = getDefense(); // defense = endurance + shield defense
 
@@ -213,9 +217,12 @@ public class Player extends Entity {
 				standCounter = 0;
 			}
 		}
-		if (gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30) {
+		if (gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30
+				&& projectile.haveResource(this) == true) {
 			// Set default
 			projectile.set(worldX, worldY, direction, true, this);
+			// subtract resource
+			projectile.subtractResource(this);
 			// add projectile to list
 			gp.projectileList.add(projectile);
 			shotAvailableCounter = 0;
@@ -308,11 +315,13 @@ public class Player extends Entity {
 			level++;
 			nextLevelExp = nextLevelExp * 2;
 			maxLife += 2;
+			maxMana += 1;
 			strength++;
 			endurance++;
 			attack = getAttack();
 			defense = getDefense();
 			life = maxLife;
+			mana = maxMana;
 			gp.playSE(8);
 			gp.gameState = gp.dialogueState;
 			gp.ui.currentDialogue = "Level Up! \n Raise all attributes by 1 point. \n Press Enter to continue.";

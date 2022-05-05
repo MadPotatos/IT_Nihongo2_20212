@@ -4,6 +4,7 @@ import java.nio.file.WatchEvent;
 
 import entity.NPC_Inspector;
 import entity.NPC_oldman;
+import monster.Mole;
 import monster.Slime;
 import monster.Tanuki;
 import object.Axe;
@@ -70,9 +71,20 @@ public class AssetSetter {
         gp.monster[2].worldX = gp.tileSize * 25;
         gp.monster[2].worldY = gp.tileSize * 20;
 
-        gp.monster[3] = new Tanuki(gp);
-        gp.monster[3].worldX = gp.tileSize * 30;
-        gp.monster[3].worldY = gp.tileSize * 15;
+        gp.monster[4] = new Mole(gp);
+        gp.monster[4].worldX = gp.tileSize * 10;
+        gp.monster[4].worldY = gp.tileSize * 40;
 
+        gp.monster[5] = new Mole(gp);
+        gp.monster[5].worldX = gp.tileSize * 21;
+        gp.monster[5].worldY = gp.tileSize * 21;
+
+        gp.monster[6] = new Mole(gp);
+        gp.monster[6].worldX = gp.tileSize * 35;
+        gp.monster[6].worldY = gp.tileSize * 23;
+
+        gp.monster[7] = new Mole(gp);
+        gp.monster[7].worldX = gp.tileSize * 12;
+        gp.monster[7].worldY = gp.tileSize * 22;
     }
 }

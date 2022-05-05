@@ -47,6 +47,7 @@ public class EventHandler {
             gp.playSE(2);
             gp.ui.currentDialogue = "Rest at the statue\n You feel better! \n Monster respawns!";
             gp.player.life = gp.player.maxLife;
+            gp.player.mana = gp.player.maxMana;
             gp.aSetter.setMonster();
         }
 
