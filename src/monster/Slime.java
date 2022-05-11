@@ -4,6 +4,9 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.Coin;
+import object.Heart;
+import object.Mana;
 
 public class Slime extends Entity {
     GamePanel gp;
@@ -66,6 +69,20 @@ public class Slime extends Entity {
     public void damageReaction() {
         actionLockCounter = 0;
         direction = gp.player.direction;
+    }
+
+    public void checkDrop() {
+        int i = new Random().nextInt(100) + 1;
+        // Set monster drop
+        if (i < 50) {
+            dropItem(new Coin(gp));
+        }
+        if (i > 50 && i < 75) {
+            dropItem(new Heart(gp));
+        }
+        if (i > 75) {
+            dropItem(new Mana(gp));
+        }
     }
 
 }

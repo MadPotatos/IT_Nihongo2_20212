@@ -10,10 +10,14 @@ import monster.Tanuki;
 import object.Axe;
 import object.Boots;
 import object.Chest;
+import object.Coin;
 import object.DStradeMark;
 import object.Door;
+import object.Heart;
 import object.Key;
+import object.Mana;
 import object.SteelShield;
+import tile_interactive.BreakableStone;
 
 public class AssetSetter {
     GamePanel gp;
@@ -29,11 +33,11 @@ public class AssetSetter {
         gp.obj[i].worldX = gp.tileSize * 23;
         gp.obj[i].worldY = gp.tileSize * 20;
         i++;
-        gp.obj[i] = new Key(gp);
-        gp.obj[i].worldX = gp.tileSize * 21;
+        gp.obj[i] = new Heart(gp);
+        gp.obj[i].worldX = gp.tileSize * 23;
         gp.obj[i].worldY = gp.tileSize * 19;
         i++;
-        gp.obj[i] = new Key(gp);
+        gp.obj[i] = new Mana(gp);
         gp.obj[i].worldX = gp.tileSize * 26;
         gp.obj[i].worldY = gp.tileSize * 21;
         i++;
@@ -46,6 +50,15 @@ public class AssetSetter {
         gp.obj[i] = new SteelShield(gp);
         gp.obj[i].worldX = gp.tileSize * 25;
         gp.obj[i].worldY = gp.tileSize * 24;
+        i++;
+        gp.obj[i] = new Coin(gp);
+        gp.obj[i].worldX = gp.tileSize * 21;
+        gp.obj[i].worldY = gp.tileSize * 19;
+
+        gp.obj[i] = new Heart(gp);
+        gp.obj[i].worldX = gp.tileSize * 5;
+        gp.obj[i].worldY = gp.tileSize * 5;
+        i++;
 
     }
 
@@ -86,5 +99,24 @@ public class AssetSetter {
         gp.monster[7] = new Mole(gp);
         gp.monster[7].worldX = gp.tileSize * 12;
         gp.monster[7].worldY = gp.tileSize * 22;
+    }
+
+    public void setInteractiveTile() {
+        int i = 0;
+        gp.iTile[i] = new BreakableStone(gp, 6, 26);
+        i++;
+        gp.iTile[i] = new BreakableStone(gp, 7, 26);
+        i++;
+        gp.iTile[i] = new BreakableStone(gp, 8, 26);
+        i++;
+        gp.iTile[i] = new BreakableStone(gp, 9, 26);
+        i++;
+        gp.iTile[i] = new BreakableStone(gp, 10, 26);
+        i++;
+        gp.iTile[i] = new BreakableStone(gp, 12, 11);
+        i++;
+        gp.iTile[i] = new BreakableStone(gp, 7, 8);
+        i++;
+
     }
 }

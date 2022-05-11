@@ -5,12 +5,12 @@ import main.GamePanel;
 
 public class HealingPotion extends Entity {
     GamePanel gp;
-    int value = 5;
 
     public HealingPotion(GamePanel gp) {
 
         super(gp);
         this.gp = gp;
+        value = 5;
         type = type_consumable;
         name = "Healing Potion";
         down1 = setup("/Objects/healingPotion", gp.tileSize, gp.tileSize);

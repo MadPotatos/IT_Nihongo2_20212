@@ -171,6 +171,8 @@ public class Player extends Entity {
 			// Check monster collision
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
 			contactMonster(monsterIndex);
+			// Check interactive tile collision
+			int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
 
 			// Check event
 			gp.eHandler.checkEvent();
@@ -240,6 +242,12 @@ public class Player extends Entity {
 		if (shotAvailableCounter < 30) {
 			shotAvailableCounter++;
 		}
+		if (life > maxLife) {
+			life = maxLife;
+		}
+		if (mana > maxMana) {
+			mana = maxMana;
+		}
 	}
 
 	private void attacking() {
@@ -275,6 +283,10 @@ public class Player extends Entity {
 			// check monster collision
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
 			damageMonster(monsterIndex, attack);
+
+			int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+			damageInteractiveTile(iTileIndex);
+
 			worldX = currentWorldX;
 			worldY = currentWorldY;
 			solidArea.width = solidAreaWidth;
@@ -284,6 +296,20 @@ public class Player extends Entity {
 			spriteNum = 1;
 			spriteCounter = 0;
 			attacking = false;
+		}
+	}
+
+	private void damageInteractiveTile(int i) {
+		if (i != 999 && gp.iTile[i].destructible == true && gp.iTile[i].isCorrectItem(this) == true
+				&& gp.iTile[i].invincible == false) {
+			gp.iTile[i].playSE();
+			gp.iTile[i].life--;
+			gp.iTile[i].invincible = true;
+			// Generate particle
+			generateParticle(gp.iTile[i], gp.iTile[i]);
+			if (gp.iTile[i].life == 0) {
+				gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+			}
 		}
 	}
 
@@ -366,17 +392,22 @@ public class Player extends Entity {
 
 	public void pickupObject(int i) {
 		if (i != 999) {
-			String text;
-			if (inventory.size() != maxInventorySize) {
-				inventory.add(gp.obj[i]);
-				gp.playSE(1);
-				text = "You got a " + gp.obj[i].name + "!";
+			// PICKUP ONLY ITEMS
+			if (gp.obj[i].type == type_pickupOnly) {
+				gp.obj[i].use(this);
+				gp.obj[i] = null;
 			} else {
-				text = "Can't carry more items!";
+				String text;
+				if (inventory.size() != maxInventorySize) {
+					inventory.add(gp.obj[i]);
+					gp.playSE(1);
+					text = "You got a " + gp.obj[i].name + "!";
+				} else {
+					text = "Can't carry more items!";
+				}
+				gp.ui.addMessage(text);
+				gp.obj[i] = null;
 			}
-			gp.ui.addMessage(text);
-			gp.obj[i] = null;
-
 		}
 
 	}
