@@ -213,6 +213,13 @@ public class UI {
         volumeWidth = 24 * gp.se.volumeScale;
         g2.fillRect(textX, textY, volumeWidth, 24);
 
+        try {
+            gp.config.saveConfig();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
     private void fullScreenNotification(int frameX, int frameY) {

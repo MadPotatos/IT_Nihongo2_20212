@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements Runnable {
     public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
-
+    Config config = new Config(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
@@ -90,8 +90,9 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = titleState;
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
-
-        // setFullScreen();
+        if (fullscreenOn == true) {
+            setFullScreen();
+        }
     }
 
     public void setFullScreen() {
