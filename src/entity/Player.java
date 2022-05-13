@@ -56,7 +56,21 @@ public class Player extends Entity {
 
 	}
 
-	private void setItems() {
+	public void setDefaultPositions() {
+		worldX = gp.tileSize * 15;
+		worldY = gp.tileSize * 15;
+		direction = "still";
+	}
+
+	public void restoreLifeAndMana() {
+		life = maxLife;
+		mana = maxMana;
+		invincible = false;
+
+	}
+
+	public void setItems() {
+		inventory.clear();
 		inventory.add(currentWeapon);
 		inventory.add(currentShield);
 		inventory.add(new Key(gp));
@@ -247,6 +261,12 @@ public class Player extends Entity {
 		}
 		if (mana > maxMana) {
 			mana = maxMana;
+		}
+		if (life <= 0) {
+			gp.gameState = gp.gameOverState;
+			gp.ui.commandNum = -1;
+			gp.stopMusic();
+			gp.playSE(12);
 		}
 	}
 
