@@ -14,14 +14,15 @@ import main.UtilityTool;
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int mapTileNum[][][];
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[50];
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        tile = new Tile[60];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("/Maps/map02.txt");
+        loadMap("/Maps/map02.txt", 0);
+        loadMap("/Maps/store1.txt", 1);
     }
 
     public void getTileImage() {
@@ -45,9 +46,9 @@ public class TileManager {
         setup(15, "grass03", false);
         setup(16, "house01", true);
         setup(17, "house02", true);
-        setup(18, "house03", true);
-        setup(19, "house04", true);
-        setup(20, "house05", true);
+        setup(18, "house03", false);
+        setup(19, "house04", false);
+        setup(20, "house05", false);
         setup(21, "house06", true);
         setup(22, "house07", true);
         setup(23, "house08", true);
@@ -73,6 +74,18 @@ public class TileManager {
         setup(43, "water07", true);
         setup(44, "water08", true);
         setup(45, "checkpoint", true);
+        setup(46, "floor1", false);
+        setup(47, "wall1", true);
+        setup(48, "wall2", true);
+        setup(49, "wall3", true);
+        setup(50, "wall4", true);
+        setup(51, "wall5", true);
+        setup(52, "wall6", true);
+        setup(53, "wall7", true);
+        setup(54, "wall8", true);
+        setup(55, "table1", true);
+        setup(56, "table2", true);
+        setup(57, "table3", true);
 
     }
 
@@ -88,7 +101,7 @@ public class TileManager {
         }
     }
 
-    public void loadMap(String filePath) {
+    public void loadMap(String filePath, int map) {
         try {
             InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new java.io.InputStreamReader(is));
@@ -99,7 +112,7 @@ public class TileManager {
                 while (col < gp.maxWorldCol) {
                     String numbers[] = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
-                    mapTileNum[col][row] = num;
+                    mapTileNum[map][col][row] = num;
                     col++;
 
                 }
@@ -119,7 +132,7 @@ public class TileManager {
         int worldRow = 0;
 
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;
             int screenX = worldX - gp.player.worldX + gp.player.screenX;

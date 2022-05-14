@@ -27,95 +27,100 @@ public class AssetSetter {
     }
 
     public void setObject() {
+        int mapNum = 0;
         int i = 0;
 
-        gp.obj[i] = new Key(gp);
-        gp.obj[i].worldX = gp.tileSize * 23;
-        gp.obj[i].worldY = gp.tileSize * 20;
+        gp.obj[mapNum][i] = new Key(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 23;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 20;
         i++;
-        gp.obj[i] = new Heart(gp);
-        gp.obj[i].worldX = gp.tileSize * 23;
-        gp.obj[i].worldY = gp.tileSize * 19;
+        gp.obj[mapNum][i] = new Heart(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 23;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 19;
         i++;
-        gp.obj[i] = new Mana(gp);
-        gp.obj[i].worldX = gp.tileSize * 26;
-        gp.obj[i].worldY = gp.tileSize * 21;
-        i++;
-
-        gp.obj[i] = new Axe(gp);
-        gp.obj[i].worldX = gp.tileSize * 20;
-        gp.obj[i].worldY = gp.tileSize * 18;
+        gp.obj[mapNum][i] = new Mana(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 26;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 21;
         i++;
 
-        gp.obj[i] = new SteelShield(gp);
-        gp.obj[i].worldX = gp.tileSize * 25;
-        gp.obj[i].worldY = gp.tileSize * 24;
+        gp.obj[mapNum][i] = new Axe(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 20;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 18;
         i++;
-        gp.obj[i] = new Coin(gp);
-        gp.obj[i].worldX = gp.tileSize * 21;
-        gp.obj[i].worldY = gp.tileSize * 19;
 
-        gp.obj[i] = new Heart(gp);
-        gp.obj[i].worldX = gp.tileSize * 5;
-        gp.obj[i].worldY = gp.tileSize * 5;
+        gp.obj[mapNum][i] = new SteelShield(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 25;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 24;
+        i++;
+        gp.obj[mapNum][i] = new Coin(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 21;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 19;
+
+        gp.obj[mapNum][i] = new Heart(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 5;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 5;
         i++;
 
     }
 
     public void setNPC() {
-        gp.npc[0] = new NPC_Inspector(gp);
-        gp.npc[0].worldX = gp.tileSize * 10;
-        gp.npc[0].worldY = gp.tileSize * 10;
-        gp.npc[1] = new NPC_oldman(gp);
-        gp.npc[1].worldX = gp.tileSize * 35;
-        gp.npc[1].worldY = gp.tileSize * 10;
+        int mapNum = 0;
+        gp.npc[mapNum][0] = new NPC_Inspector(gp);
+        gp.npc[mapNum][0].worldX = gp.tileSize * 10;
+        gp.npc[mapNum][0].worldY = gp.tileSize * 10;
+        gp.npc[mapNum][1] = new NPC_oldman(gp);
+        gp.npc[mapNum][1].worldX = gp.tileSize * 35;
+        gp.npc[mapNum][1].worldY = gp.tileSize * 10;
     }
 
     public void setMonster() {
-        gp.monster[0] = new Slime(gp);
-        gp.monster[0].worldX = gp.tileSize * 12;
-        gp.monster[0].worldY = gp.tileSize * 10;
+        int mapNum = 0;
+        gp.monster[mapNum][0] = new Slime(gp);
+        gp.monster[mapNum][0].worldX = gp.tileSize * 12;
+        gp.monster[mapNum][0].worldY = gp.tileSize * 10;
 
-        gp.monster[1] = new Slime(gp);
-        gp.monster[1].worldX = gp.tileSize * 20;
-        gp.monster[1].worldY = gp.tileSize * 18;
+        gp.monster[mapNum][1] = new Slime(gp);
+        gp.monster[mapNum][1].worldX = gp.tileSize * 20;
+        gp.monster[mapNum][1].worldY = gp.tileSize * 18;
 
-        gp.monster[2] = new Tanuki(gp);
-        gp.monster[2].worldX = gp.tileSize * 25;
-        gp.monster[2].worldY = gp.tileSize * 20;
+        gp.monster[mapNum][2] = new Tanuki(gp);
+        gp.monster[mapNum][2].worldX = gp.tileSize * 25;
+        gp.monster[mapNum][2].worldY = gp.tileSize * 20;
 
-        gp.monster[4] = new Mole(gp);
-        gp.monster[4].worldX = gp.tileSize * 10;
-        gp.monster[4].worldY = gp.tileSize * 40;
+        gp.monster[mapNum][4] = new Mole(gp);
+        gp.monster[mapNum][4].worldX = gp.tileSize * 10;
+        gp.monster[mapNum][4].worldY = gp.tileSize * 40;
 
-        gp.monster[5] = new Mole(gp);
-        gp.monster[5].worldX = gp.tileSize * 21;
-        gp.monster[5].worldY = gp.tileSize * 21;
+        gp.monster[mapNum][5] = new Mole(gp);
+        gp.monster[mapNum][5].worldX = gp.tileSize * 21;
+        gp.monster[mapNum][5].worldY = gp.tileSize * 21;
 
-        gp.monster[6] = new Mole(gp);
-        gp.monster[6].worldX = gp.tileSize * 35;
-        gp.monster[6].worldY = gp.tileSize * 23;
+        gp.monster[mapNum][6] = new Mole(gp);
+        gp.monster[mapNum][6].worldX = gp.tileSize * 35;
+        gp.monster[mapNum][6].worldY = gp.tileSize * 23;
 
-        gp.monster[7] = new Mole(gp);
-        gp.monster[7].worldX = gp.tileSize * 12;
-        gp.monster[7].worldY = gp.tileSize * 22;
+        gp.monster[mapNum][7] = new Mole(gp);
+        gp.monster[mapNum][7].worldX = gp.tileSize * 12;
+        gp.monster[mapNum][7].worldY = gp.tileSize * 22;
+        // mapNum = 1;
     }
 
     public void setInteractiveTile() {
+        int mapNum = 0;
         int i = 0;
-        gp.iTile[i] = new BreakableStone(gp, 6, 26);
+        gp.iTile[mapNum][i] = new BreakableStone(gp, 6, 26);
         i++;
-        gp.iTile[i] = new BreakableStone(gp, 7, 26);
+        gp.iTile[mapNum][i] = new BreakableStone(gp, 7, 26);
         i++;
-        gp.iTile[i] = new BreakableStone(gp, 8, 26);
+        gp.iTile[mapNum][i] = new BreakableStone(gp, 8, 26);
         i++;
-        gp.iTile[i] = new BreakableStone(gp, 9, 26);
+        gp.iTile[mapNum][i] = new BreakableStone(gp, 9, 26);
         i++;
-        gp.iTile[i] = new BreakableStone(gp, 10, 26);
+        gp.iTile[mapNum][i] = new BreakableStone(gp, 10, 26);
         i++;
-        gp.iTile[i] = new BreakableStone(gp, 12, 11);
+        gp.iTile[mapNum][i] = new BreakableStone(gp, 12, 11);
         i++;
-        gp.iTile[i] = new BreakableStone(gp, 7, 8);
+        gp.iTile[mapNum][i] = new BreakableStone(gp, 7, 8);
         i++;
 
     }
