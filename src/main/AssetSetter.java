@@ -3,6 +3,7 @@ package main;
 import java.nio.file.WatchEvent;
 
 import entity.NPC_Inspector;
+import entity.NPC_merchant;
 import entity.NPC_oldman;
 import monster.Mole;
 import monster.Slime;
@@ -65,12 +66,21 @@ public class AssetSetter {
 
     public void setNPC() {
         int mapNum = 0;
-        gp.npc[mapNum][0] = new NPC_Inspector(gp);
-        gp.npc[mapNum][0].worldX = gp.tileSize * 10;
-        gp.npc[mapNum][0].worldY = gp.tileSize * 10;
-        gp.npc[mapNum][1] = new NPC_oldman(gp);
-        gp.npc[mapNum][1].worldX = gp.tileSize * 35;
-        gp.npc[mapNum][1].worldY = gp.tileSize * 10;
+        int i = 0;
+        // map 0
+        gp.npc[mapNum][i] = new NPC_Inspector(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 10;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 10;
+        i++;
+        gp.npc[mapNum][i] = new NPC_oldman(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 35;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 10;
+        // map 1
+        mapNum = 1;
+        i = 0;
+        gp.npc[mapNum][i] = new NPC_merchant(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 10;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 6;
     }
 
     public void setMonster() {

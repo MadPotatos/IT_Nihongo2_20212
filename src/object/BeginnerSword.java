@@ -15,6 +15,7 @@ public class BeginnerSword extends Entity {
         description = "[" + name + "]\n" + "A simple sword.";
         attackArea.width = 36;
         attackArea.height = 36;
+        price = 30;
     }
 
 }

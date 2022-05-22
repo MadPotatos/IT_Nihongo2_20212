@@ -2,6 +2,8 @@ package main;
 
 import java.awt.Rectangle;
 
+import entity.Entity;
+
 public class EventHandler {
     GamePanel gp;
     EventRect eventRect[][][];
@@ -87,10 +89,21 @@ public class EventHandler {
 
             } else if (hit(1, 10, 12, "any") == true) {
                 teleport(0, 2, 8);
+            } else if (hit(1, 10, 8, "up") == true) {
+                speak(gp.npc[1][0]);
 
             }
         }
 
+    }
+
+    private void speak(Entity entity) {
+        if (gp.keyH.enterPressed == true) {
+            gp.gameState = gp.dialogueState;
+            entity.speak();
+            gp.player.attackCanceled = true;
+
+        }
     }
 
     private void teleport(int map, int col, int row) {

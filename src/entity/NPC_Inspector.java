@@ -1,13 +1,8 @@
 package entity;
 
 import main.GamePanel;
-import main.UtilityTool;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
 
 public class NPC_Inspector extends Entity {
 

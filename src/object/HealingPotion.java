@@ -15,7 +15,7 @@ public class HealingPotion extends Entity {
         name = "Healing Potion";
         down1 = setup("/Objects/healingPotion", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\n" + "Can be used to heal\n" + value + " HP.";
-
+        price = 10;
     }
 
     public void use(Entity entity) {

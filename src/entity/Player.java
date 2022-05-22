@@ -32,8 +32,6 @@ public class Player extends Entity {
 	public int hasKey = 0;
 	int standCounter = 0;
 	public boolean attackCanceled = false;
-	public ArrayList<Entity> inventory = new ArrayList<>();
-	public final int maxInventorySize = 20;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -95,7 +93,7 @@ public class Player extends Entity {
 		endurance = 1;
 		exp = 0;
 		nextLevelExp = 5;
-		coin = 0;
+		coin = 500;
 		currentWeapon = new BeginnerSword(gp);
 		currentShield = new WoodenShield(gp);
 		projectile = new EnergyBall(gp);
@@ -375,7 +373,8 @@ public class Player extends Entity {
 	}
 
 	public void selectItem() {
-		int itemIndex = gp.ui.getItemIndexonSlot();
+		int itemIndex = gp.ui.getItemIndexonSlot(gp.ui.playerSlotCol,
+				gp.ui.playerSlotRow);
 		if (itemIndex < inventory.size()) {
 			Entity selectedItem = inventory.get(itemIndex);
 			if (selectedItem.type == type_axe || selectedItem.type == type_sword) {

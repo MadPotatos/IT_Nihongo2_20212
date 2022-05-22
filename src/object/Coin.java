@@ -12,7 +12,7 @@ public class Coin extends Entity {
         type = type_pickupOnly;
         name = "Coin";
         value = 1;
-        down1 = setup("/Objects/coin", gp.tileSize - 32, gp.tileSize - 32);
+        down1 = setup("/Objects/coin", gp.tileSize, gp.tileSize);
 
     }
 
