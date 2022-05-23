@@ -2,7 +2,6 @@ package entity;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
@@ -14,7 +13,7 @@ import main.UtilityTool;
 
 import java.awt.Rectangle;
 
-public class Entity {
+public abstract class Entity {
 	GamePanel gp;
 
 	public int speed;

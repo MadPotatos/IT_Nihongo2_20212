@@ -1,7 +1,5 @@
 package main;
 
-import java.nio.file.WatchEvent;
-
 import entity.NPC_Inspector;
 import entity.NPC_merchant;
 import entity.NPC_oldman;
@@ -9,11 +7,7 @@ import monster.Mole;
 import monster.Slime;
 import monster.Tanuki;
 import object.Axe;
-import object.Boots;
-import object.Chest;
 import object.Coin;
-import object.DStradeMark;
-import object.Door;
 import object.Heart;
 import object.Key;
 import object.Mana;

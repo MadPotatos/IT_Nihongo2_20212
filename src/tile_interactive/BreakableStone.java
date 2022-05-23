@@ -4,8 +4,6 @@ import entity.Entity;
 import main.GamePanel;
 import java.awt.Color;
 
-import javax.swing.plaf.ColorUIResource;
-
 public class BreakableStone extends InteractiveTile {
     GamePanel gp;
 

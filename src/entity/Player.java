@@ -1,22 +1,11 @@
 package entity;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.nio.file.WatchEvent;
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.awt.AlphaComposite;
-
-import javax.imageio.ImageIO;
-
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
 import object.BeginnerSword;
 import object.DStradeMark;
 import object.EnergyBall;

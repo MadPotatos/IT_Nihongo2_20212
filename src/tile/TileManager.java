@@ -3,11 +3,8 @@ package tile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.Buffer;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-
 import main.GamePanel;
 import main.UtilityTool;
 
