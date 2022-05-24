@@ -106,8 +106,9 @@ public class KeyHandler implements KeyListener {
             if (gp.ui.commandNum == 0) {
                 gp.gameState = gp.playState;
                 gp.retry();
-                gp.playMusic(0);
+                gp.playMusic(13);
             } else if (gp.ui.commandNum == 1) {
+                gp.playMusic(0);
                 gp.gameState = gp.titleState;
                 gp.restart();
             }
@@ -177,6 +178,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void titleState(int code) {
+
         if (gp.ui.titleScreenState == 0) {
             if (code == KeyEvent.VK_W) {
                 gp.playSE(9);
@@ -196,12 +198,15 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
 
                 if (gp.ui.commandNum == 0) {
-                    gp.playMusic(0);
-                    // gp.ui.titleScreenState = 1;
+                    gp.stopMusic();
+                    gp.playMusic(13);
                     gp.gameState = gp.playState;
 
                 }
                 if (gp.ui.commandNum == 1) {
+                    gp.stopMusic();
+                    gp.playMusic(13);
+                    gp.gameState = gp.playState;
 
                 }
                 if (gp.ui.commandNum == 2) {

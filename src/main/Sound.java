@@ -15,19 +15,20 @@ public class Sound {
     float volume;
 
     public Sound() {
-        soundURL[0] = getClass().getResource("/Sound/background.wav");
+        soundURL[0] = getClass().getResource("/Sound/menu.wav");
         soundURL[1] = getClass().getResource("/Sound/coin.wav");
         soundURL[2] = getClass().getResource("/Sound/powerup.wav");
         soundURL[3] = getClass().getResource("/Sound/unlock.wav");
         soundURL[4] = getClass().getResource("/Sound/fanfare.wav");
         soundURL[5] = getClass().getResource("/Sound/Hit.wav");
-        soundURL[6] = getClass().getResource("/Sound/Sword2.wav");
+        soundURL[6] = getClass().getResource("/Sound/sword.wav");
         soundURL[7] = getClass().getResource("/Sound/Kill.wav");
         soundURL[8] = getClass().getResource("/Sound/levelup.wav");
         soundURL[9] = getClass().getResource("/Sound/cursor.wav");
         soundURL[10] = getClass().getResource("/Sound/EnergyBall.wav");
         soundURL[11] = getClass().getResource("/Sound/stonebreak.wav");
         soundURL[12] = getClass().getResource("/Sound/GameOver.wav");
+        soundURL[13] = getClass().getResource("/Sound/begin.wav");
     }
 
     public void setFile(int i) {

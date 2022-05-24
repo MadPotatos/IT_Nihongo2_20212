@@ -23,18 +23,9 @@ public class TileManager {
     }
 
     public void getTileImage() {
-
-        setup(0, "grass", false);
-        setup(1, "grass", false);
-        setup(2, "grass", false);
-        setup(3, "grass", false);
-        setup(4, "grass", false);
-        setup(5, "grass", false);
-        setup(6, "grass", false);
-        setup(7, "grass", false);
-        setup(8, "grass", false);
-        setup(9, "grass", false);
-        setup(9, "earth", false);
+        for (int i = 0; i < 10; i++) {
+            setup(i, "grass", false);
+        }
         setup(10, "gate01", true);
         setup(11, "gate02", true);
         setup(12, "grass", false);

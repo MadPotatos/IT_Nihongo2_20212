@@ -1,6 +1,5 @@
 package main;
 
-import entity.NPC_Inspector;
 import entity.NPC_merchant;
 import entity.NPC_oldman;
 import monster.Mole;
@@ -62,10 +61,7 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         // map 0
-        gp.npc[mapNum][i] = new NPC_Inspector(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 10;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 10;
-        i++;
+
         gp.npc[mapNum][i] = new NPC_oldman(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 35;
         gp.npc[mapNum][i].worldY = gp.tileSize * 10;

@@ -90,8 +90,8 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setInteractiveTile();
-        // playMusic(0);
         gameState = titleState;
+        playMusic(0);
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
         if (fullscreenOn == true) {

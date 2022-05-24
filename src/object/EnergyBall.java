@@ -3,8 +3,6 @@ package object;
 import entity.Entity;
 import entity.Projectile;
 import main.GamePanel;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.awt.Color;
 
 public class EnergyBall extends Projectile {

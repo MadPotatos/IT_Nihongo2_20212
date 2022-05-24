@@ -7,7 +7,6 @@ import java.awt.AlphaComposite;
 import main.GamePanel;
 import main.KeyHandler;
 import object.BeginnerSword;
-import object.DStradeMark;
 import object.EnergyBall;
 import object.HealingPotion;
 import object.Key;
@@ -28,13 +27,9 @@ public class Player extends Entity {
 		this.keyH = keyH;
 		screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
 		screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
-		solidArea = new Rectangle();
-		solidArea.x = 10;
-		solidArea.y = 10;
+		solidArea = new Rectangle(7, 7, 30, 30);
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
-		solidArea.width = 30;
-		solidArea.height = 30;
 
 		setDefaultValue();
 		getPlayerImage();
@@ -62,14 +57,13 @@ public class Player extends Entity {
 		inventory.add(currentShield);
 		inventory.add(new Key(gp));
 		inventory.add(new HealingPotion(gp));
-		inventory.add(new DStradeMark(gp));
 		inventory.add(new HealingPotion(gp));
 
 	}
 
 	public void setDefaultValue() {
 		setDefaultPositions();
-		speed = 5;
+		speed = 3;
 
 		// PLAYER STATUS
 		level = 1;
@@ -81,7 +75,7 @@ public class Player extends Entity {
 		strength = 1;
 		endurance = 1;
 		exp = 0;
-		nextLevelExp = 5;
+		nextLevelExp = 10;
 		coin = 500;
 		currentWeapon = new BeginnerSword(gp);
 		currentShield = new WoodenShield(gp);
@@ -346,7 +340,7 @@ public class Player extends Entity {
 	private void checkLevelUp() {
 		if (exp >= nextLevelExp) {
 			level++;
-			nextLevelExp = nextLevelExp * 2;
+			nextLevelExp = nextLevelExp * 3;
 			maxLife += 2;
 			maxMana += 1;
 			strength++;
