@@ -1,9 +1,8 @@
 package object;
 
-import entity.Entity;
 import main.GamePanel;
 
-public class SteelShield extends Entity {
+public class SteelShield extends Item {
 
     public SteelShield(GamePanel gp) {
         super(gp);

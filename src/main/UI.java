@@ -17,6 +17,7 @@ import java.awt.BasicStroke;
 
 import object.Coin;
 import object.Heart;
+import object.Item;
 import object.Mana;
 
 public class UI {
@@ -52,15 +53,15 @@ public class UI {
             e.printStackTrace();
         }
         // CREATE HUD OBJECT
-        Entity heart = new Heart(gp);
+        Item heart = new Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_empty = heart.image3;
-        Entity mana = new Mana(gp);
+        Item mana = new Mana(gp);
         mana_full = mana.image;
         mana_empty = mana.image2;
-        Entity Coin = new Coin(gp);
-        coin = Coin.down1;
+        Item Coin = new Coin(gp);
+        coin = Coin.image;
         try {
             bg = ImageIO.read(getClass().getResourceAsStream("/Tiles/bg.png"));
 
@@ -786,7 +787,7 @@ public class UI {
                 g2.setColor(Color.white);
             }
             g2.drawString(text, x, y);
-            text = "LOAD GAME";
+            text = "SETTING";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             if (commandNum == 1) {

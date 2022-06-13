@@ -3,7 +3,7 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-public class HealingPotion extends Entity {
+public class HealingPotion extends Item {
     GamePanel gp;
 
     public HealingPotion(GamePanel gp) {

@@ -15,7 +15,6 @@ public class Mole extends Entity {
     public Mole(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        // TODO Auto-generated constructor stub
         type = type_monster;
         name = "Mole";
         speed = 2;

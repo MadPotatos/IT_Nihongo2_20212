@@ -3,7 +3,7 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-public class Heart extends Entity {
+public class Heart extends Item {
     GamePanel gp;
 
     public Heart(GamePanel gp) {

@@ -3,7 +3,7 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-public class Mana extends Entity {
+public class Mana extends Item {
     GamePanel gp;
 
     public Mana(GamePanel gp) {
@@ -13,7 +13,7 @@ public class Mana extends Entity {
         value = 1;
 
         name = "Mana";
-        down1 = setup("/HUD/mana_full", gp.tileSize, gp.tileSize);
+        down1 = setup("/HUD/mana_full", gp.tileSize - 12, gp.tileSize - 12);
         image = setup("/HUD/mana_full", gp.tileSize - 12, gp.tileSize - 12);
 
         image2 = setup("/HUD/mana_empty", gp.tileSize - 12, gp.tileSize - 12);

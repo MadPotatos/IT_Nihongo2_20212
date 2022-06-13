@@ -9,6 +9,7 @@ import main.KeyHandler;
 import object.BeginnerSword;
 import object.EnergyBall;
 import object.HealingPotion;
+import object.Item;
 import object.Key;
 import object.WoodenShield;
 
@@ -359,7 +360,7 @@ public class Player extends Entity {
 		int itemIndex = gp.ui.getItemIndexonSlot(gp.ui.playerSlotCol,
 				gp.ui.playerSlotRow);
 		if (itemIndex < inventory.size()) {
-			Entity selectedItem = inventory.get(itemIndex);
+			Item selectedItem = inventory.get(itemIndex);
 			if (selectedItem.type == type_axe || selectedItem.type == type_sword) {
 				currentWeapon = selectedItem;
 				attack = getAttack();
