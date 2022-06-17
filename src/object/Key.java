@@ -1,15 +1,14 @@
 package object;
 
-import entity.Entity;
 import main.GamePanel;
 
-public class Key extends Entity {
+public class Key extends Item {
 
     public Key(GamePanel gp) {
         super(gp);
-        name = "Key";
+        setName("Key");
         down1 = setup("/Objects/key", gp.tileSize, gp.tileSize);
-        description = "[" + name + "]\n" + "Can be used to open\ndoors.";
+        setDescription("[" + getName() + "]\n" + "Can be used to open\ndoors.");
 
     }
 }

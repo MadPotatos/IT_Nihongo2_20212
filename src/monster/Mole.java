@@ -4,18 +4,14 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
-import object.Coin;
-import object.Heart;
-import object.Mana;
 import object.Rock;
 
 public class Mole extends Entity {
-    GamePanel gp;
+    private GamePanel gp;
 
     public Mole(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        // TODO Auto-generated constructor stub
         type = type_monster;
         name = "Mole";
         speed = 2;
@@ -25,12 +21,10 @@ public class Mole extends Entity {
         defense = 1;
         exp = 3;
         projectile = new Rock(gp);
-        solidArea.x = 3;
-        solidArea.y = 18;
+
         solidArea.width = 36;
         solidArea.height = 30;
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+
         getImage();
 
     }
@@ -72,9 +66,7 @@ public class Mole extends Entity {
             projectile.set(worldX, worldY, direction, true, this);
             gp.projectileList.add(projectile);
             shotAvailableCounter = 0;
-
         }
-
     }
 
     public void damageReaction() {
@@ -94,18 +86,5 @@ public class Mole extends Entity {
 
     }
 
-    public void checkDrop() {
-        int i = new Random().nextInt(100) + 1;
-        // Set monster drop
-        if (i < 50) {
-            dropItem(new Coin(gp));
-        }
-        if (i > 50 && i < 75) {
-            dropItem(new Heart(gp));
-        }
-        if (i > 75) {
-            dropItem(new Mana(gp));
-        }
-    }
 
 }

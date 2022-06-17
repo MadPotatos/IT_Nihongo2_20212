@@ -1,19 +1,12 @@
 package main;
 
-import java.nio.file.WatchEvent;
-
-import entity.NPC_Inspector;
 import entity.NPC_merchant;
 import entity.NPC_oldman;
 import monster.Mole;
 import monster.Slime;
 import monster.Tanuki;
 import object.Axe;
-import object.Boots;
-import object.Chest;
 import object.Coin;
-import object.DStradeMark;
-import object.Door;
 import object.Heart;
 import object.Key;
 import object.Mana;
@@ -21,7 +14,7 @@ import object.SteelShield;
 import tile_interactive.BreakableStone;
 
 public class AssetSetter {
-    GamePanel gp;
+    private GamePanel gp;
 
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
@@ -68,10 +61,7 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         // map 0
-        gp.npc[mapNum][i] = new NPC_Inspector(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 10;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 10;
-        i++;
+
         gp.npc[mapNum][i] = new NPC_oldman(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 35;
         gp.npc[mapNum][i].worldY = gp.tileSize * 10;

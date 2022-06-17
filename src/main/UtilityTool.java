@@ -1,14 +1,7 @@
 package main;
 
-import java.awt.Dimension;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
-
-import entity.Player;
-import tile.TileManager;
 
 public class UtilityTool {
     public BufferedImage scaleImage(BufferedImage original, int width, int height) {

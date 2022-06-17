@@ -4,10 +4,8 @@ import entity.Entity;
 import main.GamePanel;
 import java.awt.Color;
 
-import javax.swing.plaf.ColorUIResource;
-
 public class BreakableStone extends InteractiveTile {
-    GamePanel gp;
+    private GamePanel gp;
 
     public BreakableStone(GamePanel gp, int col, int row) {
         super(gp, col, row);
@@ -17,13 +15,13 @@ public class BreakableStone extends InteractiveTile {
         this.worldY = gp.tileSize * row;
 
         down1 = setup("/tiles_interactive/breakable_stone", gp.tileSize, gp.tileSize);
-        destructible = true;
+        setDestructible(true);
         life = 3;
     }
 
     public boolean isCorrectItem(Entity entity) {
         boolean isCorrectItem = false;
-        if (entity.currentWeapon.type == type_axe) {
+        if (entity.currentWeapon.getType() == type_axe) {
             isCorrectItem = true;
         }
         return isCorrectItem;

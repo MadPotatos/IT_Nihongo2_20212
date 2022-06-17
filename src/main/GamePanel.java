@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import entity.Entity;
 import entity.Player;
+import object.Item;
 import tile.TileManager;
 import tile_interactive.InteractiveTile;
 
@@ -56,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     // PLAYER
     public Player player = new Player(this, keyH);
-    public Entity obj[][] = new Entity[maxMap][20];
+    public Item obj[][] = new Item[maxMap][20];
     public Entity npc[][] = new Entity[maxMap][10];
     public Entity monster[][] = new Entity[maxMap][20];
     public InteractiveTile iTile[][] = new InteractiveTile[maxMap][50];
@@ -90,8 +91,8 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setInteractiveTile();
-        // playMusic(0);
         gameState = titleState;
+        playMusic(0);
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_RGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
         if (fullscreenOn == true) {

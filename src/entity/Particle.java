@@ -5,15 +5,15 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class Particle extends Entity {
-    Entity generator;
-    Color color;
-    int size;
-    int xd;
-    int yd;
+    private Entity generator;
+    private Color color;
+    private int size;
+    private int xd;
+    private int yd;
 
     public Particle(GamePanel gp, Entity generator, Color color, int size, int speed, int maxLife, int xd, int yd) {
         super(gp);
-        this.generator = generator;
+        this.setGenerator(generator);
         this.color = color;
         this.size = size;
         this.xd = xd;
@@ -48,5 +48,14 @@ public class Particle extends Entity {
         g2.setColor(color);
         g2.fillRect(screenX, screenY, size, size);
     }
+    
+    //Getter and setter
+	public Entity getGenerator() {
+		return generator;
+	}
+
+	public void setGenerator(Entity generator) {
+		this.generator = generator;
+	}
 
 }

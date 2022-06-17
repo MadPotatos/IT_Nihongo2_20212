@@ -2,7 +2,6 @@ package entity;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
@@ -11,10 +10,11 @@ import java.awt.Color;
 
 import main.GamePanel;
 import main.UtilityTool;
+import object.Item;
 
 import java.awt.Rectangle;
 
-public class Entity {
+public abstract class Entity {
 	GamePanel gp;
 
 	public int speed;
@@ -45,10 +45,10 @@ public class Entity {
 	// CHARACTER ATTRIBUTE
 	String dialogues[] = new String[30];
 	int dialogueIndex = 0;
-	public BufferedImage image, image2, image3;
 	public String name;
 	public boolean collision = false;
-
+	public int useCost;
+	
 	// CHARACTER ATTRIBUTE
 	public int maxLife;
 	public int life;
@@ -63,19 +63,12 @@ public class Entity {
 	public int exp;
 	public int nextLevelExp;
 	public int coin;
-	public Entity currentWeapon;
-	public Entity currentShield;
+	public Item currentWeapon;
+	public Item currentShield;
 	public Projectile projectile;
-
-	// ITEM ATTRIBUTE
-	public ArrayList<Entity> inventory = new ArrayList<>();
 	public final int maxInventorySize = 20;
-	public int value;
-	public int attackValue;
-	public int defenseValue;
-	public String description = "";
-	public int useCost;
-	public int price;
+	// ITEM ATTRIBUTE
+
 	// Type
 	public int type; // 0 = player, 1 = npc, 2 = monster
 	public final int type_player = 0;
@@ -86,6 +79,7 @@ public class Entity {
 	public final int type_shield = 5;
 	public final int type_consumable = 6;
 	public final int type_pickupOnly = 7;
+	public ArrayList<Item> inventory = new ArrayList<>();
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -93,9 +87,11 @@ public class Entity {
 
 	public void setAction() {
 	}
-
+	//tach thanh class monster
 	public void damageReaction() {
 
+	}
+	public void checkDrop() {
 	}
 
 	public void speak() {
@@ -124,10 +120,9 @@ public class Entity {
 	public void use(Entity entity) {
 	}
 
-	public void checkDrop() {
-	}
 
-	public void dropItem(Entity droppedItem) {
+
+	public void dropItem(Item droppedItem) {
 		for (int i = 0; i < gp.obj[1].length; i++) {
 			if (gp.obj[gp.currentMap][i] == null) {
 				gp.obj[gp.currentMap][i] = droppedItem;

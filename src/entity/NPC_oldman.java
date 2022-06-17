@@ -8,7 +8,6 @@ public class NPC_oldman extends Entity {
 
     public NPC_oldman(GamePanel gp) {
         super(gp);
-        // TODO Auto-generated constructor stub
         direction = "down";
         speed = 1;
         getImage();

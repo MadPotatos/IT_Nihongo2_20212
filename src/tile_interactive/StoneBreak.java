@@ -1,10 +1,9 @@
 package tile_interactive;
 
-import entity.Entity;
 import main.GamePanel;
 
 public class StoneBreak extends InteractiveTile {
-    GamePanel gp;
+    private GamePanel gp;
 
     public StoneBreak(GamePanel gp, int col, int row) {
         super(gp, col, row);

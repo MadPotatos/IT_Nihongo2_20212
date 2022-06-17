@@ -2,13 +2,12 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Config {
-    GamePanel gp;
+    private GamePanel gp;
 
     public Config(GamePanel gp) {
         this.gp = gp;

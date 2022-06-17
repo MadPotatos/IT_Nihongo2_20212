@@ -7,8 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import entity.Entity;
 
@@ -16,12 +17,13 @@ import java.awt.BasicStroke;
 
 import object.Coin;
 import object.Heart;
+import object.Item;
 import object.Mana;
 
 public class UI {
     GamePanel gp;
     Font MineCraft;
-    BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty, coin;
+    BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty, coin, bg;
     Graphics2D g2;
     public boolean messageOn = false;
     ArrayList<String> message = new ArrayList<String>();
@@ -43,7 +45,7 @@ public class UI {
         this.gp = gp;
 
         try {
-            InputStream is = getClass().getResourceAsStream("/Font/Minecraft.ttf");
+            InputStream is = getClass().getResourceAsStream("/Font/determination.ttf");
             MineCraft = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (FontFormatException e) {
             e.printStackTrace();
@@ -51,16 +53,21 @@ public class UI {
             e.printStackTrace();
         }
         // CREATE HUD OBJECT
-        Entity heart = new Heart(gp);
-        heart_full = heart.image;
-        heart_half = heart.image2;
-        heart_empty = heart.image3;
-        Entity mana = new Mana(gp);
-        mana_full = mana.image;
-        mana_empty = mana.image2;
-        Entity Coin = new Coin(gp);
-        coin = Coin.down1;
+        Item heart = new Heart(gp);
+        heart_full = heart.getImage();
+        heart_half = heart.getImage2();
+        heart_empty = heart.getImage3();
+        Item mana = new Mana(gp);
+        mana_full = mana.getImage();
+        mana_empty = mana.getImage2();
+        Item Coin = new Coin(gp);
+        coin = Coin.getImage();
+        try {
+            bg = ImageIO.read(getClass().getResourceAsStream("/Tiles/bg.png"));
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addMessage(String text) {
@@ -201,14 +208,14 @@ public class UI {
             height = gp.tileSize;
             drawSubWindow(x, y, width, height);
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
-            int price = npc.inventory.get(itemIndex).price;
+            int price = npc.inventory.get(itemIndex).getPrice();
             String text = "" + price;
             x = getXforAlignToRightText(text, gp.tileSize * 8 - 20);
             g2.drawString(text, x, y + 32);
 
             // BUY ITEM
             if (gp.keyH.enterPressed == true) {
-                if (npc.inventory.get(itemIndex).price > gp.player.coin) {
+                if (npc.inventory.get(itemIndex).getPrice() > gp.player.coin) {
                     subState = 0;
                     gp.gameState = gp.dialogueState;
                     gp.ui.currentDialogue = "You don't have enough coin";
@@ -220,7 +227,7 @@ public class UI {
 
                 } else {
                     gp.playSE(9);
-                    gp.player.coin -= npc.inventory.get(itemIndex).price;
+                    gp.player.coin -= npc.inventory.get(itemIndex).getPrice();
                     gp.player.inventory.add(npc.inventory.get(itemIndex));
 
                 }
@@ -261,7 +268,7 @@ public class UI {
             height = gp.tileSize;
             drawSubWindow(x, y, width, height);
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
-            int price = gp.player.inventory.get(itemIndex).price / 2;
+            int price = gp.player.inventory.get(itemIndex).getPrice() / 2;
             String text = "" + price;
             x = getXforAlignToRightText(text, gp.tileSize * 18 - 20);
             g2.drawString(text, x, y + 32);
@@ -292,11 +299,14 @@ public class UI {
         if (counter == 50) {
             counter = 0;
             gp.gameState = gp.playState;
-            gp.currentMap = gp.eHandler.tempMap;
-            gp.player.worldX = gp.tileSize * gp.eHandler.tempCol;
-            gp.player.worldY = gp.tileSize * gp.eHandler.tempRow;
-            gp.eHandler.previousEventX = gp.player.worldX;
-            gp.eHandler.previousEventY = gp.player.worldY;
+            gp.currentMap = gp.eHandler.getTempMap();
+            gp.player.worldX = gp.tileSize * gp.eHandler.getTempCol();
+            gp.player.worldY = gp.tileSize * gp.eHandler.getTempRow();
+            int preEventX =  gp.player.worldX;
+            int preEventY =  gp.player.worldY;
+            
+            gp.eHandler.setPreviousEventX(preEventX);;
+            gp.eHandler.setPreviousEventY(preEventY);;
         }
 
     }
@@ -486,7 +496,7 @@ public class UI {
     }
 
     private void control(int frameX, int frameY) {
-        g2.setFont(g2.getFont().deriveFont(25F));
+        g2.setFont(g2.getFont().deriveFont(28F));
         int textX;
         int textY;
         // TITLE
@@ -540,7 +550,7 @@ public class UI {
     }
 
     private void endGameConfirmation(int frameX, int frameY) {
-        int textX = frameX + gp.tileSize;
+        int textX = frameX + (int) (gp.tileSize * 1.5);
         int textY = frameY + gp.tileSize * 3;
 
         currentDialogue = "Are you sure you \n want to quit?";
@@ -559,6 +569,8 @@ public class UI {
                 subState = 0;
                 gp.playSE(9);
                 gp.gameState = gp.titleState;
+                gp.stopMusic();
+                gp.playMusic(0);
             }
         }
         // NO
@@ -654,7 +666,7 @@ public class UI {
 
             if (itemIndex < entity.inventory.size()) {
                 drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
-                for (String line : entity.inventory.get(itemIndex).description.split("\n")) {
+                for (String line : entity.inventory.get(itemIndex).getDescription().split("\n")) {
                     g2.drawString(line, textX, textY);
 
                     textY += 32;
@@ -745,7 +757,9 @@ public class UI {
 
     private void drawTitleScreen() {
         if (titleScreenState == 0) {
-            g2.setColor(new Color(0, 0, 0));
+
+            g2.drawImage(bg, 0, 0, gp.screenWidth, gp.screenHeight, null);
+            g2.setColor(new Color(0, 0, 0, 160));
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
             // TITLE NAME
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 90F));
@@ -769,60 +783,34 @@ public class UI {
             text = "NEW GAME";
             x = getXforCenteredText(text);
             y += gp.tileSize * 3.5;
-            g2.drawString(text, x, y);
             if (commandNum == 0) {
+                g2.setColor(Color.yellow);
                 g2.drawString(">", x - gp.tileSize, y);
+            } else {
+                g2.setColor(Color.white);
             }
-            text = "LOAD GAME";
+            g2.drawString(text, x, y);
+            text = "SETTING";
             x = getXforCenteredText(text);
             y += gp.tileSize;
-            g2.drawString(text, x, y);
             if (commandNum == 1) {
+                g2.setColor(Color.yellow);
                 g2.drawString(">", x - gp.tileSize, y);
+            } else {
+                g2.setColor(Color.white);
             }
+            g2.drawString(text, x, y);
             text = "QUIT";
             x = getXforCenteredText(text);
             y += gp.tileSize;
-            g2.drawString(text, x, y);
             if (commandNum == 2) {
+                g2.setColor(Color.yellow);
                 g2.drawString(">", x - gp.tileSize, y);
+            } else {
+                g2.setColor(Color.white);
             }
+            g2.drawString(text, x, y);
         } else if (titleScreenState == 1) {
-            // CLASS SELECTION SCREEN
-            g2.setColor(Color.white);
-            g2.setFont(g2.getFont().deriveFont(36F));
-            String text = "Select your class !";
-            int x = getXforCenteredText(text);
-            int y = gp.tileSize * 3;
-            g2.drawString(text, x, y);
-            text = "Knight";
-            x = getXforCenteredText(text);
-            y += gp.tileSize * 3;
-            g2.drawString(text, x, y);
-            if (commandNum == 0) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-            text = "Ninja";
-            x = getXforCenteredText(text);
-            y += gp.tileSize;
-            g2.drawString(text, x, y);
-            if (commandNum == 1) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-            text = "Samurai";
-            x = getXforCenteredText(text);
-            y += gp.tileSize;
-            g2.drawString(text, x, y);
-            if (commandNum == 2) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-            text = "Back";
-            x = getXforCenteredText(text);
-            y += gp.tileSize * 2;
-            g2.drawString(text, x, y);
-            if (commandNum == 3) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
 
         }
     }
@@ -981,8 +969,10 @@ public class UI {
     }
 
     public int getXforAlignToRightText(String text, int tailX) {
+
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = tailX - length;
         return x;
     }
+
 }
