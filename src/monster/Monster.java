@@ -8,23 +8,27 @@ import object.Coin;
 import object.Heart;
 import object.Mana;
 
-public abstract class Monster extends Entity{
-	private GamePanel gp;
-	public Monster(GamePanel gp) {
-		super(gp);
-		// TODO Auto-generated constructor stub
-		this.gp = gp;
+public abstract class Monster extends Entity {
+    private GamePanel gp;
+
+    public Monster(GamePanel gp) {
+        super(gp);
+        this.gp = gp;
         type = type_monster;
         solidArea.x = 3;
         solidArea.y = 18;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-		
-	}
-	public void getImage() {}
-	public void damageReaction() {}
 
-	public void checkDrop() {
+    }
+
+    public void getImage() {
+    }
+
+    public void damageReaction() {
+    }
+
+    public void checkDrop() {
         int i = new Random().nextInt(100) + 1;
         // Set monster drop
         if (i < 50) {
@@ -37,6 +41,7 @@ public abstract class Monster extends Entity{
             dropItem(new Mana(gp));
         }
     }
+
     public void setAction() {
         actionLockCounter++;
         if (actionLockCounter == 120) {
@@ -58,7 +63,5 @@ public abstract class Monster extends Entity{
         }
 
     }
-
-
 
 }

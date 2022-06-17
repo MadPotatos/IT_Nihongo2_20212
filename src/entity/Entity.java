@@ -48,7 +48,7 @@ public abstract class Entity {
 	public String name;
 	public boolean collision = false;
 	public int useCost;
-	
+
 	// CHARACTER ATTRIBUTE
 	public int maxLife;
 	public int life;
@@ -87,12 +87,6 @@ public abstract class Entity {
 
 	public void setAction() {
 	}
-	//tach thanh class monster
-	public void damageReaction() {
-
-	}
-	public void checkDrop() {
-	}
 
 	public void speak() {
 		if (dialogues[dialogueIndex] == null) {
@@ -119,8 +113,6 @@ public abstract class Entity {
 
 	public void use(Entity entity) {
 	}
-
-
 
 	public void dropItem(Item droppedItem) {
 		for (int i = 0; i < gp.obj[1].length; i++) {

@@ -2,14 +2,12 @@ package monster;
 
 import main.GamePanel;
 
-
 public class Slime extends Monster {
     private GamePanel gp;
 
     public Slime(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        // TODO Auto-generated constructor stub
         name = "Slime";
         speed = 1;
         maxLife = 4;
@@ -33,7 +31,7 @@ public class Slime extends Monster {
         right1 = setup("/monsters/slime/slime_right1", gp.tileSize, gp.tileSize);
         right2 = setup("/monsters/slime/slime_right2", gp.tileSize, gp.tileSize);
     }
-    
+
     public void damageReaction() {
         actionLockCounter = 0;
         direction = gp.player.direction;

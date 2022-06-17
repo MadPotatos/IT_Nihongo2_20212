@@ -2,11 +2,10 @@ package monster;
 
 import java.util.Random;
 
-import entity.Entity;
 import main.GamePanel;
 import object.Rock;
 
-public class Mole extends Entity {
+public class Mole extends Monster {
     private GamePanel gp;
 
     public Mole(GamePanel gp) {
@@ -85,6 +84,5 @@ public class Mole extends Entity {
         }
 
     }
-
 
 }

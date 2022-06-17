@@ -13,6 +13,7 @@ public class Coin extends Item {
         setName("Coin");
         setValue(1);
         down1 = setup("/Objects/coin", gp.tileSize, gp.tileSize);
+        setImage(setup("/Objects/coin", gp.tileSize, gp.tileSize));
 
     }
 
