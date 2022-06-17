@@ -86,9 +86,11 @@ public abstract class Entity {
 
 	public void setAction() {
 	}
-
+	//tach thanh class monster
 	public void damageReaction() {
 
+	}
+	public void checkDrop() {
 	}
 
 	public void speak() {
@@ -117,8 +119,7 @@ public abstract class Entity {
 	public void use(Entity entity) {
 	}
 
-	public void checkDrop() {
-	}
+
 
 	public void dropItem(Item droppedItem) {
 		for (int i = 0; i < gp.obj[1].length; i++) {

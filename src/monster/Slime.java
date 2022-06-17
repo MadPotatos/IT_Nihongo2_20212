@@ -1,21 +1,15 @@
 package monster;
 
-import java.util.Random;
-
-import entity.Entity;
 import main.GamePanel;
-import object.Coin;
-import object.Heart;
-import object.Mana;
 
-public class Slime extends Entity {
+
+public class Slime extends Monster {
     GamePanel gp;
 
     public Slime(GamePanel gp) {
         super(gp);
         this.gp = gp;
         // TODO Auto-generated constructor stub
-        type = type_monster;
         name = "Slime";
         speed = 1;
         maxLife = 4;
@@ -23,12 +17,8 @@ public class Slime extends Entity {
         attack = 2;
         defense = 0;
         exp = 2;
-        solidArea.x = 3;
-        solidArea.y = 18;
         solidArea.width = 42;
         solidArea.height = 30;
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
         getImage();
 
     }
@@ -43,46 +33,9 @@ public class Slime extends Entity {
         right1 = setup("/monsters/slime/slime_right1", gp.tileSize, gp.tileSize);
         right2 = setup("/monsters/slime/slime_right2", gp.tileSize, gp.tileSize);
     }
-
-    public void setAction() {
-        actionLockCounter++;
-        if (actionLockCounter == 120) {
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;
-            if (i < 25) {
-                direction = "up";
-            }
-            if (i > 25 && i < 50) {
-                direction = "down";
-            }
-            if (i > 50 && i < 75) {
-                direction = "left";
-            }
-            if (i > 75) {
-                direction = "right";
-            }
-            actionLockCounter = 0;
-        }
-
-    }
-
+    
     public void damageReaction() {
         actionLockCounter = 0;
         direction = gp.player.direction;
     }
-
-    public void checkDrop() {
-        int i = new Random().nextInt(100) + 1;
-        // Set monster drop
-        if (i < 50) {
-            dropItem(new Coin(gp));
-        }
-        if (i > 50 && i < 75) {
-            dropItem(new Heart(gp));
-        }
-        if (i > 75) {
-            dropItem(new Mana(gp));
-        }
-    }
-
 }
