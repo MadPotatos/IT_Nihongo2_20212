@@ -21,7 +21,7 @@ public class BreakableStone extends InteractiveTile {
 
     public boolean isCorrectItem(Entity entity) {
         boolean isCorrectItem = false;
-        if (entity.currentWeapon.type == type_axe) {
+        if (entity.currentWeapon.getType() == type_axe) {
             isCorrectItem = true;
         }
         return isCorrectItem;

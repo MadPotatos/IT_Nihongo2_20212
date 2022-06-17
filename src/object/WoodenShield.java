@@ -7,11 +7,11 @@ public class WoodenShield extends Item {
     public WoodenShield(GamePanel gp) {
         super(gp);
         // TODO Auto-generated constructor stub
-        type = type_shield;
-        name = "Wooden Shield";
+        setType(type_shield);
+        setName("Wooden Shield");
         down1 = setup("/Objects/shield_wood", gp.tileSize, gp.tileSize);
-        defenseValue = 1;
-        description = "[" + name + "]\n" + "A simple shield";
+        setDefenseValue(1);
+        setDescription("[" + getName() + "]\n" + "A simple shield");
     }
 
 }

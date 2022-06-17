@@ -6,7 +6,7 @@ import main.GamePanel;
 import java.awt.Color;
 
 public class Rock extends Projectile {
-    GamePanel gp;
+	private GamePanel gp;
 
     public Rock(GamePanel gp) {
         super(gp);

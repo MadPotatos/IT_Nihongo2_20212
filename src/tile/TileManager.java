@@ -9,7 +9,7 @@ import main.GamePanel;
 import main.UtilityTool;
 
 public class TileManager {
-    GamePanel gp;
+	private GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][][];
 

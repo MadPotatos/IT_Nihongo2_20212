@@ -6,7 +6,7 @@ public class Door extends Item {
 
     public Door(GamePanel gp) {
         super(gp);
-        name = "Door";
+        setName("Door");
         down1 = setup("/Objects/door", gp.tileSize, gp.tileSize);
         collision = true;
 

@@ -90,13 +90,13 @@ public class Player extends Entity {
 	}
 
 	private int getDefense() {
-		return defense = endurance * currentShield.defenseValue;
+		return defense = endurance * currentShield.getDefenseValue();
 	}
 
 	private int getAttack() {
 		attackArea = currentWeapon.attackArea;
 
-		return attack = strength * currentWeapon.attackValue;
+		return attack = strength * currentWeapon.getAttackValue();
 	}
 
 	public void getPlayerImage() {
@@ -115,7 +115,7 @@ public class Player extends Entity {
 	}
 
 	public void getPlayerAttackImage() {
-		if (currentWeapon.type == type_sword) {
+		if (currentWeapon.getType() == type_sword) {
 			attackUp1 = setup("/Player/attack_up1", gp.tileSize, gp.tileSize);
 			attackUp2 = setup("/Player/attack_up2", gp.tileSize, gp.tileSize * 2);
 			attackDown1 = setup("/Player/attack_down1", gp.tileSize, gp.tileSize);
@@ -125,7 +125,7 @@ public class Player extends Entity {
 			attackRight1 = setup("/Player/attack_right1", gp.tileSize, gp.tileSize);
 			attackRight2 = setup("/Player/attack_right2", gp.tileSize * 2, gp.tileSize);
 		}
-		if (currentWeapon.type == type_axe) {
+		if (currentWeapon.getType() == type_axe) {
 			attackUp1 = setup("/Player/attack_up1", gp.tileSize, gp.tileSize);
 			attackUp2 = setup("/Player/axe_up2", gp.tileSize, gp.tileSize * 2);
 			attackDown1 = setup("/Player/attack_down1", gp.tileSize, gp.tileSize);
@@ -363,16 +363,16 @@ public class Player extends Entity {
 				gp.ui.playerSlotRow);
 		if (itemIndex < inventory.size()) {
 			Item selectedItem = inventory.get(itemIndex);
-			if (selectedItem.type == type_axe || selectedItem.type == type_sword) {
+			if (selectedItem.getType() == type_axe || selectedItem.getType() == type_sword) {
 				currentWeapon = selectedItem;
 				attack = getAttack();
 				getPlayerAttackImage();
 			}
-			if (selectedItem.type == type_shield) {
+			if (selectedItem.getType() == type_shield) {
 				currentShield = selectedItem;
 				defense = getDefense();
 			}
-			if (selectedItem.type == type_consumable) {
+			if (selectedItem.getType() == type_consumable) {
 				selectedItem.use(this);
 				inventory.remove(itemIndex);
 			}
@@ -398,7 +398,7 @@ public class Player extends Entity {
 	public void pickupObject(int i) {
 		if (i != 999) {
 			// PICKUP ONLY ITEMS
-			if (gp.obj[gp.currentMap][i].type == type_pickupOnly) {
+			if (gp.obj[gp.currentMap][i].getType() == type_pickupOnly) {
 				gp.obj[gp.currentMap][i].use(this);
 				gp.obj[gp.currentMap][i] = null;
 			} else {
@@ -406,7 +406,7 @@ public class Player extends Entity {
 				if (inventory.size() != maxInventorySize) {
 					inventory.add(gp.obj[gp.currentMap][i]);
 					gp.playSE(1);
-					text = "You got a " + gp.obj[gp.currentMap][i].name + "!";
+					text = "You got a " + gp.obj[gp.currentMap][i].getName() + "!";
 				} else {
 					text = "Can't carry more items!";
 				}

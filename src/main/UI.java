@@ -54,14 +54,14 @@ public class UI {
         }
         // CREATE HUD OBJECT
         Item heart = new Heart(gp);
-        heart_full = heart.image;
-        heart_half = heart.image2;
-        heart_empty = heart.image3;
+        heart_full = heart.getImage();
+        heart_half = heart.getImage2();
+        heart_empty = heart.getImage3();
         Item mana = new Mana(gp);
-        mana_full = mana.image;
-        mana_empty = mana.image2;
+        mana_full = mana.getImage();
+        mana_empty = mana.getImage2();
         Item Coin = new Coin(gp);
-        coin = Coin.image;
+        coin = Coin.getImage();
         try {
             bg = ImageIO.read(getClass().getResourceAsStream("/Tiles/bg.png"));
 
@@ -208,14 +208,14 @@ public class UI {
             height = gp.tileSize;
             drawSubWindow(x, y, width, height);
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
-            int price = npc.inventory.get(itemIndex).price;
+            int price = npc.inventory.get(itemIndex).getPrice();
             String text = "" + price;
             x = getXforAlignToRightText(text, gp.tileSize * 8 - 20);
             g2.drawString(text, x, y + 32);
 
             // BUY ITEM
             if (gp.keyH.enterPressed == true) {
-                if (npc.inventory.get(itemIndex).price > gp.player.coin) {
+                if (npc.inventory.get(itemIndex).getPrice() > gp.player.coin) {
                     subState = 0;
                     gp.gameState = gp.dialogueState;
                     gp.ui.currentDialogue = "You don't have enough coin";
@@ -227,7 +227,7 @@ public class UI {
 
                 } else {
                     gp.playSE(9);
-                    gp.player.coin -= npc.inventory.get(itemIndex).price;
+                    gp.player.coin -= npc.inventory.get(itemIndex).getPrice();
                     gp.player.inventory.add(npc.inventory.get(itemIndex));
 
                 }
@@ -268,7 +268,7 @@ public class UI {
             height = gp.tileSize;
             drawSubWindow(x, y, width, height);
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
-            int price = gp.player.inventory.get(itemIndex).price / 2;
+            int price = gp.player.inventory.get(itemIndex).getPrice() / 2;
             String text = "" + price;
             x = getXforAlignToRightText(text, gp.tileSize * 18 - 20);
             g2.drawString(text, x, y + 32);
@@ -666,7 +666,7 @@ public class UI {
 
             if (itemIndex < entity.inventory.size()) {
                 drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
-                for (String line : entity.inventory.get(itemIndex).description.split("\n")) {
+                for (String line : entity.inventory.get(itemIndex).getDescription().split("\n")) {
                     g2.drawString(line, textX, textY);
 
                     textY += 32;

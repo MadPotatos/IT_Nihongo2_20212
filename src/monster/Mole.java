@@ -7,7 +7,7 @@ import main.GamePanel;
 import object.Rock;
 
 public class Mole extends Entity {
-    GamePanel gp;
+    private GamePanel gp;
 
     public Mole(GamePanel gp) {
         super(gp);

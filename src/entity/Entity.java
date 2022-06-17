@@ -48,6 +48,7 @@ public abstract class Entity {
 	public String name;
 	public boolean collision = false;
 	public int useCost;
+	
 	// CHARACTER ATTRIBUTE
 	public int maxLife;
 	public int life;

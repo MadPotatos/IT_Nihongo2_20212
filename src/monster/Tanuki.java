@@ -3,7 +3,7 @@ import main.GamePanel;
 
 
 public class Tanuki extends Monster {
-    GamePanel gp;
+    private GamePanel gp;
 
     public Tanuki(GamePanel gp) {
         super(gp);

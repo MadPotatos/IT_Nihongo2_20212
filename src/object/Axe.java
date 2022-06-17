@@ -6,14 +6,14 @@ public class Axe extends Item {
 
     public Axe(GamePanel gp) {
         super(gp);
-        type = type_axe;
-        name = "Axe";
+        setType(type_axe);
+        setName("Axe");
         down1 = setup("/Objects/axe", gp.tileSize, gp.tileSize);
-        attackValue = 2;
-        description = "[" + name + "]\n" + "Can be used to chop down\ntree.";
+        setAttackValue(2);
+        setDescription("[" + getName() + "]\n" + "Can be used to chop down\ntree.");
         attackArea.width = 28;
         attackArea.height = 28;
-        price = 100;
+        setPrice(100);
     }
 
 }

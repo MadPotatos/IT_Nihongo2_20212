@@ -6,7 +6,7 @@ import main.GamePanel;
 import java.awt.Color;
 
 public class EnergyBall extends Projectile {
-    GamePanel gp;
+    private GamePanel gp;
 
     public EnergyBall(GamePanel gp) {
         super(gp);

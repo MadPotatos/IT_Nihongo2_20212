@@ -4,7 +4,7 @@ import main.GamePanel;
 
 
 public class Slime extends Monster {
-    GamePanel gp;
+    private GamePanel gp;
 
     public Slime(GamePanel gp) {
         super(gp);
