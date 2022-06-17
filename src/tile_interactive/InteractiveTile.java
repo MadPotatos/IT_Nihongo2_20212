@@ -4,12 +4,12 @@ import entity.Entity;
 import main.GamePanel;
 
 public class InteractiveTile extends Entity {
-    GamePanel gp;
-    public boolean destructible = false;
+	private GamePanel gp;
+    private boolean destructible = false;
 
     public InteractiveTile(GamePanel gp, int col, int row) {
         super(gp);
-        this.gp = gp;
+        this.setGp(gp);
 
     }
 
@@ -35,5 +35,21 @@ public class InteractiveTile extends Entity {
             }
         }
     }
+    //Getter and setter
+	public GamePanel getGp() {
+		return gp;
+	}
+
+	public void setGp(GamePanel gp) {
+		this.gp = gp;
+	}
+
+	public boolean isDestructible() {
+		return destructible;
+	}
+
+	public void setDestructible(boolean destructible) {
+		this.destructible = destructible;
+	}
 
 }

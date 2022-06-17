@@ -3,12 +3,12 @@ package main;
 import entity.Entity;
 
 public class EventHandler {
-    GamePanel gp;
-    EventRect eventRect[][][];
-
-    int previousEventX, previousEventY;
-    boolean canTouchEvent = true;
-    int tempMap, tempCol, tempRow;
+    private GamePanel gp;
+    private EventRect eventRect[][][];
+	private int previousEventX; 
+    private int previousEventY;
+    private boolean canTouchEvent = true;
+    private int tempMap, tempCol, tempRow;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
@@ -22,8 +22,8 @@ public class EventHandler {
             eventRect[map][col][row].y = 30;
             eventRect[map][col][row].width = 2;
             eventRect[map][col][row].height = 2;
-            eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
-            eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
+            eventRect[map][col][row].setEventRectDefaultX(eventRect[map][col][row].x);
+            eventRect[map][col][row].setEventRectDefaultY(eventRect[map][col][row].y);
             col++;
             if (col == gp.maxWorldCol) {
                 col = 0;
@@ -35,7 +35,7 @@ public class EventHandler {
             }
         }
     }
-
+ 
     public void damagePit(int gameState) {
         gp.gameState = gameState;
         gp.playSE(5);
@@ -48,7 +48,7 @@ public class EventHandler {
     public void healingPool(int gameState) {
         if (gp.keyH.enterPressed == true) {
             gp.gameState = gameState;
-            gp.player.attackCanceled = true;
+            gp.player.setAttackCanceled(true); 
             gp.playSE(2);
             gp.ui.currentDialogue = "Rest at the statue\n You feel better! \n Monster respawns!";
             gp.player.life = gp.player.maxLife;
@@ -99,16 +99,16 @@ public class EventHandler {
         if (gp.keyH.enterPressed == true) {
             gp.gameState = gp.dialogueState;
             entity.speak();
-            gp.player.attackCanceled = true;
+            gp.player.setAttackCanceled(true);
 
         }
     }
 
     private void teleport(int map, int col, int row) {
         gp.gameState = gp.loadingState;
-        tempMap = map;
-        tempCol = col;
-        tempRow = row;
+        setTempMap(map);
+        setTempCol(col);
+        setTempRow(row);
         canTouchEvent = false;
     }
 
@@ -121,7 +121,7 @@ public class EventHandler {
             eventRect[map][col][row].y = row * gp.tileSize + eventRect[map][col][row].y;
 
             if (gp.player.solidArea.intersects(eventRect[map][col][row])
-                    && eventRect[map][col][row].eventDone == false) {
+                    && eventRect[map][col][row].isEventDone() == false) {
                 if (gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
                     hit = true;
 
@@ -131,11 +131,55 @@ public class EventHandler {
             }
             gp.player.solidArea.x = gp.player.solidAreaDefaultX;
             gp.player.solidArea.y = gp.player.solidAreaDefaultY;
-            eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
-            eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
+            eventRect[map][col][row].x = eventRect[map][col][row].getEventRectDefaultX();
+            eventRect[map][col][row].y = eventRect[map][col][row].getEventRectDefaultY();
         }
         return hit;
 
     }
 
+   // Getter and setter 
+    
+    public int getPreviousEventX() {
+		return previousEventX;
+	}
+
+	public void setPreviousEventX(int previousEventX) {
+		this.previousEventX = previousEventX;
+	}
+
+	public int getPreviousEventY() {
+		return previousEventY;
+	}
+
+	public void setPreviousEventY(int previousEventY) {
+		this.previousEventY = previousEventY;
+	}
+   
+	public int getTempMap() {
+		return tempMap;
+	}
+
+	public void setTempMap(int tempMap) {
+		this.tempMap = tempMap;
+	}
+
+	public int getTempCol() {
+		return tempCol;
+	}
+
+	public void setTempCol(int tempCol) {
+		this.tempCol = tempCol;
+	}
+
+	public int getTempRow() {
+		return tempRow;
+	}
+
+	public void setTempRow(int tempRow) {
+		this.tempRow = tempRow;
+	}
+    
+    
+    
 }

@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Config {
-    GamePanel gp;
+    private GamePanel gp;
 
     public Config(GamePanel gp) {
         this.gp = gp;

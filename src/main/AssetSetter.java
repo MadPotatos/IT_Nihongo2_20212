@@ -14,7 +14,7 @@ import object.SteelShield;
 import tile_interactive.BreakableStone;
 
 public class AssetSetter {
-    GamePanel gp;
+    private GamePanel gp;
 
     public AssetSetter(GamePanel gp) {
         this.gp = gp;

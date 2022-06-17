@@ -14,13 +14,15 @@ import object.Key;
 import object.WoodenShield;
 
 public class Player extends Entity {
-	GamePanel gp;
-	KeyHandler keyH;
-	public final int screenX;
-	public final int screenY;
-	public int hasKey = 0;
-	int standCounter = 0;
-	public boolean attackCanceled = false;
+	private GamePanel gp;
+	private KeyHandler keyH;
+	protected final int screenX;
+	protected final int screenY;
+	
+	private int hasKey = 0;
+	private int standCounter = 0;
+	private boolean attackCanceled = false;
+
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -301,7 +303,7 @@ public class Player extends Entity {
 	}
 
 	private void damageInteractiveTile(int i) {
-		if (i != 999 && gp.iTile[gp.currentMap][i].destructible == true
+		if (i != 999 && gp.iTile[gp.currentMap][i].isDestructible() == true
 				&& gp.iTile[gp.currentMap][i].isCorrectItem(this) == true
 				&& gp.iTile[gp.currentMap][i].invincible == false) {
 			gp.iTile[gp.currentMap][i].playSE();
@@ -535,4 +537,28 @@ public class Player extends Entity {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
 	}
+	// Getter and setter
+	public int getScreenX() {
+		return screenX;
+	}
+
+	public int getScreenY() {
+		return screenY;
+	}
+
+	public int getHasKey() {
+		return hasKey;
+	}
+
+	public void setHasKey(int hasKey) {
+		this.hasKey = hasKey;
+	}
+	public boolean isAttackCanceled() {
+		return attackCanceled;
+	}
+
+	public void setAttackCanceled(boolean attackCanceled) {
+		this.attackCanceled = attackCanceled;
+	}
+
 }

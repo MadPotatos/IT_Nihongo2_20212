@@ -299,11 +299,14 @@ public class UI {
         if (counter == 50) {
             counter = 0;
             gp.gameState = gp.playState;
-            gp.currentMap = gp.eHandler.tempMap;
-            gp.player.worldX = gp.tileSize * gp.eHandler.tempCol;
-            gp.player.worldY = gp.tileSize * gp.eHandler.tempRow;
-            gp.eHandler.previousEventX = gp.player.worldX;
-            gp.eHandler.previousEventY = gp.player.worldY;
+            gp.currentMap = gp.eHandler.getTempMap();
+            gp.player.worldX = gp.tileSize * gp.eHandler.getTempCol();
+            gp.player.worldY = gp.tileSize * gp.eHandler.getTempRow();
+            int preEventX =  gp.player.worldX;
+            int preEventY =  gp.player.worldY;
+            
+            gp.eHandler.setPreviousEventX(preEventX);;
+            gp.eHandler.setPreviousEventY(preEventY);;
         }
 
     }
