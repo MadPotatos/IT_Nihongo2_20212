@@ -60,6 +60,7 @@ public class NPC_oldman extends Entity {
 
     public void speak() {
         super.speak();
+        gp.ui.npc = this;
     }
 
 }

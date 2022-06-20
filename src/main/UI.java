@@ -850,13 +850,13 @@ public class UI {
         x += gp.tileSize;
         y += 32;
 
-        g2.drawImage(gp.npc[gp.currentMap][0].avatar, x, y, (int) (gp.tileSize * 2.5), (int) (gp.tileSize * 2.5), null);
+        g2.drawImage(npc.avatar, x, y, (int) (gp.tileSize * 2.5), (int) (gp.tileSize * 2.5), null);
         g2.setColor(Color.black);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
 
         x += gp.tileSize * 3;
         y += 16;
-        g2.drawString(gp.npc[gp.currentMap][0].name + ":", x, y);
+        g2.drawString(npc.name + ":", x, y);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
         y += 36;
         for (String line : currentDialogue.split("\n")) {
