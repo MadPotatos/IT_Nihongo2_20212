@@ -10,7 +10,7 @@ public class Axe extends Item {
         setName("Axe");
         down1 = setup("/Objects/axe", gp.tileSize, gp.tileSize);
         setAttackValue(2);
-        setDescription("[" + getName() + "]\n" + "Can be used to chop down\ntree.");
+        setDescription("[" + getName() + "]\n" + "Can be used to chop\ndown tree.");
         attackArea.width = 28;
         attackArea.height = 28;
         setPrice(100);

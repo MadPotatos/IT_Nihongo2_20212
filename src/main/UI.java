@@ -148,7 +148,8 @@ public class UI {
         int height = (int) (gp.tileSize * 3.5);
         drawSubWindow(x, y, width, height);
         // DRAW TEXT
-        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
+        g2.setColor(Color.black);
         x += gp.tileSize;
         y += gp.tileSize;
         g2.drawString("Buy", x, y);
@@ -179,24 +180,29 @@ public class UI {
     }
 
     private void tradeBuy() {
+        g2.setColor(Color.black);
         // DRAW PLAYER INVENTORY
         drawInventory(gp.player, false);
         // DRAW NPC INVENTORY
         drawInventory(npc, true);
+        g2.setColor(Color.black);
         // DRAW HINT WINDOW
         int x = gp.tileSize * 2;
         int y = gp.tileSize * 9;
         int width = gp.tileSize * 6;
         int height = gp.tileSize * 2;
         drawSubWindow(x, y, width, height);
+        g2.setColor(Color.black);
         g2.drawString("[ESC] back", x + 24, y + 60);
 
         // DRAW PLAYER COIN WINDOW
+        g2.setColor(Color.black);
         x = gp.tileSize * 12;
         y = gp.tileSize * 9;
         width = gp.tileSize * 6;
         height = gp.tileSize * 2;
         drawSubWindow(x, y, width, height);
+        g2.setColor(Color.black);
         g2.drawString("Coin : " + gp.player.coin, x + 24, y + 60);
 
         // DRAW PRICE WINDOW
@@ -211,6 +217,7 @@ public class UI {
             int price = npc.inventory.get(itemIndex).getPrice();
             String text = "" + price;
             x = getXforAlignToRightText(text, gp.tileSize * 8 - 20);
+            g2.setColor(Color.black);
             g2.drawString(text, x, y + 32);
 
             // BUY ITEM
@@ -249,6 +256,7 @@ public class UI {
         width = gp.tileSize * 6;
         height = gp.tileSize * 2;
         drawSubWindow(x, y, width, height);
+        g2.setColor(Color.black);
         g2.drawString("[ESC] back", x + 24, y + 60);
 
         // DRAW PLAYER COIN WINDOW
@@ -257,6 +265,7 @@ public class UI {
         width = gp.tileSize * 6;
         height = gp.tileSize * 2;
         drawSubWindow(x, y, width, height);
+        g2.setColor(Color.black);
         g2.drawString("Coin : " + gp.player.coin, x + 24, y + 60);
 
         // DRAW PRICE WINDOW
@@ -271,6 +280,7 @@ public class UI {
             int price = gp.player.inventory.get(itemIndex).getPrice() / 2;
             String text = "" + price;
             x = getXforAlignToRightText(text, gp.tileSize * 18 - 20);
+            g2.setColor(Color.black);
             g2.drawString(text, x, y + 32);
 
             // SELL ITEM
@@ -302,11 +312,13 @@ public class UI {
             gp.currentMap = gp.eHandler.getTempMap();
             gp.player.worldX = gp.tileSize * gp.eHandler.getTempCol();
             gp.player.worldY = gp.tileSize * gp.eHandler.getTempRow();
-            int preEventX =  gp.player.worldX;
-            int preEventY =  gp.player.worldY;
-            
-            gp.eHandler.setPreviousEventX(preEventX);;
-            gp.eHandler.setPreviousEventY(preEventY);;
+            int preEventX = gp.player.worldX;
+            int preEventY = gp.player.worldY;
+
+            gp.eHandler.setPreviousEventX(preEventX);
+            ;
+            gp.eHandler.setPreviousEventY(preEventY);
+            ;
         }
 
     }
@@ -349,7 +361,7 @@ public class UI {
     }
 
     private void drawOptionsScreen() {
-        g2.setColor(Color.white);
+
         g2.setFont(g2.getFont().deriveFont(30F));
         // SUB WINDOW
         int frameX = gp.tileSize * 6;
@@ -378,6 +390,7 @@ public class UI {
         int textX;
         int textY;
         // TITLE
+        g2.setColor(Color.black);
         String text = "Options";
         textX = getXforCenteredText(text);
         textY = frameY + gp.tileSize;
@@ -476,7 +489,7 @@ public class UI {
     private void fullScreenNotification(int frameX, int frameY) {
         int textX = frameX + gp.tileSize;
         int textY = frameY + gp.tileSize;
-
+        g2.setColor(Color.black);
         currentDialogue = "The change will \n take effect after \n restarting the game.";
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
@@ -497,6 +510,7 @@ public class UI {
 
     private void control(int frameX, int frameY) {
         g2.setFont(g2.getFont().deriveFont(28F));
+        g2.setColor(Color.black);
         int textX;
         int textY;
         // TITLE
@@ -552,7 +566,7 @@ public class UI {
     private void endGameConfirmation(int frameX, int frameY) {
         int textX = frameX + (int) (gp.tileSize * 1.5);
         int textY = frameY + gp.tileSize * 3;
-
+        g2.setColor(Color.black);
         currentDialogue = "Are you sure you \n want to quit?";
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
@@ -629,7 +643,7 @@ public class UI {
             // Equiped item
             if (entity.inventory.get(i) == entity.currentWeapon
                     || entity.inventory.get(i) == entity.currentShield) {
-                g2.setColor(new Color(120, 250, 229));
+                g2.setColor(new Color(255, 148, 24));
                 g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
             }
             g2.drawImage(entity.inventory.get(i).down1, slotX, slotY, null);
@@ -647,7 +661,7 @@ public class UI {
             int cursorWidth = gp.tileSize;
             int cursorHeight = gp.tileSize;
             // draw cursor
-            g2.setColor(Color.white);
+            g2.setColor(new Color(193, 120, 35));
             g2.setStroke(new BasicStroke(3));
             g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
@@ -660,13 +674,14 @@ public class UI {
             // description
             int textX = dFrameX + 20;
             int textY = dFrameY + gp.tileSize;
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
-            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
+
             int itemIndex = getItemIndexonSlot(slotCol, slotRow);
 
             if (itemIndex < entity.inventory.size()) {
                 drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
                 for (String line : entity.inventory.get(itemIndex).getDescription().split("\n")) {
+                    g2.setColor(Color.black);
                     g2.drawString(line, textX, textY);
 
                     textY += 32;
@@ -832,10 +847,20 @@ public class UI {
         int width = gp.screenWidth - (gp.tileSize * 6);
         int height = gp.tileSize * 4;
         drawSubWindow(x, y, width, height);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
         x += gp.tileSize;
-        y += gp.tileSize;
+        y += 32;
+
+        g2.drawImage(gp.npc[gp.currentMap][0].avatar, x, y, (int) (gp.tileSize * 2.5), (int) (gp.tileSize * 2.5), null);
+        g2.setColor(Color.black);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+
+        x += gp.tileSize * 3;
+        y += 16;
+        g2.drawString(gp.npc[gp.currentMap][0].name + ":", x, y);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+        y += 36;
         for (String line : currentDialogue.split("\n")) {
+
             g2.drawString(line, x, y);
             y += 40;
         }
@@ -852,7 +877,7 @@ public class UI {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // TEXT
-        g2.setColor(Color.white);
+        g2.setColor(Color.black);
         g2.setFont(g2.getFont().deriveFont(24F));
         int textX = frameX + 24;
         int textY = frameY + 40;
@@ -952,13 +977,20 @@ public class UI {
     }
 
     private void drawSubWindow(int x, int y, int width, int height) {
-        Color c = new Color(0, 0, 0, 210);
+        Color c = new Color(255, 255, 255, 210);
         g2.setColor(c);
+        g2.setColor(new Color(255, 255, 255, 200));
+
         g2.fillRoundRect(x, y, width, height, 35, 35);
-        c = new Color(255, 255, 255);
+
+        c = new Color(156, 100, 3);
         g2.setColor(c);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+        c = new Color(255, 148, 24);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x + 10, y + 10, width - 20, height - 20, 15, 15);
 
     }
 

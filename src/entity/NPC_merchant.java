@@ -12,6 +12,7 @@ public class NPC_merchant extends Entity {
     public NPC_merchant(GamePanel gp) {
         super(gp);
         // TODO Auto-generated constructor stub
+        name = "Merchant";
         direction = "down";
         speed = 0;
         getImage();
@@ -29,6 +30,7 @@ public class NPC_merchant extends Entity {
         left2 = setup("/NPC/merchant/merchant_down2", gp.tileSize, gp.tileSize);
         right1 = setup("/NPC/merchant/merchant_down1", gp.tileSize, gp.tileSize);
         right2 = setup("/NPC/merchant/merchant_down2", gp.tileSize, gp.tileSize);
+        avatar = setup("/NPC/merchant/merchant_avatar", gp.tileSize, gp.tileSize);
 
     }
 

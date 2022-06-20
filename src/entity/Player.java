@@ -18,11 +18,10 @@ public class Player extends Entity {
 	private KeyHandler keyH;
 	protected final int screenX;
 	protected final int screenY;
-	
+
 	private int hasKey = 0;
 	private int standCounter = 0;
 	private boolean attackCanceled = false;
-
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -66,7 +65,7 @@ public class Player extends Entity {
 
 	public void setDefaultValue() {
 		setDefaultPositions();
-		speed = 3;
+		speed = 10;
 
 		// PLAYER STATUS
 		level = 1;
@@ -537,6 +536,7 @@ public class Player extends Entity {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
 	}
+
 	// Getter and setter
 	public int getScreenX() {
 		return screenX;
@@ -553,6 +553,7 @@ public class Player extends Entity {
 	public void setHasKey(int hasKey) {
 		this.hasKey = hasKey;
 	}
+
 	public boolean isAttackCanceled() {
 		return attackCanceled;
 	}

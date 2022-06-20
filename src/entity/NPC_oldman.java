@@ -7,7 +7,9 @@ import java.util.Random;
 public class NPC_oldman extends Entity {
 
     public NPC_oldman(GamePanel gp) {
+
         super(gp);
+        name = "Oldman";
         direction = "down";
         speed = 1;
         getImage();
@@ -24,13 +26,14 @@ public class NPC_oldman extends Entity {
         left2 = setup("/NPC/oldman/oldman_left2", gp.tileSize, gp.tileSize);
         right1 = setup("/NPC/oldman/oldman_right1", gp.tileSize, gp.tileSize);
         right2 = setup("/NPC/oldman/oldman_right2", gp.tileSize, gp.tileSize);
+        avatar = setup("/NPC/oldman/oldman_avatar", gp.tileSize, gp.tileSize);
     }
 
     public void setDialogue() {
         dialogues[0] = "Ho ho ho";
         dialogues[1] = "I am Yoshi the wise";
-        dialogues[2] = "I am the one who can tell you the truth";
-        dialogues[3] = "But you have to wait for game to update";
+        dialogues[2] = "I am the one who can \ntell you the truth";
+        dialogues[3] = "But you have to wait \nfor game to update";
     }
 
     public void setAction() {
