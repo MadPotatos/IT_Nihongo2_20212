@@ -24,10 +24,7 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.playState) {
             playState(code);
         }
-        // PAUSE STATE
-        else if (gp.gameState == gp.pauseState) {
-            pauseState(code);
-        }
+
         // DIALOGUE
         else if (gp.gameState == gp.dialogueState) {
             dialogueState(code);
@@ -268,10 +265,6 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D) {
             rightPressed = true;
         }
-        if (code == KeyEvent.VK_P) {
-            gp.gameState = gp.pauseState;
-
-        }
         if (code == KeyEvent.VK_C) {
             gp.gameState = gp.characterState;
         }
@@ -288,12 +281,6 @@ public class KeyHandler implements KeyListener {
 
         }
 
-    }
-
-    public void pauseState(int code) {
-        if (code == KeyEvent.VK_P) {
-            gp.gameState = gp.playState;
-        }
     }
 
     public void dialogueState(int code) {

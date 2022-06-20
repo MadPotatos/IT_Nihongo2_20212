@@ -70,13 +70,12 @@ public class GamePanel extends JPanel implements Runnable {
     public int gameState;
     public final int titleState = 0;
     public final int playState = 1;
-    public final int pauseState = 2;
-    public final int dialogueState = 3;
-    public final int characterState = 4;
-    public final int optionsState = 5;
-    public final int gameOverState = 6;
-    public final int loadingState = 7;
-    public final int tradingState = 8;
+    public final int dialogueState = 2;
+    public final int characterState = 3;
+    public final int optionsState = 4;
+    public final int gameOverState = 5;
+    public final int loadingState = 6;
+    public final int tradingState = 7;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -212,9 +211,6 @@ public class GamePanel extends JPanel implements Runnable {
                     iTile[currentMap][i].update();
                 }
             }
-        }
-        if (gameState == pauseState) {
-
         }
 
     }

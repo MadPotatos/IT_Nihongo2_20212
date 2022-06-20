@@ -89,11 +89,6 @@ public class UI {
             drawPlayerLife();
             drawMessage();
         }
-        // PAUSE STATE
-        if (gp.gameState == gp.pauseState) {
-            drawPlayerLife();
-            drawPauseScreen();
-        }
         // DIALOGUE STATE
         if (gp.gameState == gp.dialogueState) {
             drawdialogueScreen();
@@ -828,16 +823,6 @@ public class UI {
         } else if (titleScreenState == 1) {
 
         }
-    }
-
-    public void drawPauseScreen() {
-
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 70F));
-        String text = "PAUSED";
-        int x = getXforCenteredText(text);
-
-        int y = gp.screenHeight / 2;
-        g2.drawString(text, x, y);
     }
 
     public void drawdialogueScreen() {
