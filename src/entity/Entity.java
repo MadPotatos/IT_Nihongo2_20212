@@ -382,4 +382,21 @@ public abstract class Entity {
 		}
 		return image;
 	}
+	public BufferedImage setup(String imagePath, int width, int height, int x, int y, int pixel) {
+		UtilityTool uTool = new UtilityTool();
+		
+		BufferedImage image = null;
+		BufferedImage imgSub = null;
+		try {
+			//image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		imgSub = image.getSubimage(pixel*x, pixel*y, pixel, pixel);
+		imgSub = uTool.scaleImage(imgSub, width, height);
+		
+		return imgSub;
+	}
 }
