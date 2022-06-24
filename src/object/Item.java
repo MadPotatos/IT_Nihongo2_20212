@@ -16,7 +16,7 @@ public class Item extends Entity {
     private String description = "";
     private int useCost;
     private int price;
-    private int type;
+   // private int type;
 
     public Item(GamePanel gp) {
         super(gp);
@@ -110,12 +110,12 @@ public class Item extends Entity {
 		this.price = price;
 	}
 
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
+//	public int getType() {
+//		return type;
+//	}
+//
+//	public void setType(int type) {
+//		this.type = type;
+//	}
 
 }

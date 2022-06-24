@@ -2,6 +2,7 @@ package object;
 
 import entity.Entity;
 import main.GamePanel;
+import utilz.LoadSave;
 
 public class HealingPotion extends Item {
     private GamePanel gp;
@@ -11,9 +12,9 @@ public class HealingPotion extends Item {
         super(gp);
         this.gp = gp;
         setValue(5);
-        setType(type_consumable);
+        setType(LoadSave.TYPE_CONSUMABLE);
         setName("Healing Potion");
-        down1 = setup("/Objects/healingPotion", gp.tileSize, gp.tileSize);
+        down1 = LoadSave.setup("/Objects/healingPotion", gp.tileSize, gp.tileSize);
         setDescription("[" + getName() + "]\n" + "Can be used to heal\n" + getValue() + " HP.");
         setPrice(10);
     }

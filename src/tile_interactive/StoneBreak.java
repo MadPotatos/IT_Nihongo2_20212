@@ -1,6 +1,7 @@
 package tile_interactive;
 
 import main.GamePanel;
+import utilz.LoadSave;
 
 public class StoneBreak extends InteractiveTile {
     private GamePanel gp;
@@ -12,7 +13,7 @@ public class StoneBreak extends InteractiveTile {
         this.worldX = gp.tileSize * col;
         this.worldY = gp.tileSize * row;
 
-        down1 = setup("/tiles_interactive/stone_break", gp.tileSize, gp.tileSize);
+        down1 = LoadSave.setup("/tiles_interactive/stone_break", gp.tileSize, gp.tileSize);
         solidArea.x = 0;
         solidArea.y = 0;
         solidArea.width = 0;

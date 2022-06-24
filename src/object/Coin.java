@@ -2,6 +2,7 @@ package object;
 
 import entity.Entity;
 import main.GamePanel;
+import utilz.LoadSave;
 
 public class Coin extends Item {
     private GamePanel gp;
@@ -9,11 +10,11 @@ public class Coin extends Item {
     public Coin(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        setType(type_pickupOnly);
+        setType(LoadSave.TYPE_PICKUPONLY);
         setName("Coin");
         setValue(1);
-        down1 = setup("/Objects/coin", gp.tileSize / 3, gp.tileSize / 3);
-        setImage(setup("/Objects/coin", gp.tileSize, gp.tileSize));
+        down1 = LoadSave.setup("/Objects/coin", gp.tileSize / 3, gp.tileSize / 3);
+        setImage(LoadSave.setup("/Objects/coin", gp.tileSize, gp.tileSize));
 
     }
 

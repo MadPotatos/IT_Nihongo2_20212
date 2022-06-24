@@ -1,15 +1,16 @@
 package object;
 
 import main.GamePanel;
+import utilz.LoadSave;
 
 public class BeginnerSword extends Item {
 
     public BeginnerSword(GamePanel gp) {
         super(gp);
-        setType(type_sword);
+        setType(LoadSave.TYPE_SWORD);
         // TODO Auto-generated constructor stub
         setName("Beginner Sword");
-        down1 = setup("/Objects/sword_beginner", gp.tileSize, gp.tileSize);
+        down1 = LoadSave.setup("/Objects/sword_beginner", gp.tileSize, gp.tileSize);
         setAttackValue(1);
         setDescription("[" + getName() + "]\n" + "A simple sword.");
         attackArea.width = 36;

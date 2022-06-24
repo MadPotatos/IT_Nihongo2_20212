@@ -864,7 +864,7 @@ public class UI {
 
         x += gp.tileSize * 3;
         y += 16;
-        g2.drawString(npc.name + ":", x, y);
+        g2.drawString(npc.getName() + ":", x, y);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
         y += 36;
         for (String line : currentDialogue.split("\n")) {

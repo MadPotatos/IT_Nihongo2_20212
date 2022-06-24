@@ -2,6 +2,7 @@ package main;
 
 import entity.NPC_merchant;
 import entity.NPC_oldman;
+import monster.Boss_GiantFlam;
 import monster.Mole;
 import monster.Slime;
 import monster.Tanuki;
@@ -75,6 +76,10 @@ public class AssetSetter {
 
     public void setMonster() {
         int mapNum = 0;
+        gp.monster[mapNum][8] = new Boss_GiantFlam(gp);
+        gp.monster[mapNum][8].worldX = gp.tileSize * 10;
+        gp.monster[mapNum][8].worldY = gp.tileSize * 10;
+        
         gp.monster[mapNum][0] = new Slime(gp);
         gp.monster[mapNum][0].worldX = gp.tileSize * 12;
         gp.monster[mapNum][0].worldY = gp.tileSize * 10;

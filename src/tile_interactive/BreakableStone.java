@@ -2,6 +2,8 @@ package tile_interactive;
 
 import entity.Entity;
 import main.GamePanel;
+import utilz.LoadSave;
+
 import java.awt.Color;
 
 public class BreakableStone extends InteractiveTile {
@@ -14,14 +16,14 @@ public class BreakableStone extends InteractiveTile {
         this.worldX = gp.tileSize * col;
         this.worldY = gp.tileSize * row;
 
-        down1 = setup("/tiles_interactive/breakable_stone", gp.tileSize, gp.tileSize);
+        down1 = LoadSave.setup("/tiles_interactive/breakable_stone", gp.tileSize, gp.tileSize);
         setDestructible(true);
         life = 3;
     }
 
     public boolean isCorrectItem(Entity entity) {
         boolean isCorrectItem = false;
-        if (entity.currentWeapon.getType() == type_axe) {
+        if (entity.currentWeapon.getType() == LoadSave.TYPE_AXE) {
             isCorrectItem = true;
         }
         return isCorrectItem;

@@ -88,7 +88,7 @@ public class CollisionChecker {
                         break;
                 }
                 if (entity.solidArea.intersects(gp.obj[gp.currentMap][i].solidArea)) {
-                    if (gp.obj[gp.currentMap][i].collision == true) {
+                    if (gp.obj[gp.currentMap][i].isCollision() == true) {
                         entity.collisionOn = true;
                     }
                     if (player == true) {
