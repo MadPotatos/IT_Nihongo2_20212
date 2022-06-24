@@ -6,7 +6,9 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
     private GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed;
+   
+
+	public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -386,5 +388,53 @@ public class KeyHandler implements KeyListener {
         // TODO Auto-generated method stub
 
     }
+    
+    public boolean isUpPressed() {
+		return upPressed;
+	}
+
+	public void setUpPressed(boolean upPressed) {
+		this.upPressed = upPressed;
+	}
+
+	public boolean isDownPressed() {
+		return downPressed;
+	}
+
+	public void setDownPressed(boolean downPressed) {
+		this.downPressed = downPressed;
+	}
+
+	public boolean isLeftPressed() {
+		return leftPressed;
+	}
+
+	public void setLeftPressed(boolean leftPressed) {
+		this.leftPressed = leftPressed;
+	}
+
+	public boolean isRightPressed() {
+		return rightPressed;
+	}
+
+	public void setRightPressed(boolean rightPressed) {
+		this.rightPressed = rightPressed;
+	}
+
+	public boolean isEnterPressed() {
+		return enterPressed;
+	}
+
+	public void setEnterPressed(boolean enterPressed) {
+		this.enterPressed = enterPressed;
+	}
+
+	public boolean isShotKeyPressed() {
+		return shotKeyPressed;
+	}
+
+	public void setShotKeyPressed(boolean shotKeyPressed) {
+		this.shotKeyPressed = shotKeyPressed;
+	}
 
 }

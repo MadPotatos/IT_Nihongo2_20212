@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.awt.AlphaComposite;
 import main.GamePanel;
 import main.KeyHandler;
+import main.UtilityTool;
 import object.BeginnerSword;
 import object.EnergyBall;
 import object.HealingPotion;
@@ -22,6 +23,12 @@ public class Player extends Entity {
 	private int hasKey = 0;
 	private int standCounter = 0;
 	private boolean attackCanceled = false;
+	private boolean attacking = false;
+	
+	private BufferedImage imgWalk;
+	private BufferedImage[][] animations;
+	private int aniTick, aniIndex,aniSpeed =15;
+	
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -34,6 +41,8 @@ public class Player extends Entity {
 		solidAreaDefaultY = solidArea.y;
 
 		setDefaultValue();
+		
+		loadAnimations();
 		getPlayerImage();
 		getPlayerAttackImage();
 		setItems();
@@ -65,7 +74,7 @@ public class Player extends Entity {
 
 	public void setDefaultValue() {
 		setDefaultPositions();
-		speed = 10;
+		speed = 6;
 
 		// PLAYER STATUS
 		level = 1;
@@ -98,15 +107,38 @@ public class Player extends Entity {
 		return attack = strength * currentWeapon.getAttackValue();
 	}
 
+	
+	private void loadAnimations() {
+		imgWalk = importImg("/Player/knight_walk");
+		UtilityTool uTool = new UtilityTool();
+		animations = new BufferedImage[4][4];
+		for(int j = 0; j < animations.length; j++) {
+			for(int i = 0; i < animations[j].length; i++) {
+				animations[j][i] = imgWalk.getSubimage(j*16, i*16, 16, 16);
+				animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize, gp.tileSize);
+			}
+		}
+	}
+	private void updateAnimationTick() {
+		aniTick++;
+		if(aniTick >= aniSpeed) {
+			aniTick = 0;
+			aniIndex++;
+			if(aniIndex >= 4) {
+				aniIndex = 0;
+			}
+		}
+	}
+	
 	public void getPlayerImage() {
-		up1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 1, 1, 16);
-		up2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 1, 3, 16);
-		down1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 0, 1, 16);
-		down2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 0, 3, 16);
-		left1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 2, 1, 16);
-		left2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 2, 3, 16);
-		right1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 3, 1, 16);
-		right2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 3, 3, 16);
+//		up1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 1, 1, 16);
+//		up2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 1, 3, 16);
+//		down1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 0, 1, 16);
+//		down2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 0, 3, 16);
+//		left1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 2, 1, 16);
+//		left2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 2, 3, 16);
+//		right1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 3, 1, 16);
+//		right2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 3, 3, 16);
 		still = setup("/Player/still", gp.tileSize, gp.tileSize);
 		avatar = setup("/Player/avatar", gp.tileSize, gp.tileSize);
 
@@ -430,89 +462,74 @@ public class Player extends Entity {
 
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
+		updateAnimationTick();
+		
 		int tempScreenX = screenX;
 		int tempScreenY = screenY;
 		switch (direction) {
-			case "up":
-				if (attacking == false) {
-
-					if (spriteNum == 1) {
-						image = up1;
-					}
-					if (spriteNum == 2) {
-						image = up2;
-					}
+		case "up":
+			if (attacking == false) {
+				if(keyH.isUpPressed() == true) {
+					image = animations[1][aniIndex];
+				}else {
+					image = animations[1][0];
 				}
-				if (attacking == true) {
-
-					if (spriteNum == 1) {
-						image = attackUp1;
-					}
-					if (spriteNum == 2) {
-						tempScreenY = screenY - gp.tileSize;
-						image = attackUp2;
-					}
+				
+			}
+			if (attacking == true) {
+				if (spriteNum == 1) {image = attackUp1;}
+				if (spriteNum == 2) {
+					tempScreenY = screenY - gp.tileSize;
+					image = attackUp2;
 				}
-				break;
-			case "down":
-				if (attacking == false) {
-					if (spriteNum == 1) {
-						image = down1;
-					}
-					if (spriteNum == 2) {
-						image = down2;
-					}
+			}
+			break;
+		case "down":
+			if (attacking == false) {;
+				if(keyH.isDownPressed() == true) {
+					image = animations[0][aniIndex];
+				}else {
+					image = animations[0][0];
 				}
-				if (attacking == true) {
-					if (spriteNum == 1) {
-						image = attackDown1;
-					}
-					if (spriteNum == 2) {
-						image = attackDown2;
-					}
+			}
+			if (attacking == true) {
+				if (spriteNum == 1) {image = attackDown1;}
+				if (spriteNum == 2) {image = attackDown2;}
+			}
+			break;
+		case "left":
+			if (attacking == false) {
+				if(keyH.isLeftPressed() == true) {
+					image = animations[2][aniIndex];
+				}else {
+					image = animations[2][0];
+				}}
+			if (attacking == true) {
+				if (spriteNum == 1) {image = attackLeft1;}
+				if (spriteNum == 2) {
+					tempScreenX = screenX - gp.tileSize;
+					image = attackLeft2;
 				}
-				break;
-			case "left":
-				if (attacking == false) {
-					if (spriteNum == 1) {
-						image = left1;
-					}
-					if (spriteNum == 2) {
-						image = left2;
-					}
+			}
+			break;
+		case "right":
+			if (attacking == false) {
+				if(keyH.isRightPressed() == true) {
+					image = animations[3][aniIndex];
+				}else {
+					image = animations[3][0];
 				}
-				if (attacking == true) {
-
-					if (spriteNum == 1) {
-						image = attackLeft1;
-					}
-					if (spriteNum == 2) {
-						tempScreenX = screenX - gp.tileSize;
-						image = attackLeft2;
-					}
-				}
-				break;
-			case "right":
-				if (attacking == false) {
-					if (spriteNum == 1) {
-						image = right1;
-					}
-					if (spriteNum == 2) {
-						image = right2;
-					}
-				}
-				if (attacking == true) {
-					if (spriteNum == 1) {
-						image = attackRight1;
-					}
-					if (spriteNum == 2) {
-						image = attackRight2;
-					}
-				}
-				break;
-			case "still":
-				image = still;
-				break;
+				
+				
+			}
+			if (attacking == true) {
+				if (spriteNum == 1) {image = attackRight1;}
+				if (spriteNum == 2) {image = attackRight2;}
+			}
+			break;
+		case "still":
+			image = still;
+			break;
 		}
 
 		if (screenX > worldX)
