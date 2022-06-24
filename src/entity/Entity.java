@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import main.GamePanel;
+import main.UtilityTool;
 import object.Item;
 
 import java.awt.Rectangle;
@@ -15,17 +16,29 @@ public abstract class Entity {
 	GamePanel gp;
 
 	public int speed;
-	public BufferedImage left1, left2, still, right1, right2, down1, down2, up1, up2, avatar;
+	public BufferedImage down1, still, avatar;
 	private int aniTick, aniIndex, aniSpeed = 15;
 	private BufferedImage[][] animations;
-	
-	
+
 	public BufferedImage[][] getAnimations() {
 		return animations;
 	}
 
 	public void setAnimations(BufferedImage[][] animations) {
 		this.animations = animations;
+	}
+
+	public void loadAnimations(String name) {
+		BufferedImage imgWalk = LoadSave.GetSpriteAtlas(name);
+		UtilityTool uTool = new UtilityTool();
+		BufferedImage[][] animations = new BufferedImage[4][4];
+		for (int j = 0; j < animations.length; j++) {
+			for (int i = 0; i < animations[j].length; i++) {
+				animations[j][i] = imgWalk.getSubimage(j * 16, i * 16, 16, 16);
+				animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize, gp.tileSize);
+			}
+		}
+		setAnimations(animations);
 	}
 
 	private void updateAnimationTick() {
@@ -38,9 +51,7 @@ public abstract class Entity {
 			}
 		}
 	}
-	
-	
-	
+
 	public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
 	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
 	public int solidAreaDefaultX, solidAreaDefaultY;
@@ -61,7 +72,6 @@ public abstract class Entity {
 	private int invincibleCounter = 0;
 	private int shotAvailableCounter = 0;
 
-
 	private int dyingCounter = 0;
 	private int hpBarCounter = 0;
 	// CHARACTER ATTRIBUTE
@@ -72,8 +82,7 @@ public abstract class Entity {
 	private int useCost;
 	// Type
 	private int type; // 0 = player, 1 = npc, 2 = monster
-	
-	
+
 	// CHARACTER ATTRIBUTE
 	public int maxLife;
 	public int life;
@@ -93,8 +102,6 @@ public abstract class Entity {
 	public Projectile projectile;
 	public final int maxInventorySize = 20;
 	// ITEM ATTRIBUTE
-
-	
 
 	public ArrayList<Item> inventory = new ArrayList<>();
 
@@ -128,7 +135,8 @@ public abstract class Entity {
 
 	}
 
-	public void use(Entity entity) {}
+	public void use(Entity entity) {
+	}
 
 	public void dropItem(Item droppedItem) {
 		for (int i = 0; i < gp.obj[1].length; i++) {
@@ -140,8 +148,6 @@ public abstract class Entity {
 			}
 		}
 	}
-
-
 
 	public void generateParticle(Entity generator, Entity target) {
 		Color color = generator.getParticleColor();
@@ -229,11 +235,9 @@ public abstract class Entity {
 
 	}
 
-
-	
 	public void draw(Graphics2D g2) {
 		updateAnimationTick();
-		
+
 		BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -255,44 +259,27 @@ public abstract class Entity {
 		}
 		///////////////////
 
-		if(type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC) {
+		if (type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC) {
 			switch (direction) {
-			case "up":
-				image = animations[1][aniIndex];
-				break;
-			case "down":
-				image = animations[0][aniIndex];
-				break;
-			case "left":
-				image = animations[2][aniIndex];
-				break;
-			case "right":
-				image = animations[3][aniIndex];
-				break;
+				case "up":
+					image = animations[1][aniIndex];
+					break;
+				case "down":
+					image = animations[0][aniIndex];
+					break;
+				case "left":
+					image = animations[2][aniIndex];
+					break;
+				case "right":
+					image = animations[3][aniIndex];
+					break;
+			}
+		} else {
+
+			image = down1;
+
 		}
-		}else {
-			switch (direction) {
-			case "up":
-				if (spriteNum == 1) {image = up1;}
-				if (spriteNum == 2) {image = up2;}
-				break;
-			case "down":
-				if (spriteNum == 1) {image = down1;}
-				if (spriteNum == 2) {image = down2;}
-				break;
-			case "left":
-				if (spriteNum == 1) {image = left1;}
-				if (spriteNum == 2) {image = left2;}
-				break;
-			case "right":
-				if (spriteNum == 1) {image = right1;}
-				if (spriteNum == 2) {image = right2;}
-				break;
-		}
-		}
-		
-		
-		
+
 		// Monster HP bar
 		if (type == LoadSave.TYPE_MONSTER && hpBarOn == true) {
 			double oneScale = (double) gp.tileSize / maxLife;
@@ -374,7 +361,7 @@ public abstract class Entity {
 	private void changeAlpha(Graphics2D g2, float alphaValue) {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
 	}
-	
+
 	private Color getParticleColor() {
 		Color color = null;
 		return color;
@@ -394,11 +381,9 @@ public abstract class Entity {
 		int maxLife = 0;
 		return maxLife;
 	}
-	
-	
-	
-	//Getter and Setter
-	
+
+	// Getter and Setter
+
 	public int getType() {
 		return type;
 	}
@@ -430,6 +415,7 @@ public abstract class Entity {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public int getShotAvailableCounter() {
 		return shotAvailableCounter;
 	}
@@ -437,6 +423,7 @@ public abstract class Entity {
 	public void setShotAvailableCounter(int shotAvailableCounter) {
 		this.shotAvailableCounter = shotAvailableCounter;
 	}
+
 	public int getInvincibleCounter() {
 		return invincibleCounter;
 	}
@@ -477,5 +464,4 @@ public abstract class Entity {
 		this.aniTick = aniTick;
 	}
 
-	
 }

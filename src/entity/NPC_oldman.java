@@ -1,10 +1,9 @@
 package entity;
 
 import main.GamePanel;
-import main.UtilityTool;
+
 import utilz.LoadSave;
 
-import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class NPC_oldman extends Entity {
@@ -16,22 +15,10 @@ public class NPC_oldman extends Entity {
         direction = "down";
         setType(LoadSave.TYPE_NPC);
         speed = 1;
-        loadAnimations();
+        avatar = LoadSave.setup("/NPC/oldman/oldman_avatar", gp.tileSize, gp.tileSize);
+        loadAnimations(LoadSave.NPC_OLDMAN);
         setDialogue();
     }
-    public void loadAnimations() {
-    	avatar = LoadSave.setup("/NPC/oldman/oldman_avatar", gp.tileSize, gp.tileSize);
-		BufferedImage imgWalk = LoadSave.GetSpriteAtlas(LoadSave.NPC_OLDMAN);
-		UtilityTool uTool = new UtilityTool();
-		BufferedImage[][] animations = new BufferedImage[4][4];
-		for (int j = 0; j < animations.length; j++) {
-			for (int i = 0; i < animations[j].length; i++) {
-				animations[j][i] = imgWalk.getSubimage(j * 16, i * 16, 16, 16);
-				animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize, gp.tileSize);
-			}
-		}
-		setAnimations(animations);
-	}
 
     public void setDialogue() {
         dialogues[0] = "Ho ho ho";

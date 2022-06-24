@@ -8,7 +8,7 @@ import utilz.LoadSave;
 import java.awt.Color;
 
 public class Rock extends Projectile {
-	private GamePanel gp;
+    private GamePanel gp;
 
     public Rock(GamePanel gp) {
         super(gp);
@@ -24,14 +24,8 @@ public class Rock extends Projectile {
     }
 
     private void getImage() {
-        up1 = LoadSave.setup("/projectile/rock", gp.tileSize, gp.tileSize);
-        up2 = LoadSave.setup("/projectile/rock", gp.tileSize, gp.tileSize);
+
         down1 = LoadSave.setup("/projectile/rock", gp.tileSize, gp.tileSize);
-        down2 = LoadSave.setup("/projectile/rock", gp.tileSize, gp.tileSize);
-        left1 = LoadSave.setup("/projectile/rock", gp.tileSize, gp.tileSize);
-        left2 = LoadSave.setup("/projectile/rock", gp.tileSize, gp.tileSize);
-        right1 = LoadSave.setup("/projectile/rock", gp.tileSize, gp.tileSize);
-        right2 = LoadSave.setup("/projectile/rock", gp.tileSize, gp.tileSize);
 
     }
 

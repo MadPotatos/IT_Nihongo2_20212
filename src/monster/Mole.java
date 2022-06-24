@@ -14,7 +14,7 @@ public class Mole extends Monster {
     public Mole(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        
+
         setName("Mole");
         speed = 2;
         maxLife = 5;
@@ -26,22 +26,9 @@ public class Mole extends Monster {
 
         solidArea.width = 36;
         solidArea.height = 30;
-        loadAnimations();
-
+        loadAnimations(LoadSave.MONSTER_MOLE);
 
     }
-    public void loadAnimations() {
-		BufferedImage imgWalk = LoadSave.GetSpriteAtlas(LoadSave.MONSTER_MOLE);
-		UtilityTool uTool = new UtilityTool();
-		BufferedImage[][] animations = new BufferedImage[4][4];
-		for (int j = 0; j < animations.length; j++) {
-			for (int i = 0; i < animations[j].length; i++) {
-				animations[j][i] = imgWalk.getSubimage(j * 16, i * 16, 16, 16);
-				animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize, gp.tileSize);
-			}
-		}
-		setAnimations(animations);
-	}
 
     public void setAction() {
         setActionLockCounter(getActionLockCounter() + 1);

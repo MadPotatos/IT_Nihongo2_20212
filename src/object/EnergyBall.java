@@ -24,14 +24,8 @@ public class EnergyBall extends Projectile {
     }
 
     private void getImage() {
-        up1 = LoadSave.setup("/projectile/energyball_up1", gp.tileSize, gp.tileSize);
-        up2 = LoadSave.setup("/projectile/energyball_up2", gp.tileSize, gp.tileSize);
+
         down1 = LoadSave.setup("/projectile/energyball_down1", gp.tileSize, gp.tileSize);
-        down2 = LoadSave.setup("/projectile/energyball_down2", gp.tileSize, gp.tileSize);
-        left1 = LoadSave.setup("/projectile/energyball_left1", gp.tileSize, gp.tileSize);
-        left2 = LoadSave.setup("/projectile/energyball_left2", gp.tileSize, gp.tileSize);
-        right1 = LoadSave.setup("/projectile/energyball_right1", gp.tileSize, gp.tileSize);
-        right2 = LoadSave.setup("/projectile/energyball_right2", gp.tileSize, gp.tileSize);
 
     }
 

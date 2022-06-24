@@ -26,15 +26,16 @@ public class Player extends Entity {
 	private int standCounter = 0;
 	private boolean attackCanceled = false;
 	private boolean attacking = false;
-	
-	//Count
+
+	// Count
 	private int spriteCounter = 0;
-	
+
 	private BufferedImage imgWalk;
 	private BufferedImage[][] animations;
 	private int aniTick, aniIndex, aniSpeed = 15;
 	private BufferedImage attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2,
-	attackUp1, attackUp2;
+			attackUp1, attackUp2;
+
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
 		this.gp = gp;
@@ -257,15 +258,15 @@ public class Player extends Entity {
 
 		}
 		if (invincible == true) {
-			setInvincibleCounter(getInvincibleCounter()+1);
+			setInvincibleCounter(getInvincibleCounter() + 1);
 			if (getInvincibleCounter() > 60) {
 				invincible = false;
 				setInvincibleCounter(0);
-				
+
 			}
 		}
 		if (getShotAvailableCounter() < 30) {
-			setShotAvailableCounter(getShotAvailableCounter()+1);
+			setShotAvailableCounter(getShotAvailableCounter() + 1);
 		}
 		if (life > maxLife) {
 			life = maxLife;

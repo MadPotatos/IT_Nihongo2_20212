@@ -41,6 +41,7 @@ public class Particle extends Entity {
 
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -48,14 +49,14 @@ public class Particle extends Entity {
         g2.setColor(color);
         g2.fillRect(screenX, screenY, size, size);
     }
-    
-    //Getter and setter
-	public Entity getGenerator() {
-		return generator;
-	}
 
-	public void setGenerator(Entity generator) {
-		this.generator = generator;
-	}
+    // Getter and setter
+    public Entity getGenerator() {
+        return generator;
+    }
+
+    public void setGenerator(Entity generator) {
+        this.generator = generator;
+    }
 
 }

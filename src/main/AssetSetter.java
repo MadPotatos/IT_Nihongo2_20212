@@ -77,9 +77,9 @@ public class AssetSetter {
     public void setMonster() {
         int mapNum = 0;
         gp.monster[mapNum][8] = new Boss_GiantFlam(gp);
-        gp.monster[mapNum][8].worldX = gp.tileSize * 10;
-        gp.monster[mapNum][8].worldY = gp.tileSize * 10;
-        
+        gp.monster[mapNum][8].worldX = gp.tileSize * 20;
+        gp.monster[mapNum][8].worldY = gp.tileSize * 7;
+
         gp.monster[mapNum][0] = new Slime(gp);
         gp.monster[mapNum][0].worldX = gp.tileSize * 12;
         gp.monster[mapNum][0].worldY = gp.tileSize * 10;

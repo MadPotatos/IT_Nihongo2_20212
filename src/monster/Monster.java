@@ -1,9 +1,11 @@
 package monster;
 
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import main.UtilityTool;
 import object.Coin;
 import object.Heart;
 import object.Mana;
@@ -20,12 +22,11 @@ public abstract class Monster extends Entity {
         solidArea.y = 18;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        
+
     }
 
-    public void loadAnimations() {}
-
-    public void damageReaction() {}
+    public void damageReaction() {
+    }
 
     public void checkDrop() {
         int i = new Random().nextInt(100) + 1;
@@ -62,6 +63,5 @@ public abstract class Monster extends Entity {
         }
 
     }
-    
-    
+
 }
