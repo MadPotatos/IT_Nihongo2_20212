@@ -12,7 +12,7 @@ public class Coin extends Item {
         setType(type_pickupOnly);
         setName("Coin");
         setValue(1);
-        down1 = setup("/Objects/coin", gp.tileSize, gp.tileSize);
+        down1 = setup("/Objects/coin", gp.tileSize / 3, gp.tileSize / 3);
         setImage(setup("/Objects/coin", gp.tileSize, gp.tileSize));
 
     }

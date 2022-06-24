@@ -4,7 +4,7 @@ import entity.Entity;
 import main.GamePanel;
 
 public class HealingPotion extends Item {
-	private GamePanel gp;
+    private GamePanel gp;
 
     public HealingPotion(GamePanel gp) {
 
@@ -19,7 +19,7 @@ public class HealingPotion extends Item {
     }
 
     public void use(Entity entity) {
-        gp.gameState = gp.dialogueState;
+        gp.gameState = gp.informState;
         gp.ui.currentDialogue = "You used a " + getName() + ".";
         entity.life += getValue();
         if (gp.player.life > gp.player.maxLife) {

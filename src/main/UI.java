@@ -93,6 +93,10 @@ public class UI {
         if (gp.gameState == gp.dialogueState) {
             drawdialogueScreen();
         }
+        // INFORM STATE
+        if (gp.gameState == gp.informState) {
+            drawPopUpMessage();
+        }
         // CHARACTER STATE
         if (gp.gameState == gp.characterState) {
 
@@ -823,6 +827,25 @@ public class UI {
         } else if (titleScreenState == 1) {
 
         }
+    }
+
+    public void drawPopUpMessage() {
+        // WINDOW
+        int x = gp.tileSize * 3;
+        int y = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 6);
+        int height = gp.tileSize * 4;
+        drawSubWindow(x, y, width, height);
+        x += gp.tileSize;
+        y += gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+        g2.setColor(Color.black);
+        for (String line : currentDialogue.split("\n")) {
+
+            g2.drawString(line, x, y);
+            y += 40;
+        }
+
     }
 
     public void drawdialogueScreen() {

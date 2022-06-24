@@ -5,7 +5,7 @@ import entity.Entity;
 public class EventHandler {
     private GamePanel gp;
     private EventRect eventRect[][][];
-	private int previousEventX; 
+    private int previousEventX;
     private int previousEventY;
     private boolean canTouchEvent = true;
     private int tempMap, tempCol, tempRow;
@@ -35,7 +35,7 @@ public class EventHandler {
             }
         }
     }
- 
+
     public void damagePit(int gameState) {
         gp.gameState = gameState;
         gp.playSE(5);
@@ -48,7 +48,7 @@ public class EventHandler {
     public void healingPool(int gameState) {
         if (gp.keyH.enterPressed == true) {
             gp.gameState = gameState;
-            gp.player.setAttackCanceled(true); 
+            gp.player.setAttackCanceled(true);
             gp.playSE(2);
             gp.ui.currentDialogue = "Rest at the statue\n You feel better! \n Monster respawns!";
             gp.player.life = gp.player.maxLife;
@@ -69,16 +69,16 @@ public class EventHandler {
         }
         if (canTouchEvent == true) {
             if (hit(0, 5, 5, "left") == true) {
-                damagePit(gp.dialogueState);
+                damagePit(gp.informState);
             } else if (hit(0, 5, 7, "left") == true) {
-                damagePit(gp.dialogueState);
+                damagePit(gp.informState);
             } else if (hit(0, 1, 5, "left") == true) {
-                healingPool(gp.dialogueState);
+                healingPool(gp.informState);
             } else if (hit(0, 7, 7, "any") == true) {
-                healingPool(gp.dialogueState);
+                healingPool(gp.informState);
 
             } else if (hit(0, 7, 8, "any") == true) {
-                healingPool(gp.dialogueState);
+                healingPool(gp.informState);
 
             } else if (hit(0, 2, 8, "up") == true) {
                 teleport(1, 10, 11);
@@ -138,48 +138,46 @@ public class EventHandler {
 
     }
 
-   // Getter and setter 
-    
+    // Getter and setter
+
     public int getPreviousEventX() {
-		return previousEventX;
-	}
+        return previousEventX;
+    }
 
-	public void setPreviousEventX(int previousEventX) {
-		this.previousEventX = previousEventX;
-	}
+    public void setPreviousEventX(int previousEventX) {
+        this.previousEventX = previousEventX;
+    }
 
-	public int getPreviousEventY() {
-		return previousEventY;
-	}
+    public int getPreviousEventY() {
+        return previousEventY;
+    }
 
-	public void setPreviousEventY(int previousEventY) {
-		this.previousEventY = previousEventY;
-	}
-   
-	public int getTempMap() {
-		return tempMap;
-	}
+    public void setPreviousEventY(int previousEventY) {
+        this.previousEventY = previousEventY;
+    }
 
-	public void setTempMap(int tempMap) {
-		this.tempMap = tempMap;
-	}
+    public int getTempMap() {
+        return tempMap;
+    }
 
-	public int getTempCol() {
-		return tempCol;
-	}
+    public void setTempMap(int tempMap) {
+        this.tempMap = tempMap;
+    }
 
-	public void setTempCol(int tempCol) {
-		this.tempCol = tempCol;
-	}
+    public int getTempCol() {
+        return tempCol;
+    }
 
-	public int getTempRow() {
-		return tempRow;
-	}
+    public void setTempCol(int tempCol) {
+        this.tempCol = tempCol;
+    }
 
-	public void setTempRow(int tempRow) {
-		this.tempRow = tempRow;
-	}
-    
-    
-    
+    public int getTempRow() {
+        return tempRow;
+    }
+
+    public void setTempRow(int tempRow) {
+        this.tempRow = tempRow;
+    }
+
 }
