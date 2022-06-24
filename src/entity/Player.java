@@ -131,14 +131,14 @@ public class Player extends Entity {
 	}
 	
 	public void getPlayerImage() {
-//		up1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 1, 1, 16);
-//		up2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 1, 3, 16);
-//		down1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 0, 1, 16);
-//		down2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 0, 3, 16);
-//		left1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 2, 1, 16);
-//		left2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 2, 3, 16);
-//		right1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 3, 1, 16);
-//		right2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 3, 3, 16);
+		up1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 1, 1, 16);
+		up2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 1, 3, 16);
+		down1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 0, 1, 16);
+		down2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 0, 3, 16);
+		left1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 2, 1, 16);
+		left2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 2, 3, 16);
+		right1 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 3, 1, 16);
+		right2 = setup("/Player/Knight", gp.tileSize, gp.tileSize, 3, 3, 16);
 		still = setup("/Player/still", gp.tileSize, gp.tileSize);
 		avatar = setup("/Player/avatar", gp.tileSize, gp.tileSize);
 
