@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
@@ -27,7 +28,7 @@ public abstract class Entity {
 	// STATE
 	public int worldX, worldY;
 	public String direction = "down";
-	boolean attacking = false;
+
 	public int spriteNum = 1;
 	public boolean collisionOn = false;
 	public boolean invincible = false;
@@ -369,7 +370,7 @@ public abstract class Entity {
 	public void changeAlpha(Graphics2D g2, float alphaValue) {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
 	}
-
+	
 	public BufferedImage setup(String imagePath, int width, int height) {
 		UtilityTool uTool = new UtilityTool();
 		BufferedImage image = null;
@@ -399,4 +400,15 @@ public abstract class Entity {
 		
 		return imgSub;
 	}
+	public BufferedImage importImg(String imagePath) {
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return img;
+	
+	}
+
 }
