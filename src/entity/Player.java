@@ -14,6 +14,8 @@ import object.Item;
 import object.Key;
 import object.WoodenShield;
 
+import utilz.LoadSave;
+
 public class Player extends Entity {
 	private GamePanel gp;
 	private KeyHandler keyH;
@@ -24,11 +26,15 @@ public class Player extends Entity {
 	private int standCounter = 0;
 	private boolean attackCanceled = false;
 	private boolean attacking = false;
-
+	
+	//Count
+	private int spriteCounter = 0;
+	
 	private BufferedImage imgWalk;
 	private BufferedImage[][] animations;
 	private int aniTick, aniIndex, aniSpeed = 15;
-
+	private BufferedImage attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2,
+	attackUp1, attackUp2;
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
 		this.gp = gp;
@@ -107,7 +113,7 @@ public class Player extends Entity {
 	}
 
 	private void loadAnimations() {
-		imgWalk = importImg("/Player/knight_walk");
+		imgWalk = LoadSave.GetSpriteAtlas("/Player/knight_walk.png");
 		UtilityTool uTool = new UtilityTool();
 		animations = new BufferedImage[4][4];
 		for (int j = 0; j < animations.length; j++) {
@@ -131,31 +137,31 @@ public class Player extends Entity {
 
 	public void getPlayerImage() {
 
-		still = setup("/Player/still", gp.tileSize, gp.tileSize);
-		avatar = setup("/Player/avatar", gp.tileSize, gp.tileSize);
+		still = LoadSave.setup("/Player/still", gp.tileSize, gp.tileSize);
+		avatar = LoadSave.setup("/Player/avatar", gp.tileSize, gp.tileSize);
 
 	}
 
 	public void getPlayerAttackImage() {
-		if (currentWeapon.getType() == type_sword) {
-			attackUp1 = setup("/Player/attack_up1", gp.tileSize, gp.tileSize);
-			attackUp2 = setup("/Player/attack_up2", gp.tileSize, gp.tileSize * 2);
-			attackDown1 = setup("/Player/attack_down1", gp.tileSize, gp.tileSize);
-			attackDown2 = setup("/Player/attack_down2", gp.tileSize, gp.tileSize * 2);
-			attackLeft1 = setup("/Player/attack_left1", gp.tileSize, gp.tileSize);
-			attackLeft2 = setup("/Player/attack_left2", gp.tileSize * 2, gp.tileSize);
-			attackRight1 = setup("/Player/attack_right1", gp.tileSize, gp.tileSize);
-			attackRight2 = setup("/Player/attack_right2", gp.tileSize * 2, gp.tileSize);
+		if (currentWeapon.getType() == LoadSave.TYPE_SWORD) {
+			attackUp1 = LoadSave.setup("/Player/attack_up1", gp.tileSize, gp.tileSize);
+			attackUp2 = LoadSave.setup("/Player/attack_up2", gp.tileSize, gp.tileSize * 2);
+			attackDown1 = LoadSave.setup("/Player/attack_down1", gp.tileSize, gp.tileSize);
+			attackDown2 = LoadSave.setup("/Player/attack_down2", gp.tileSize, gp.tileSize * 2);
+			attackLeft1 = LoadSave.setup("/Player/attack_left1", gp.tileSize, gp.tileSize);
+			attackLeft2 = LoadSave.setup("/Player/attack_left2", gp.tileSize * 2, gp.tileSize);
+			attackRight1 = LoadSave.setup("/Player/attack_right1", gp.tileSize, gp.tileSize);
+			attackRight2 = LoadSave.setup("/Player/attack_right2", gp.tileSize * 2, gp.tileSize);
 		}
-		if (currentWeapon.getType() == type_axe) {
-			attackUp1 = setup("/Player/attack_up1", gp.tileSize, gp.tileSize);
-			attackUp2 = setup("/Player/axe_up2", gp.tileSize, gp.tileSize * 2);
-			attackDown1 = setup("/Player/attack_down1", gp.tileSize, gp.tileSize);
-			attackDown2 = setup("/Player/axe_down2", gp.tileSize, gp.tileSize * 2);
-			attackLeft1 = setup("/Player/attack_left1", gp.tileSize, gp.tileSize);
-			attackLeft2 = setup("/Player/axe_left2", gp.tileSize * 2, gp.tileSize);
-			attackRight1 = setup("/Player/attack_right1", gp.tileSize, gp.tileSize);
-			attackRight2 = setup("/Player/axe_right2", gp.tileSize * 2, gp.tileSize);
+		if (currentWeapon.getType() == LoadSave.TYPE_AXE) {
+			attackUp1 = LoadSave.setup("/Player/attack_up1", gp.tileSize, gp.tileSize);
+			attackUp2 = LoadSave.setup("/Player/axe_up2", gp.tileSize, gp.tileSize * 2);
+			attackDown1 = LoadSave.setup("/Player/attack_down1", gp.tileSize, gp.tileSize);
+			attackDown2 = LoadSave.setup("/Player/axe_down2", gp.tileSize, gp.tileSize * 2);
+			attackLeft1 = LoadSave.setup("/Player/attack_left1", gp.tileSize, gp.tileSize);
+			attackLeft2 = LoadSave.setup("/Player/axe_left2", gp.tileSize * 2, gp.tileSize);
+			attackRight1 = LoadSave.setup("/Player/attack_right1", gp.tileSize, gp.tileSize);
+			attackRight2 = LoadSave.setup("/Player/axe_right2", gp.tileSize * 2, gp.tileSize);
 		}
 	}
 
@@ -238,7 +244,7 @@ public class Player extends Entity {
 				standCounter = 0;
 			}
 		}
-		if (gp.keyH.shotKeyPressed == true && projectile.alive == false && shotAvailableCounter == 30
+		if (gp.keyH.shotKeyPressed == true && projectile.alive == false && getShotAvailableCounter() == 30
 				&& projectile.haveResource(this) == true) {
 			// Set default
 			projectile.set(worldX, worldY, direction, true, this);
@@ -246,20 +252,20 @@ public class Player extends Entity {
 			projectile.subtractResource(this);
 			// add projectile to list
 			gp.projectileList.add(projectile);
-			shotAvailableCounter = 0;
+			setShotAvailableCounter(0);
 			gp.playSE(10);
 
 		}
 		if (invincible == true) {
-			invincibleCounter++;
-
-			if (invincibleCounter > 60) {
+			setInvincibleCounter(getInvincibleCounter()+1);
+			if (getInvincibleCounter() > 60) {
 				invincible = false;
-				invincibleCounter = 0;
+				setInvincibleCounter(0);
+				
 			}
 		}
-		if (shotAvailableCounter < 30) {
-			shotAvailableCounter++;
+		if (getShotAvailableCounter() < 30) {
+			setShotAvailableCounter(getShotAvailableCounter()+1);
 		}
 		if (life > maxLife) {
 			life = maxLife;
@@ -353,7 +359,7 @@ public class Player extends Entity {
 				if (gp.monster[gp.currentMap][i].life <= 0) {
 					gp.playSE(7);
 					gp.monster[gp.currentMap][i].dying = true;
-					gp.ui.addMessage(gp.monster[gp.currentMap][i].name + " is killed!");
+					gp.ui.addMessage(gp.monster[gp.currentMap][i].getName() + " is killed!");
 					gp.ui.addMessage("Exp + " + gp.monster[gp.currentMap][i].exp);
 					exp += gp.monster[gp.currentMap][i].exp;
 					checkLevelUp();
@@ -385,16 +391,16 @@ public class Player extends Entity {
 				gp.ui.playerSlotRow);
 		if (itemIndex < inventory.size()) {
 			Item selectedItem = inventory.get(itemIndex);
-			if (selectedItem.getType() == type_axe || selectedItem.getType() == type_sword) {
+			if (selectedItem.getType() == LoadSave.TYPE_AXE || selectedItem.getType() == LoadSave.TYPE_SWORD) {
 				currentWeapon = selectedItem;
 				attack = getAttack();
 				getPlayerAttackImage();
 			}
-			if (selectedItem.getType() == type_shield) {
+			if (selectedItem.getType() == LoadSave.TYPE_SHIELD) {
 				currentShield = selectedItem;
 				defense = getDefense();
 			}
-			if (selectedItem.getType() == type_consumable) {
+			if (selectedItem.getType() == LoadSave.TYPE_CONSUMABLE) {
 				selectedItem.use(this);
 				inventory.remove(itemIndex);
 			}
@@ -411,7 +417,8 @@ public class Player extends Entity {
 				life -= damage;
 				gp.playSE(5);
 				invincible = true;
-				invincibleCounter = 0;
+				setInvincibleCounter(0);
+
 			}
 
 		}
@@ -420,7 +427,7 @@ public class Player extends Entity {
 	public void pickupObject(int i) {
 		if (i != 999) {
 			// PICKUP ONLY ITEMS
-			if (gp.obj[gp.currentMap][i].getType() == type_pickupOnly) {
+			if (gp.obj[gp.currentMap][i].getType() == LoadSave.TYPE_PICKUPONLY) {
 				gp.obj[gp.currentMap][i].use(this);
 				gp.obj[gp.currentMap][i] = null;
 			} else {

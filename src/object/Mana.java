@@ -2,6 +2,7 @@ package object;
 
 import entity.Entity;
 import main.GamePanel;
+import utilz.LoadSave;
 
 public class Mana extends Item {
 	private GamePanel gp;
@@ -9,14 +10,14 @@ public class Mana extends Item {
     public Mana(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        setType(type_pickupOnly);
+        setType(LoadSave.TYPE_PICKUPONLY);
         setValue(1);
 
         setName("Mana");
-        down1 = setup("/HUD/mana_full", gp.tileSize - 12, gp.tileSize - 12);
-        setImage(setup("/HUD/mana_full", gp.tileSize - 12, gp.tileSize - 12));
+        down1 = LoadSave.setup("/HUD/mana_full", gp.tileSize - 12, gp.tileSize - 12);
+        setImage(LoadSave.setup("/HUD/mana_full", gp.tileSize - 12, gp.tileSize - 12));
 
-        setImage2(setup("/HUD/mana_empty", gp.tileSize - 12, gp.tileSize - 12));
+        setImage2(LoadSave.setup("/HUD/mana_empty", gp.tileSize - 12, gp.tileSize - 12));
 
     }
 

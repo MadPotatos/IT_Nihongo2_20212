@@ -1,27 +1,46 @@
 package entity;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.awt.Graphics2D;
-import javax.imageio.ImageIO;
 import java.awt.AlphaComposite;
 import java.awt.Color;
-
 import main.GamePanel;
-import main.UtilityTool;
 import object.Item;
 
 import java.awt.Rectangle;
+import utilz.LoadSave;
 
 public abstract class Entity {
 	GamePanel gp;
 
 	public int speed;
 	public BufferedImage left1, left2, still, right1, right2, down1, down2, up1, up2, avatar;
-	public BufferedImage attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2,
-			attackUp1, attackUp2;
+	private int aniTick, aniIndex, aniSpeed = 15;
+	private BufferedImage[][] animations;
+	
+	
+	public BufferedImage[][] getAnimations() {
+		return animations;
+	}
+
+	public void setAnimations(BufferedImage[][] animations) {
+		this.animations = animations;
+	}
+
+	private void updateAnimationTick() {
+		aniTick++;
+		if (aniTick >= aniSpeed) {
+			aniTick = 0;
+			aniIndex++;
+			if (aniIndex >= 4) {
+				aniIndex = 0;
+			}
+		}
+	}
+	
+	
+	
 	public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
 	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
 	public int solidAreaDefaultX, solidAreaDefaultY;
@@ -34,22 +53,27 @@ public abstract class Entity {
 	public boolean invincible = false;
 	public boolean alive = true;
 	public boolean dying = false;
-	boolean hpBarOn = false;
+	private boolean hpBarOn = false;
 
 	// COUNTER
-	public int actionLockCounter = 0;
-	public int spriteCounter = 0;
-	public int invincibleCounter = 0;
-	public int shotAvailableCounter = 0;
-	public int dyingCounter = 0;
-	int hpBarCounter = 0;
-	// CHARACTER ATTRIBUTE
-	String dialogues[] = new String[30];
-	int dialogueIndex = 0;
-	public String name;
-	public boolean collision = false;
-	public int useCost;
+	private int actionLockCounter = 0;
+	private int spriteCounter = 0;
+	private int invincibleCounter = 0;
+	private int shotAvailableCounter = 0;
 
+
+	private int dyingCounter = 0;
+	private int hpBarCounter = 0;
+	// CHARACTER ATTRIBUTE
+	protected String dialogues[] = new String[30];
+	private int dialogueIndex = 0;
+	private String name;
+	private boolean collision = false;
+	private int useCost;
+	// Type
+	private int type; // 0 = player, 1 = npc, 2 = monster
+	
+	
 	// CHARACTER ATTRIBUTE
 	public int maxLife;
 	public int life;
@@ -70,16 +94,8 @@ public abstract class Entity {
 	public final int maxInventorySize = 20;
 	// ITEM ATTRIBUTE
 
-	// Type
-	public int type; // 0 = player, 1 = npc, 2 = monster
-	public final int type_player = 0;
-	public final int type_npc = 1;
-	public final int type_monster = 2;
-	public final int type_sword = 3;
-	public final int type_axe = 4;
-	public final int type_shield = 5;
-	public final int type_consumable = 6;
-	public final int type_pickupOnly = 7;
+	
+
 	public ArrayList<Item> inventory = new ArrayList<>();
 
 	public Entity(GamePanel gp) {
@@ -112,8 +128,7 @@ public abstract class Entity {
 
 	}
 
-	public void use(Entity entity) {
-	}
+	public void use(Entity entity) {}
 
 	public void dropItem(Item droppedItem) {
 		for (int i = 0; i < gp.obj[1].length; i++) {
@@ -126,25 +141,7 @@ public abstract class Entity {
 		}
 	}
 
-	public Color getParticleColor() {
-		Color color = null;
-		return color;
-	}
 
-	public int getParticleSize() {
-		int size = 0;
-		return size;
-	}
-
-	public int getParticleSpeed() {
-		int speed = 0;
-		return speed;
-	}
-
-	public int getParticleMaxLife() {
-		int maxLife = 0;
-		return maxLife;
-	}
 
 	public void generateParticle(Entity generator, Entity target) {
 		Color color = generator.getParticleColor();
@@ -174,7 +171,7 @@ public abstract class Entity {
 		gp.cChecker.checkEntity(this, gp.iTile);
 		boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
-		if (type == 2 && contactPlayer == true) {
+		if (type == LoadSave.TYPE_MONSTER && contactPlayer == true) {
 			damagePlayer(attack);
 
 		}
@@ -232,8 +229,11 @@ public abstract class Entity {
 
 	}
 
-	public void draw(Graphics2D g2) {
 
+	
+	public void draw(Graphics2D g2) {
+		updateAnimationTick();
+		
 		BufferedImage image = null;
 		int screenX = worldX - gp.player.worldX + gp.player.screenX;
 		int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -255,42 +255,46 @@ public abstract class Entity {
 		}
 		///////////////////
 
-		switch (direction) {
+		if(type == LoadSave.TYPE_MONSTER || type == LoadSave.TYPE_NPC) {
+			switch (direction) {
 			case "up":
-				if (spriteNum == 1) {
-					image = up1;
-				}
-				if (spriteNum == 2) {
-					image = up2;
-				}
+				image = animations[1][aniIndex];
 				break;
 			case "down":
-				if (spriteNum == 1) {
-					image = down1;
-				}
-				if (spriteNum == 2) {
-					image = down2;
-				}
+				image = animations[0][aniIndex];
 				break;
 			case "left":
-				if (spriteNum == 1) {
-					image = left1;
-				}
-				if (spriteNum == 2) {
-					image = left2;
-				}
+				image = animations[2][aniIndex];
 				break;
 			case "right":
-				if (spriteNum == 1) {
-					image = right1;
-				}
-				if (spriteNum == 2) {
-					image = right2;
-				}
+				image = animations[3][aniIndex];
 				break;
 		}
+		}else {
+			switch (direction) {
+			case "up":
+				if (spriteNum == 1) {image = up1;}
+				if (spriteNum == 2) {image = up2;}
+				break;
+			case "down":
+				if (spriteNum == 1) {image = down1;}
+				if (spriteNum == 2) {image = down2;}
+				break;
+			case "left":
+				if (spriteNum == 1) {image = left1;}
+				if (spriteNum == 2) {image = left2;}
+				break;
+			case "right":
+				if (spriteNum == 1) {image = right1;}
+				if (spriteNum == 2) {image = right2;}
+				break;
+		}
+		}
+		
+		
+		
 		// Monster HP bar
-		if (type == type_monster && hpBarOn == true) {
+		if (type == LoadSave.TYPE_MONSTER && hpBarOn == true) {
 			double oneScale = (double) gp.tileSize / maxLife;
 			double hpBarValue = oneScale * life;
 			g2.setColor(new Color(35, 35, 35));
@@ -367,48 +371,111 @@ public abstract class Entity {
 
 	}
 
-	public void changeAlpha(Graphics2D g2, float alphaValue) {
+	private void changeAlpha(Graphics2D g2, float alphaValue) {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
 	}
 	
-	public BufferedImage setup(String imagePath, int width, int height) {
-		UtilityTool uTool = new UtilityTool();
-		BufferedImage image = null;
-		try {
-			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-			image = uTool.scaleImage(image, width, height);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return image;
+	private Color getParticleColor() {
+		Color color = null;
+		return color;
 	}
-	public BufferedImage setup(String imagePath, int width, int height, int x, int y, int pixel) {
-		UtilityTool uTool = new UtilityTool();
-		
-		BufferedImage image = null;
-		BufferedImage imgSub = null;
-		try {
-			//image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-			image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		imgSub = image.getSubimage(pixel*x, pixel*y, pixel, pixel);
-		imgSub = uTool.scaleImage(imgSub, width, height);
-		
-		return imgSub;
+	private int getParticleSize() {
+		int size = 0;
+		return size;
 	}
-	public BufferedImage importImg(String imagePath) {
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return img;
+
+	private int getParticleSpeed() {
+		int speed = 0;
+		return speed;
+	}
+
+	private int getParticleMaxLife() {
+		int maxLife = 0;
+		return maxLife;
+	}
 	
+	
+	
+	//Getter and Setter
+	
+	public int getType() {
+		return type;
 	}
 
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public boolean isCollision() {
+		return collision;
+	}
+
+	public void setCollision(boolean collision) {
+		this.collision = collision;
+	}
+
+	public int getUseCost() {
+		return useCost;
+	}
+
+	public void setUseCost(int useCost) {
+		this.useCost = useCost;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getShotAvailableCounter() {
+		return shotAvailableCounter;
+	}
+
+	public void setShotAvailableCounter(int shotAvailableCounter) {
+		this.shotAvailableCounter = shotAvailableCounter;
+	}
+	public int getInvincibleCounter() {
+		return invincibleCounter;
+	}
+
+	public void setInvincibleCounter(int invincibleCounter) {
+		this.invincibleCounter = invincibleCounter;
+	}
+
+	public int getActionLockCounter() {
+		return actionLockCounter;
+	}
+
+	public void setActionLockCounter(int actionLockCounter) {
+		this.actionLockCounter = actionLockCounter;
+	}
+
+	public int getAniIndex() {
+		return aniIndex;
+	}
+
+	public void setAniIndex(int aniIndex) {
+		this.aniIndex = aniIndex;
+	}
+
+	public int getAniSpeed() {
+		return aniSpeed;
+	}
+
+	public void setAniSpeed(int aniSpeed) {
+		this.aniSpeed = aniSpeed;
+	}
+
+	public int getAniTick() {
+		return aniTick;
+	}
+
+	public void setAniTick(int aniTick) {
+		this.aniTick = aniTick;
+	}
+
+	
 }

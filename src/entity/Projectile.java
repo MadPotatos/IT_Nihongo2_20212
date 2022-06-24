@@ -4,7 +4,8 @@ import main.GamePanel;
 
 public class Projectile extends Entity {
     private Entity user;
-
+	private int spriteCounter = 0;
+	
     public Projectile(GamePanel gp) {
         super(gp);
     }

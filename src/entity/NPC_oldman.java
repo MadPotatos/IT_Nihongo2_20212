@@ -1,7 +1,10 @@
 package entity;
 
 import main.GamePanel;
+import main.UtilityTool;
+import utilz.LoadSave;
 
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class NPC_oldman extends Entity {
@@ -9,25 +12,26 @@ public class NPC_oldman extends Entity {
     public NPC_oldman(GamePanel gp) {
 
         super(gp);
-        name = "Oldman";
+        setName("Oldman");
         direction = "down";
+        setType(LoadSave.TYPE_NPC);
         speed = 1;
-        getImage();
+        loadAnimations();
         setDialogue();
     }
-
-    public void getImage() {
-
-        up1 = setup("/NPC/oldman/oldman_up1", gp.tileSize, gp.tileSize);
-        up2 = setup("/NPC/oldman/oldman_up2", gp.tileSize, gp.tileSize);
-        down1 = setup("/NPC/oldman/oldman_down1", gp.tileSize, gp.tileSize);
-        down2 = setup("/NPC/oldman/oldman_down2", gp.tileSize, gp.tileSize);
-        left1 = setup("/NPC/oldman/oldman_left1", gp.tileSize, gp.tileSize);
-        left2 = setup("/NPC/oldman/oldman_left2", gp.tileSize, gp.tileSize);
-        right1 = setup("/NPC/oldman/oldman_right1", gp.tileSize, gp.tileSize);
-        right2 = setup("/NPC/oldman/oldman_right2", gp.tileSize, gp.tileSize);
-        avatar = setup("/NPC/oldman/oldman_avatar", gp.tileSize, gp.tileSize);
-    }
+    public void loadAnimations() {
+    	avatar = LoadSave.setup("/NPC/oldman/oldman_avatar", gp.tileSize, gp.tileSize);
+		BufferedImage imgWalk = LoadSave.GetSpriteAtlas(LoadSave.NPC_OLDMAN);
+		UtilityTool uTool = new UtilityTool();
+		BufferedImage[][] animations = new BufferedImage[4][4];
+		for (int j = 0; j < animations.length; j++) {
+			for (int i = 0; i < animations[j].length; i++) {
+				animations[j][i] = imgWalk.getSubimage(j * 16, i * 16, 16, 16);
+				animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize, gp.tileSize);
+			}
+		}
+		setAnimations(animations);
+	}
 
     public void setDialogue() {
         dialogues[0] = "Ho ho ho";
@@ -37,8 +41,8 @@ public class NPC_oldman extends Entity {
     }
 
     public void setAction() {
-        actionLockCounter++;
-        if (actionLockCounter == 120) {
+        setActionLockCounter(getActionLockCounter() + 1);
+        if (getActionLockCounter() == 120) {
             Random random = new Random();
             int i = random.nextInt(100) + 1;
             if (i < 25) {
@@ -53,7 +57,7 @@ public class NPC_oldman extends Entity {
             if (i > 75) {
                 direction = "right";
             }
-            actionLockCounter = 0;
+            setActionLockCounter(0);
         }
 
     }

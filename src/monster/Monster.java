@@ -7,6 +7,7 @@ import main.GamePanel;
 import object.Coin;
 import object.Heart;
 import object.Mana;
+import utilz.LoadSave;
 
 public abstract class Monster extends Entity {
     private GamePanel gp;
@@ -14,19 +15,17 @@ public abstract class Monster extends Entity {
     public Monster(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        type = type_monster;
+        setType(LoadSave.TYPE_MONSTER);
         solidArea.x = 3;
         solidArea.y = 18;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-
+        
     }
 
-    public void getImage() {
-    }
+    public void loadAnimations() {}
 
-    public void damageReaction() {
-    }
+    public void damageReaction() {}
 
     public void checkDrop() {
         int i = new Random().nextInt(100) + 1;
@@ -43,8 +42,8 @@ public abstract class Monster extends Entity {
     }
 
     public void setAction() {
-        actionLockCounter++;
-        if (actionLockCounter == 120) {
+        setActionLockCounter(getActionLockCounter() + 1);
+        if (getActionLockCounter() == 120) {
             Random random = new Random();
             int i = random.nextInt(100) + 1;
             if (i < 25) {
@@ -59,9 +58,10 @@ public abstract class Monster extends Entity {
             if (i > 75) {
                 direction = "right";
             }
-            actionLockCounter = 0;
+            setActionLockCounter(0);
         }
 
     }
-
+    
+    
 }
