@@ -1,16 +1,16 @@
 package object;
 
+import java.awt.Color;
+
 import entity.Entity;
 import entity.Projectile;
 import main.GamePanel;
 import utilz.LoadSave;
 
-import java.awt.Color;
+public class Shuriken extends Projectile{
+	private GamePanel gp;
 
-public class EnergyBall extends Projectile {
-    private GamePanel gp;
-
-    public EnergyBall(GamePanel gp) {
+    public Shuriken(GamePanel gp) {
         super(gp);
         this.gp = gp;
         setName("EnergyBall");
@@ -20,8 +20,9 @@ public class EnergyBall extends Projectile {
         life = maxLife;
         attack = 2;
         setUseCost(1);
+        setAniSpeed(4);
         alive = false;
-        loadAnimations(LoadSave.PROTILE_ENERGYBALL);
+        loadAnimations(LoadSave.PROTILE_SURIKEN);
     }
 
 
@@ -57,5 +58,4 @@ public class EnergyBall extends Projectile {
         int maxLife = 20;
         return maxLife;
     }
-
 }

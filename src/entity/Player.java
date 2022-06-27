@@ -12,6 +12,7 @@ import object.EnergyBall;
 import object.HealingPotion;
 import object.Item;
 import object.Key;
+import object.Shuriken;
 import object.WoodenShield;
 
 import utilz.LoadSave;
@@ -96,8 +97,9 @@ public class Player extends Entity {
 		coin = 500;
 		currentWeapon = new BeginnerSword(gp);
 		currentShield = new WoodenShield(gp);
-		projectile = new EnergyBall(gp);
-
+		
+		//projectile = new EnergyBall(gp);
+		projectile = new Shuriken(gp);
 		attack = getAttack(); // attack = strength + weapon attack
 		defense = getDefense(); // defense = endurance + shield defense
 
@@ -112,20 +114,6 @@ public class Player extends Entity {
 
 		return attack = strength * currentWeapon.getAttackValue();
 	}
-
-	// private void loadAnimations() {
-	// imgWalk = LoadSave.GetSpriteAtlas("/Player/knight_walk.png");
-	// UtilityTool uTool = new UtilityTool();
-	// BufferedImage[][] animations = new BufferedImage[4][4];
-	// for (int j = 0; j < animations.length; j++) {
-	// for (int i = 0; i < animations[j].length; i++) {
-	// animations[j][i] = imgWalk.getSubimage(j * 16, i * 16, 16, 16);
-	// animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize,
-	// gp.tileSize);
-	// }
-	// }
-	// setAnimations(animations);
-	// }
 
 	private void updateAnimationTick() {
 		aniTick++;

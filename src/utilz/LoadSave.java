@@ -17,6 +17,8 @@ public class LoadSave {
 	public static final int TYPE_SHIELD = 5;
 	public static final int TYPE_CONSUMABLE = 6;
 	public static final int TYPE_PICKUPONLY = 7;
+	public static final int TYPE_PROJECTTILE = 8;
+
 
 	// PLAYER
 	public static final String PLAYER_WALK = "/Player/knight_walk.png";
@@ -33,6 +35,11 @@ public class LoadSave {
 	public static final String NPC_OLDMAN = "/NPC/oldman/Oldman.png";
 	public static final String NPC_MERCHANT = "/NPC/merchant/Merchant.png";
 
+	//PROJECTILE 
+	public static final String PROTILE_ENERGYBALL = "/projectile/energyball.png";
+	public static final String PROTILE_SURIKEN = "/projectile/shuriken.png";
+	
+	
 	// UI
 	public static final BufferedImage bg = setup("/ui/bg", 1200, 659);
 	public static final BufferedImage KB_A = setup("/ui/a", 16, 16);
