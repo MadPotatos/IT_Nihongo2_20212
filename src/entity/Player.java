@@ -31,7 +31,7 @@ public class Player extends Entity {
 	private int spriteCounter = 0;
 
 	private BufferedImage imgWalk;
-	private BufferedImage[][] animations;
+	// private BufferedImage[][] animations;
 	private int aniTick, aniIndex, aniSpeed = 15;
 	private BufferedImage attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2,
 			attackUp1, attackUp2;
@@ -48,7 +48,7 @@ public class Player extends Entity {
 
 		setDefaultValue();
 
-		loadAnimations();
+		loadAnimations(LoadSave.PLAYER_WALK);
 		getPlayerImage();
 		getPlayerAttackImage();
 		setItems();
@@ -113,17 +113,19 @@ public class Player extends Entity {
 		return attack = strength * currentWeapon.getAttackValue();
 	}
 
-	private void loadAnimations() {
-		imgWalk = LoadSave.GetSpriteAtlas("/Player/knight_walk.png");
-		UtilityTool uTool = new UtilityTool();
-		animations = new BufferedImage[4][4];
-		for (int j = 0; j < animations.length; j++) {
-			for (int i = 0; i < animations[j].length; i++) {
-				animations[j][i] = imgWalk.getSubimage(j * 16, i * 16, 16, 16);
-				animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize, gp.tileSize);
-			}
-		}
-	}
+	// private void loadAnimations() {
+	// imgWalk = LoadSave.GetSpriteAtlas("/Player/knight_walk.png");
+	// UtilityTool uTool = new UtilityTool();
+	// BufferedImage[][] animations = new BufferedImage[4][4];
+	// for (int j = 0; j < animations.length; j++) {
+	// for (int i = 0; i < animations[j].length; i++) {
+	// animations[j][i] = imgWalk.getSubimage(j * 16, i * 16, 16, 16);
+	// animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize,
+	// gp.tileSize);
+	// }
+	// }
+	// setAnimations(animations);
+	// }
 
 	private void updateAnimationTick() {
 		aniTick++;
@@ -463,7 +465,7 @@ public class Player extends Entity {
 	public void draw(Graphics2D g2) {
 		BufferedImage image = null;
 		updateAnimationTick();
-
+		BufferedImage[][] animations = getAnimations();
 		int tempScreenX = screenX;
 		int tempScreenY = screenY;
 		switch (direction) {

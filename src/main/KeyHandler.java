@@ -7,7 +7,8 @@ public class KeyHandler implements KeyListener {
 
     private GamePanel gp;
 
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shotKeyPressed, cPressed,
+            escPressed;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -206,10 +207,7 @@ public class KeyHandler implements KeyListener {
 
                 }
                 if (gp.ui.commandNum == 1) {
-                    gp.stopMusic();
-                    gp.playMusic(13);
-                    gp.gameState = gp.playState;
-
+                    gp.ui.titleScreenState = 1;
                 }
                 if (gp.ui.commandNum == 2) {
                     System.exit(0);
@@ -219,37 +217,35 @@ public class KeyHandler implements KeyListener {
 
         } else if (gp.ui.titleScreenState == 1) {
             if (code == KeyEvent.VK_W) {
-                gp.playSE(9);
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = 3;
-                }
+                upPressed = true;
             }
             if (code == KeyEvent.VK_S) {
-                gp.playSE(9);
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 3) {
-                    gp.ui.commandNum = 0;
-                }
+                downPressed = true;
+            }
+            if (code == KeyEvent.VK_A) {
+                leftPressed = true;
+            }
+            if (code == KeyEvent.VK_D) {
+                rightPressed = true;
+            }
+            if (code == KeyEvent.VK_F) {
+                shotKeyPressed = true;
 
             }
             if (code == KeyEvent.VK_ENTER) {
+                enterPressed = true;
+            }
+            if (code == KeyEvent.VK_ESCAPE) {
+                escPressed = true;
+            }
+            if (code == KeyEvent.VK_C) {
+                cPressed = true;
 
-                if (gp.ui.commandNum == 0) {
-                    gp.gameState = gp.playState;
+            }
 
-                }
-                if (gp.ui.commandNum == 1) {
-                    gp.gameState = gp.playState;
+            if (code == KeyEvent.VK_B) {
 
-                }
-                if (gp.ui.commandNum == 2) {
-                    gp.gameState = gp.playState;
-
-                }
-                if (gp.ui.commandNum == 3) {
-                    gp.ui.titleScreenState = 0;
-                }
+                gp.ui.titleScreenState = 0;
 
             }
 
@@ -382,6 +378,12 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = false;
 
+        }
+        if (code == KeyEvent.VK_C) {
+            cPressed = false;
+        }
+        if (code == KeyEvent.VK_ESCAPE) {
+            escPressed = false;
         }
 
     }

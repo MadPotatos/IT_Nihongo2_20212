@@ -14,7 +14,7 @@ public class EnergyBall extends Projectile {
         super(gp);
         this.gp = gp;
         setName("EnergyBall");
-        speed = 5;
+        speed = 10;
         maxLife = 40;
         life = maxLife;
         attack = 2;
