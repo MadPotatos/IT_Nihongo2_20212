@@ -20,24 +20,12 @@ public class NPC_merchant extends Entity {
         setType(LoadSave.TYPE_NPC);
         direction = "down";
         speed = 0;
-        loadAnimations();
+        avatar = LoadSave.setup("/NPC/merchant/merchant_avatar", gp.tileSize, gp.tileSize);
+        loadAnimations(LoadSave.NPC_MERCHANT);
         setDialogue();
         setItems();
-    }    
-    
-    public void loadAnimations() {
-    	avatar = LoadSave.setup("/NPC/merchant/merchant_avatar", gp.tileSize, gp.tileSize);
-		BufferedImage imgWalk = LoadSave.GetSpriteAtlas(LoadSave.NPC_MERCHANT);
-		UtilityTool uTool = new UtilityTool();
-		BufferedImage[][] animations = new BufferedImage[4][4];
-		for (int j = 0; j < animations.length; j++) {
-			for (int i = 0; i < animations[j].length; i++) {
-				animations[j][i] = imgWalk.getSubimage(j * 16, i * 16, 16, 16);
-				animations[j][i] = uTool.scaleImage(animations[j][i], gp.tileSize, gp.tileSize);
-			}
-		}
-		setAnimations(animations);
-	}
+    }
+
     public void setDialogue() {
         dialogues[0] = "Welcome customer.\nWhat can I do for you?";
     }
