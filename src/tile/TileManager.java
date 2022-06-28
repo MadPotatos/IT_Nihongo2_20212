@@ -9,7 +9,7 @@ import main.GamePanel;
 import main.UtilityTool;
 
 public class TileManager {
-	private GamePanel gp;
+    private GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][][];
 
@@ -90,7 +90,9 @@ public class TileManager {
     }
 
     public void loadMap(String filePath, int map) {
+
         try {
+
             InputStream is = getClass().getResourceAsStream(filePath);
             BufferedReader br = new BufferedReader(new java.io.InputStreamReader(is));
             int col = 0;

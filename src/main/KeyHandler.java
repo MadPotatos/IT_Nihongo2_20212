@@ -217,28 +217,36 @@ public class KeyHandler implements KeyListener {
 
         } else if (gp.ui.titleScreenState == 1) {
             if (code == KeyEvent.VK_W) {
+                gp.playSE(14);
                 upPressed = true;
             }
             if (code == KeyEvent.VK_S) {
+                gp.playSE(14);
                 downPressed = true;
             }
             if (code == KeyEvent.VK_A) {
+                gp.playSE(14);
                 leftPressed = true;
             }
             if (code == KeyEvent.VK_D) {
+                gp.playSE(14);
                 rightPressed = true;
             }
             if (code == KeyEvent.VK_F) {
+                gp.playSE(14);
                 shotKeyPressed = true;
 
             }
             if (code == KeyEvent.VK_ENTER) {
+                gp.playSE(14);
                 enterPressed = true;
             }
             if (code == KeyEvent.VK_ESCAPE) {
+                gp.playSE(14);
                 escPressed = true;
             }
             if (code == KeyEvent.VK_C) {
+                gp.playSE(14);
                 cPressed = true;
 
             }

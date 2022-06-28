@@ -97,11 +97,12 @@ public class Player extends Entity {
 		coin = 500;
 		currentWeapon = new BeginnerSword(gp);
 		currentShield = new WoodenShield(gp);
-		
-		//projectile = new EnergyBall(gp);
+
+		// projectile = new EnergyBall(gp);
 		projectile = new Shuriken(gp);
 		attack = getAttack(); // attack = strength + weapon attack
 		defense = getDefense(); // defense = endurance + shield defense
+		getPlayerAttackImage();
 
 	}
 

@@ -5,15 +5,15 @@ import java.awt.FontFormatException;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.Image;
+import java.awt.BasicStroke;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-
+import javax.swing.ImageIcon;
 import entity.Entity;
-
-import java.awt.BasicStroke;
 
 import object.Coin;
 import object.Heart;
@@ -25,6 +25,7 @@ public class UI {
     GamePanel gp;
     Font MineCraft;
     BufferedImage heart_full, heart_half, heart_empty, mana_full, mana_empty, coin;
+    Image bg;
     Graphics2D g2;
     public boolean messageOn = false;
     ArrayList<String> message = new ArrayList<String>();
@@ -63,6 +64,11 @@ public class UI {
         mana_empty = mana.getImage2();
         Item Coin = new Coin(gp);
         coin = Coin.getImage();
+        try {
+            bg = new ImageIcon(
+                    getClass().getResource("/ui/bg.gif")).getImage();
+        } catch (Exception e) {
+        }
 
     }
 
@@ -523,8 +529,6 @@ public class UI {
         textY += gp.tileSize;
         g2.drawString("Character Detail", textX, textY);
         textY += gp.tileSize;
-        g2.drawString("Pause", textX, textY);
-        textY += gp.tileSize;
         g2.drawString("Options", textX, textY);
         textY += gp.tileSize;
 
@@ -537,8 +541,6 @@ public class UI {
         g2.drawString("F", textX, textY);
         textY += gp.tileSize;
         g2.drawString("C", textX, textY);
-        textY += gp.tileSize;
-        g2.drawString("P", textX, textY);
         textY += gp.tileSize;
         g2.drawString("ESC", textX, textY);
         textY += gp.tileSize;
@@ -768,8 +770,8 @@ public class UI {
     private void drawTitleScreen() {
         if (titleScreenState == 0) {
 
-            g2.drawImage(LoadSave.bg, 0, 0, gp.screenWidth, gp.screenHeight, null);
-            g2.setColor(new Color(0, 0, 0, 160));
+            g2.drawImage(bg, 0, 0, gp.screenWidth, gp.screenHeight, null);
+            g2.setColor(new Color(0, 0, 0, 130));
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
             // TITLE NAME
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 90F));
@@ -828,7 +830,7 @@ public class UI {
 
     private void drawHowToPlay() {
         BufferedImage image;
-        g2.drawImage(LoadSave.bg, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        g2.drawImage(bg, 0, 0, gp.screenWidth, gp.screenHeight, null);
         g2.setColor(new Color(0, 0, 0, 160));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         // TITLE NAME
