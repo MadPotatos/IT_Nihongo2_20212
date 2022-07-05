@@ -14,14 +14,14 @@ public class Boss_GiantFlam extends Monster {
         this.gp = gp;
         setName("GiantFlam");
         setAniSpeed(6);
-        speed = 1;
+        speed = 2;
         maxLife = 40;
         life = maxLife;
         attack = 2;
         defense = 0;
         exp = 290;
-        solidArea.width = 90;
-        solidArea.height = 90;
+        solidArea.width = 32;
+        solidArea.height = 32;
         loadAnimations();
 
     }
@@ -33,14 +33,10 @@ public class Boss_GiantFlam extends Monster {
         for (int j = 0; j < animations.length; j++) {
             for (int i = 0; i < animations[j].length; i++) {
                 animations[j][i] = imgWalk.getSubimage(i * 50, 0, 50, 50);
-                animations[j][i] = uTool.scaleImage(animations[j][i], 3 * gp.tileSize, 3 * gp.tileSize);
+                animations[j][i] = uTool.scaleImage(animations[j][i], 2 * gp.tileSize, 2 * gp.tileSize);
             }
         }
         setAnimations(animations);
     }
 
-    public void damageReaction() {
-        setActionLockCounter(0);
-        direction = gp.player.direction;
-    }
 }

@@ -10,6 +10,7 @@ public class Slime extends Monster {
         super(gp);
         this.gp = gp;
         setName("Slime");
+        setAniSpeed(6);
         speed = 1;
         maxLife = 4;
         life = maxLife;
@@ -19,10 +20,7 @@ public class Slime extends Monster {
         solidArea.width = 42;
         solidArea.height = 30;
         loadAnimations(LoadSave.MONSTER_SLIME);
+
     }
 
-    public void damageReaction() {
-        setActionLockCounter(0);
-        direction = gp.player.direction;
-    }
 }

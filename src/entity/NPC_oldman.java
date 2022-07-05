@@ -46,7 +46,6 @@ public class NPC_oldman extends Entity {
             }
             setActionLockCounter(0);
         }
-
     }
 
     public void speak() {

@@ -6,9 +6,7 @@ import java.awt.image.BufferedImage;
 import java.awt.AlphaComposite;
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
 import object.BeginnerSword;
-import object.EnergyBall;
 import object.HealingPotion;
 import object.Item;
 import object.Key;
@@ -30,10 +28,6 @@ public class Player extends Entity {
 
 	// Count
 	private int spriteCounter = 0;
-
-	private BufferedImage imgWalk;
-	// private BufferedImage[][] animations;
-	private int aniTick, aniIndex, aniSpeed = 15;
 	private BufferedImage attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2,
 			attackUp1, attackUp2;
 
@@ -46,7 +40,7 @@ public class Player extends Entity {
 		solidArea = new Rectangle(7, 7, 30, 30);
 		solidAreaDefaultX = solidArea.x;
 		solidAreaDefaultY = solidArea.y;
-
+		setAniSpeed(10);
 		setDefaultValue();
 
 		loadAnimations(LoadSave.PLAYER_WALK);
@@ -59,7 +53,7 @@ public class Player extends Entity {
 	public void setDefaultPositions() {
 		worldX = gp.tileSize * 11;
 		worldY = gp.tileSize * 11;
-		direction = "still";
+
 	}
 
 	public void restoreLifeAndMana() {
@@ -90,7 +84,7 @@ public class Player extends Entity {
 		ammo = 6;
 		life = maxLife;
 		mana = maxMana;
-		strength = 100;
+		strength = 1;
 		endurance = 1;
 		exp = 0;
 		nextLevelExp = 10;
@@ -116,20 +110,8 @@ public class Player extends Entity {
 		return attack = strength * currentWeapon.getAttackValue();
 	}
 
-	private void updateAnimationTick() {
-		aniTick++;
-		if (aniTick >= aniSpeed) {
-			aniTick = 0;
-			aniIndex++;
-			if (aniIndex >= 4) {
-				aniIndex = 0;
-			}
-		}
-	}
-
 	public void getPlayerImage() {
 
-		still = LoadSave.setup("/Player/still", gp.tileSize, gp.tileSize);
 		avatar = LoadSave.setup("/Player/avatar", gp.tileSize, gp.tileSize);
 
 	}
@@ -461,7 +443,7 @@ public class Player extends Entity {
 			case "up":
 				if (attacking == false) {
 					if (keyH.isUpPressed() == true) {
-						image = animations[1][aniIndex];
+						image = animations[1][getAniIndex()];
 					} else {
 						image = animations[1][0];
 					}
@@ -481,7 +463,7 @@ public class Player extends Entity {
 				if (attacking == false) {
 					;
 					if (keyH.isDownPressed() == true) {
-						image = animations[0][aniIndex];
+						image = animations[0][getAniIndex()];
 					} else {
 						image = animations[0][0];
 					}
@@ -498,7 +480,7 @@ public class Player extends Entity {
 			case "left":
 				if (attacking == false) {
 					if (keyH.isLeftPressed() == true) {
-						image = animations[2][aniIndex];
+						image = animations[2][getAniIndex()];
 					} else {
 						image = animations[2][0];
 					}
@@ -516,7 +498,7 @@ public class Player extends Entity {
 			case "right":
 				if (attacking == false) {
 					if (keyH.isRightPressed() == true) {
-						image = animations[3][aniIndex];
+						image = animations[3][getAniIndex()];
 					} else {
 						image = animations[3][0];
 					}
@@ -531,9 +513,7 @@ public class Player extends Entity {
 					}
 				}
 				break;
-			case "still":
-				image = still;
-				break;
+
 		}
 
 		if (screenX > worldX)

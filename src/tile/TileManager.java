@@ -3,6 +3,7 @@ package tile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
 import main.GamePanel;
@@ -12,6 +13,7 @@ public class TileManager {
     private GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][][];
+    boolean drawPath = true;
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
@@ -164,5 +166,15 @@ public class TileManager {
             }
 
         }
+        // if (drawPath == true) {
+        // g2.setColor(new Color(255, 0, 0, 70));
+        // for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
+        // int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
+        // int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
+        // int screenX = worldX - gp.player.worldX + gp.player.getScreenX();
+        // int screenY = worldY - gp.player.worldY + gp.player.getScreenY();
+        // g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
+        // }
+        // }
     }
 }

@@ -3,7 +3,6 @@ package entity;
 import java.awt.image.BufferedImage;
 
 import main.GamePanel;
-import main.UtilityTool;
 import object.Axe;
 import object.BeginnerSword;
 import object.HealingPotion;

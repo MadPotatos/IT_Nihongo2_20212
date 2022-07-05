@@ -31,49 +31,41 @@ public class Mole extends Monster {
     }
 
     public void setAction() {
-        setActionLockCounter(getActionLockCounter() + 1);
-        if (getActionLockCounter() == 120) {
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;
-            if (i < 25) {
-                direction = "up";
+        if (onPath == true) {
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
+            searchPath(goalCol, goalRow);
+
+            int i = new Random().nextInt(100) + 1;
+            if (i > 99 && projectile.alive == false && getShotAvailableCounter() == 30) {
+                projectile.set(worldX, worldY, direction, true, this);
+                gp.projectileList.add(projectile);
+                setShotAvailableCounter(0);
+
             }
-            if (i > 25 && i < 50) {
-                direction = "down";
+
+        } else {
+            setActionLockCounter(getActionLockCounter() + 1);
+            if (getActionLockCounter() == 120) {
+                Random random = new Random();
+                int i = random.nextInt(100) + 1;
+                if (i < 25) {
+                    direction = "up";
+                }
+                if (i > 25 && i < 50) {
+                    direction = "down";
+                }
+                if (i > 50 && i < 75) {
+                    direction = "left";
+                }
+                if (i > 75) {
+                    direction = "right";
+                }
+                setActionLockCounter(0);
+
             }
-            if (i > 50 && i < 75) {
-                direction = "left";
-            }
-            if (i > 75) {
-                direction = "right";
-            }
-            setActionLockCounter(0);
 
         }
-        int i = new Random().nextInt(100) + 1;
-        if (i > 99 && projectile.alive == false && getShotAvailableCounter() == 30) {
-            projectile.set(worldX, worldY, direction, true, this);
-            gp.projectileList.add(projectile);
-            setShotAvailableCounter(0);
-
-        }
-    }
-
-    public void damageReaction() {
-        setActionLockCounter(0);
-        if (gp.player.direction == "up") {
-            direction = "down";
-        }
-        if (gp.player.direction == "down") {
-            direction = "up";
-        }
-        if (gp.player.direction == "left") {
-            direction = "right";
-        }
-        if (gp.player.direction == "right") {
-            direction = "left";
-        }
-
     }
 
 }

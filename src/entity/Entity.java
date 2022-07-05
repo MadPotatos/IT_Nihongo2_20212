@@ -16,7 +16,7 @@ public abstract class Entity {
 	GamePanel gp;
 
 	public int speed;
-	public BufferedImage down1, still, avatar;
+	public BufferedImage down1, avatar;
 	private int aniTick, aniIndex, aniSpeed = 15;
 	private BufferedImage[][] animations;
 
@@ -41,7 +41,7 @@ public abstract class Entity {
 		setAnimations(animations);
 	}
 
-	private void updateAnimationTick() {
+	protected void updateAnimationTick() {
 		aniTick++;
 		if (aniTick >= aniSpeed) {
 			aniTick = 0;
@@ -52,7 +52,7 @@ public abstract class Entity {
 		}
 	}
 
-	public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+	public Rectangle solidArea = new Rectangle(0, 0, 32, 32);
 	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
 	public int solidAreaDefaultX, solidAreaDefaultY;
 	// STATE
@@ -166,9 +166,7 @@ public abstract class Entity {
 
 	}
 
-	public void update() {
-		setAction();
-
+	public void checkCollision() {
 		collisionOn = false;
 		gp.cChecker.checkTile(this);
 		gp.cChecker.checkObject(this, false);
@@ -181,6 +179,11 @@ public abstract class Entity {
 			damagePlayer(attack);
 
 		}
+	}
+
+	public void update() {
+		setAction();
+		checkCollision();
 
 		if (collisionOn == false) {
 			switch (direction) {

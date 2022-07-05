@@ -28,21 +28,4 @@ public class Tanuki extends Monster {
 
     }
 
-    public void damageReaction() {
-        setActionLockCounter(0);
-        if (gp.player.direction == "up") {
-            direction = "down";
-        }
-        if (gp.player.direction == "down") {
-            direction = "up";
-        }
-        if (gp.player.direction == "left") {
-            direction = "right";
-        }
-        if (gp.player.direction == "right") {
-            direction = "left";
-        }
-
-    }
-
 }
