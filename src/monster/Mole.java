@@ -1,10 +1,9 @@
 package monster;
 
-import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import main.GamePanel;
-import main.UtilityTool;
+
 import object.Rock;
 import utilz.LoadSave;
 
@@ -16,7 +15,8 @@ public class Mole extends Monster {
         this.gp = gp;
 
         setName("Mole");
-        speed = 2;
+        defaultSpeed = 2;
+        speed = defaultSpeed;
         maxLife = 5;
         life = maxLife;
         attack = 3;

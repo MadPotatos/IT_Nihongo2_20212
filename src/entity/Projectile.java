@@ -4,8 +4,8 @@ import main.GamePanel;
 
 public class Projectile extends Entity {
     private Entity user;
-	private int spriteCounter = 0;
-	
+    private int spriteCounter = 0;
+
     public Projectile(GamePanel gp) {
         super(gp);
     }
@@ -24,7 +24,7 @@ public class Projectile extends Entity {
         if (user == gp.player) {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             if (monsterIndex != 999) {
-                gp.player.damageMonster(monsterIndex, attack);
+                gp.player.damageMonster(monsterIndex, attack, knockBackPower);
                 generateParticle(user.projectile, gp.monster[gp.currentMap][monsterIndex]);
                 alive = false;
             }

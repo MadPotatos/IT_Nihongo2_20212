@@ -7,20 +7,21 @@ import entity.Entity;
 import main.GamePanel;;
 
 public class Item extends Entity {
-    private BufferedImage image, image2, image3;
-    private String name;
-    private GamePanel gp;
-    private int value;
-    private int attackValue;
-    private int defenseValue;
-    private String description = "";
-    private int useCost;
-    private int price;
-   // private int type;
+	private BufferedImage image, image2, image3;
+	private String name;
+	private GamePanel gp;
+	private int value;
+	private int attackValue;
+	private int defenseValue;
+	private String description = "";
+	private int useCost;
+	private int price;
 
-    public Item(GamePanel gp) {
-        super(gp);
-    }
+	// private int type;
+
+	public Item(GamePanel gp) {
+		super(gp);
+	}
 
 	public BufferedImage getImage() {
 		return image;
@@ -109,13 +110,5 @@ public class Item extends Entity {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
-//	public int getType() {
-//		return type;
-//	}
-//
-//	public void setType(int type) {
-//		this.type = type;
-//	}
 
 }

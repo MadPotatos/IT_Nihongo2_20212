@@ -15,6 +15,7 @@ public class Axe extends Item {
         attackArea.width = 28;
         attackArea.height = 28;
         setPrice(100);
+        knockBackPower = 10;
     }
 
 }

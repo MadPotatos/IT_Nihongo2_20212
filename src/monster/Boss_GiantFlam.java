@@ -14,7 +14,8 @@ public class Boss_GiantFlam extends Monster {
         this.gp = gp;
         setName("GiantFlam");
         setAniSpeed(6);
-        speed = 2;
+        defaultSpeed = 2;
+        speed = defaultSpeed;
         maxLife = 40;
         life = maxLife;
         attack = 2;

@@ -13,7 +13,8 @@ public class Tanuki extends Monster {
         // TODO Auto-generated constructor stub
 
         setName("Tanuki");
-        speed = 2;
+        defaultSpeed = 2;
+        speed = defaultSpeed;
         maxLife = 5;
         life = maxLife;
         attack = 2;

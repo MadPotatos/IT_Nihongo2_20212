@@ -75,7 +75,8 @@ public class Player extends Entity {
 
 	public void setDefaultValue() {
 		setDefaultPositions();
-		speed = 6;
+		defaultSpeed = 6;
+		speed = defaultSpeed;
 
 		// PLAYER STATUS
 		level = 1;
@@ -287,7 +288,7 @@ public class Player extends Entity {
 			solidArea.height = attackArea.height;
 			// check monster collision
 			int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-			damageMonster(monsterIndex, attack);
+			damageMonster(monsterIndex, attack, currentWeapon.knockBackPower);
 
 			int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
 			damageInteractiveTile(iTileIndex);
@@ -319,9 +320,13 @@ public class Player extends Entity {
 		}
 	}
 
-	public void damageMonster(int i, int attack) {
+	public void damageMonster(int i, int attack, int knockBackPower) {
 		if (i != 999) {
 			if (gp.monster[gp.currentMap][i].invincible == false) {
+				if (knockBackPower > 0) {
+					knockBack(gp.monster[gp.currentMap][i], knockBackPower);
+				}
+
 				int damage = attack - gp.monster[gp.currentMap][i].defense;
 				if (damage < 0) {
 					damage = 0;
@@ -421,6 +426,7 @@ public class Player extends Entity {
 	}
 
 	public void interactNPC(int i) {
+
 		if (gp.keyH.enterPressed == true) {
 			if (i != 999) {
 				attackCanceled = true;
@@ -430,6 +436,13 @@ public class Player extends Entity {
 
 			}
 		}
+
+	}
+
+	public void knockBack(Entity entity, int knockBackPower) {
+		entity.direction = direction;
+		entity.speed += knockBackPower;
+		entity.knockBack = true;
 
 	}
 

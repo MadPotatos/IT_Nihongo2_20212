@@ -20,6 +20,65 @@ public abstract class Entity {
 	private int aniTick, aniIndex, aniSpeed = 15;
 	private BufferedImage[][] animations;
 
+	public Rectangle solidArea = new Rectangle(0, 0, 32, 32);
+	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
+	public int solidAreaDefaultX, solidAreaDefaultY;
+	// STATE
+	public int worldX, worldY;
+	public String direction = "down";
+
+	public int spriteNum = 1;
+	public boolean collisionOn = false;
+	public boolean invincible = false;
+	public boolean alive = true;
+	public boolean dying = false;
+	private boolean hpBarOn = false;
+	public boolean onPath = false;
+	public boolean knockBack = false;
+
+	// COUNTER
+	private int actionLockCounter = 0;
+	private int spriteCounter = 0;
+	private int invincibleCounter = 0;
+	private int shotAvailableCounter = 0;
+	private int knockBackCounter = 0;
+
+	private int dyingCounter = 0;
+	private int hpBarCounter = 0;
+
+	private int type;
+	// CHARACTER ATTRIBUTE
+	protected String dialogues[] = new String[30];
+	private int dialogueIndex = 0;
+	private String name;
+	private boolean collision = false;
+	private int useCost;
+	public int defaultSpeed;
+	public int maxLife;
+	public int life;
+	public int mana;
+	public int maxMana;
+	public int ammo;
+	public int level;
+	public int strength;
+	public int endurance;
+	public int attack;
+	public int defense;
+	public int exp;
+	public int nextLevelExp;
+	public int coin;
+	public Item currentWeapon;
+	public Item currentShield;
+	public Projectile projectile;
+	public final int maxInventorySize = 20;
+	// ITEM ATTRIBUTE
+	public int knockBackPower = 0;
+	public ArrayList<Item> inventory = new ArrayList<>();
+
+	public Entity(GamePanel gp) {
+		this.gp = gp;
+	}
+
 	public BufferedImage[][] getAnimations() {
 		return animations;
 	}
@@ -50,64 +109,6 @@ public abstract class Entity {
 				aniIndex = 0;
 			}
 		}
-	}
-
-	public Rectangle solidArea = new Rectangle(0, 0, 32, 32);
-	public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
-	public int solidAreaDefaultX, solidAreaDefaultY;
-	// STATE
-	public int worldX, worldY;
-	public String direction = "down";
-
-	public int spriteNum = 1;
-	public boolean collisionOn = false;
-	public boolean invincible = false;
-	public boolean alive = true;
-	public boolean dying = false;
-	private boolean hpBarOn = false;
-
-	// COUNTER
-	private int actionLockCounter = 0;
-	private int spriteCounter = 0;
-	private int invincibleCounter = 0;
-	private int shotAvailableCounter = 0;
-
-	private int dyingCounter = 0;
-	private int hpBarCounter = 0;
-	// CHARACTER ATTRIBUTE
-	protected String dialogues[] = new String[30];
-	private int dialogueIndex = 0;
-	private String name;
-	private boolean collision = false;
-	private int useCost;
-	public boolean onPath = false;
-	// Type
-	private int type; // 0 = player, 1 = npc, 2 = monster
-
-	// CHARACTER ATTRIBUTE
-	public int maxLife;
-	public int life;
-	public int mana;
-	public int maxMana;
-	public int ammo;
-	public int level;
-	public int strength;
-	public int endurance;
-	public int attack;
-	public int defense;
-	public int exp;
-	public int nextLevelExp;
-	public int coin;
-	public Item currentWeapon;
-	public Item currentShield;
-	public Projectile projectile;
-	public final int maxInventorySize = 20;
-	// ITEM ATTRIBUTE
-
-	public ArrayList<Item> inventory = new ArrayList<>();
-
-	public Entity(GamePanel gp) {
-		this.gp = gp;
 	}
 
 	public void setAction() {
@@ -183,24 +184,55 @@ public abstract class Entity {
 	}
 
 	public void update() {
-		setAction();
-		checkCollision();
-
-		if (collisionOn == false) {
-			switch (direction) {
-				case "up":
-					worldY -= speed;
-					break;
-				case "down":
-					worldY += speed;
-					break;
-				case "left":
-					worldX -= speed;
-					break;
-				case "right":
-					worldX += speed;
-					break;
+		if (knockBack == true) {
+			checkCollision();
+			if (collisionOn == true) {
+				knockBackCounter = 0;
+				knockBack = false;
+				speed = defaultSpeed;
+			} else if (collisionOn == false) {
+				switch (gp.player.direction) {
+					case "up":
+						worldY -= speed;
+						break;
+					case "down":
+						worldY += speed;
+						break;
+					case "left":
+						worldX -= speed;
+						break;
+					case "right":
+						worldX += speed;
+						break;
+				}
 			}
+			knockBackCounter++;
+			if (knockBackCounter == 5) {
+				knockBackCounter = 0;
+				knockBack = false;
+				speed = defaultSpeed;
+			}
+		} else {
+			setAction();
+			checkCollision();
+
+			if (collisionOn == false) {
+				switch (direction) {
+					case "up":
+						worldY -= speed;
+						break;
+					case "down":
+						worldY += speed;
+						break;
+					case "left":
+						worldX -= speed;
+						break;
+					case "right":
+						worldX += speed;
+						break;
+				}
+			}
+
 		}
 
 		spriteCounter++;

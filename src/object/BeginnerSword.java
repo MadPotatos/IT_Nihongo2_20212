@@ -16,6 +16,7 @@ public class BeginnerSword extends Item {
         attackArea.width = 36;
         attackArea.height = 36;
         setPrice(30);
+        knockBackPower = 2;
     }
 
 }

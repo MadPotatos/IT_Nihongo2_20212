@@ -11,12 +11,13 @@ public class Slime extends Monster {
         this.gp = gp;
         setName("Slime");
         setAniSpeed(6);
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 4;
         life = maxLife;
         attack = 2;
         defense = 0;
-        exp = 290;
+        exp = 1;
         solidArea.width = 42;
         solidArea.height = 30;
         loadAnimations(LoadSave.MONSTER_SLIME);
