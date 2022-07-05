@@ -4,7 +4,6 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
-
 import object.Coin;
 import object.Heart;
 import object.Mana;
@@ -12,7 +11,6 @@ import utilz.LoadSave;
 
 public abstract class Monster extends Entity {
     private GamePanel gp;
-    public boolean onPath = false;
 
     public Monster(GamePanel gp) {
         super(gp);
@@ -23,6 +21,24 @@ public abstract class Monster extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
+    }
+
+    public void update() {
+        super.update();
+        int xDistance = Math.abs(worldX - gp.player.worldX);
+        int yDistance = Math.abs(worldY - gp.player.worldY);
+        int tileDistance = (int) (Math.sqrt(xDistance * xDistance + yDistance * yDistance) / gp.tileSize);
+
+        if (onPath == false && tileDistance < 5) {
+            int i = new Random().nextInt(100) + 1;
+            if (i > 50) {
+                gp.playSE(15);
+                onPath = true;
+            }
+        }
+        if (onPath == true && tileDistance > 10) {
+            onPath = false;
+        }
     }
 
     public void damageReaction() {

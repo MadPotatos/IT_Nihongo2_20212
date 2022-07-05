@@ -58,6 +58,7 @@ public class LoadSave {
 	public static final BufferedImage KB_ENTER_P = setup("/ui/enter_p", 48, 16);
 	public static final BufferedImage KB_ESC = setup("/ui/esc", 32, 16);
 	public static final BufferedImage KB_ESC_P = setup("/ui/esc_p", 32, 16);
+	public static final BufferedImage ALERT = setup("/HUD/alert", 48, 48);
 
 	public static BufferedImage GetSpriteAtlas(String fileName) {
 		BufferedImage img = null;

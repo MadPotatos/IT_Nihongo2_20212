@@ -80,6 +80,7 @@ public abstract class Entity {
 	private String name;
 	private boolean collision = false;
 	private int useCost;
+	public boolean onPath = false;
 	// Type
 	private int type; // 0 = player, 1 = npc, 2 = monster
 
@@ -306,6 +307,10 @@ public abstract class Entity {
 		}
 		if (dying == true) {
 			dyingAnimation(g2);
+		}
+		// Monster alert
+		if (onPath == true) {
+			g2.drawImage(LoadSave.ALERT, screenX, screenY - 60, gp.tileSize, gp.tileSize, null);
 		}
 
 		if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&

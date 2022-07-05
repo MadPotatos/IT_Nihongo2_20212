@@ -18,8 +18,8 @@ import utilz.LoadSave;
 public class Player extends Entity {
 	private GamePanel gp;
 	private KeyHandler keyH;
-	protected final int screenX;
-	protected final int screenY;
+	public final int screenX;
+	public final int screenY;
 
 	private int hasKey = 0;
 	private int standCounter = 0;

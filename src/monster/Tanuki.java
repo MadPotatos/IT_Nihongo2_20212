@@ -1,9 +1,7 @@
 package monster;
 
-import java.awt.image.BufferedImage;
-
 import main.GamePanel;
-import main.UtilityTool;
+
 import utilz.LoadSave;
 
 public class Tanuki extends Monster {
