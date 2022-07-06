@@ -23,6 +23,11 @@ public class Item extends Entity {
 		super(gp);
 	}
 
+	public void interact() {
+
+	}
+
+	// SETTERS AND GETTERS
 	public BufferedImage getImage() {
 		return image;
 	}

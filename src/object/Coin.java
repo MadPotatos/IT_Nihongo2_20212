@@ -18,9 +18,10 @@ public class Coin extends Item {
 
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         gp.playSE(1);
         gp.ui.addMessage("Coin +" + getValue());
         gp.player.coin += getValue();
+        return true;
     }
 }

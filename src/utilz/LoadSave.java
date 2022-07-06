@@ -19,6 +19,7 @@ public class LoadSave {
 	public static final int TYPE_CONSUMABLE = 6;
 	public static final int TYPE_PICKUPONLY = 7;
 	public static final int TYPE_PROJECTTILE = 8;
+	public static final int TYPE_OBSTACLE = 9;
 
 	// PLAYER
 	public static final String PLAYER_WALK = "/Player/knight_walk.png";

@@ -7,7 +7,9 @@ import monster.Mole;
 import monster.Slime;
 import monster.Tanuki;
 import object.Axe;
+import object.Chest;
 import object.Coin;
+import object.Door;
 import object.Heart;
 import object.Key;
 import object.Mana;
@@ -54,6 +56,11 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new Heart(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 5;
         gp.obj[mapNum][i].worldY = gp.tileSize * 5;
+        i++;
+
+        gp.obj[mapNum][i] = new Chest(gp, new Key(gp));
+        gp.obj[mapNum][i].worldX = gp.tileSize * 20;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 4;
         i++;
 
     }

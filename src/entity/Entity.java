@@ -83,6 +83,30 @@ public abstract class Entity {
 		return animations;
 	}
 
+	public int getLeftX() {
+		return worldX + solidArea.x;
+	}
+
+	public int getRightX() {
+		return worldX + solidArea.x + solidArea.width;
+	}
+
+	public int getTopY() {
+		return worldY + solidArea.y;
+	}
+
+	public int getBottomY() {
+		return worldY + solidArea.y + solidArea.height;
+	}
+
+	public int getCol() {
+		return (worldX + solidArea.x) / gp.tileSize;
+	}
+
+	public int getRow() {
+		return (worldY + solidArea.y) / gp.tileSize;
+	}
+
 	public void setAnimations(BufferedImage[][] animations) {
 		this.animations = animations;
 	}
@@ -114,6 +138,42 @@ public abstract class Entity {
 	public void setAction() {
 	}
 
+	public int getDetected(Entity user, Item target[][], String targetName) {
+		int index = 999;
+		// Check surrounding object
+		int nextWorldX = user.getLeftX();
+		int nextWorldY = user.getTopY();
+
+		switch (user.direction) {
+			case "up":
+				nextWorldY = user.getTopY() - 1;
+				break;
+			case "down":
+				nextWorldY = user.getBottomY() + 1;
+				break;
+			case "left":
+				nextWorldX = user.getLeftX() - 1;
+				break;
+			case "right":
+				nextWorldX = user.getRightX() + 1;
+				break;
+		}
+		int col = nextWorldX / gp.tileSize;
+		int row = nextWorldY / gp.tileSize;
+
+		for (int i = 0; i < target[1].length; i++) {
+			if (target[gp.currentMap][i] != null) {
+				if (target[gp.currentMap][i].getCol() == col && target[gp.currentMap][i].getRow() == row
+						&& target[gp.currentMap][i].getName().equals(targetName)) {
+					index = i;
+					break;
+				}
+			}
+
+		}
+		return index;
+	}
+
 	public void speak() {
 		if (dialogues[dialogueIndex] == null) {
 			dialogueIndex = 0;
@@ -137,18 +197,8 @@ public abstract class Entity {
 
 	}
 
-	public void use(Entity entity) {
-	}
-
-	public void dropItem(Item droppedItem) {
-		for (int i = 0; i < gp.obj[1].length; i++) {
-			if (gp.obj[gp.currentMap][i] == null) {
-				gp.obj[gp.currentMap][i] = droppedItem;
-				gp.obj[gp.currentMap][i].worldX = worldX;
-				gp.obj[gp.currentMap][i].worldY = worldY;
-				break;
-			}
-		}
+	public boolean use(Entity entity) {
+		return false;
 	}
 
 	public void generateParticle(Entity generator, Entity target) {

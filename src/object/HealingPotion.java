@@ -19,7 +19,7 @@ public class HealingPotion extends Item {
         setPrice(10);
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         gp.gameState = gp.informState;
         gp.ui.currentDialogue = "You used a " + getName() + ".";
         entity.life += getValue();
@@ -27,6 +27,6 @@ public class HealingPotion extends Item {
             gp.player.life = gp.player.maxLife;
         }
         gp.playSE(2);
-
+        return true;
     }
 }

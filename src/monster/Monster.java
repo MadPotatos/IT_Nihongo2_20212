@@ -6,6 +6,7 @@ import entity.Entity;
 import main.GamePanel;
 import object.Coin;
 import object.Heart;
+import object.Item;
 import object.Mana;
 import utilz.LoadSave;
 
@@ -57,6 +58,17 @@ public abstract class Monster extends Entity {
         }
         if (i > 75) {
             dropItem(new Mana(gp));
+        }
+    }
+
+    public void dropItem(Item droppedItem) {
+        for (int i = 0; i < gp.obj[1].length; i++) {
+            if (gp.obj[gp.currentMap][i] == null) {
+                gp.obj[gp.currentMap][i] = droppedItem;
+                gp.obj[gp.currentMap][i].worldX = worldX;
+                gp.obj[gp.currentMap][i].worldY = worldY;
+                break;
+            }
         }
     }
 

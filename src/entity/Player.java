@@ -380,8 +380,10 @@ public class Player extends Entity {
 				defense = getDefense();
 			}
 			if (selectedItem.getType() == LoadSave.TYPE_CONSUMABLE) {
-				selectedItem.use(this);
-				inventory.remove(itemIndex);
+				if (selectedItem.use(this) == true) {
+					inventory.remove(itemIndex);
+				}
+
 			}
 		}
 	}
@@ -409,6 +411,13 @@ public class Player extends Entity {
 			if (gp.obj[gp.currentMap][i].getType() == LoadSave.TYPE_PICKUPONLY) {
 				gp.obj[gp.currentMap][i].use(this);
 				gp.obj[gp.currentMap][i] = null;
+			}
+			// OBSTACLE
+			else if (gp.obj[gp.currentMap][i].getType() == LoadSave.TYPE_OBSTACLE) {
+				if (keyH.enterPressed == true) {
+					attackCanceled = true;
+					gp.obj[gp.currentMap][i].interact();
+				}
 			} else {
 				String text;
 				if (inventory.size() != maxInventorySize) {

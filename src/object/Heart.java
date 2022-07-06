@@ -5,7 +5,7 @@ import main.GamePanel;
 import utilz.LoadSave;
 
 public class Heart extends Item {
-	private GamePanel gp;
+    private GamePanel gp;
 
     public Heart(GamePanel gp) {
         super(gp);
@@ -21,10 +21,10 @@ public class Heart extends Item {
 
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         gp.playSE(2);
         gp.ui.addMessage("Life +" + getValue());
         entity.life += getValue();
-
+        return true;
     }
 }

@@ -5,7 +5,7 @@ import main.GamePanel;
 import utilz.LoadSave;
 
 public class Mana extends Item {
-	private GamePanel gp;
+    private GamePanel gp;
 
     public Mana(GamePanel gp) {
         super(gp);
@@ -21,10 +21,10 @@ public class Mana extends Item {
 
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         gp.playSE(2);
         gp.ui.addMessage("Mana +" + getValue());
         entity.mana += getValue();
-
+        return true;
     }
 }
