@@ -1,10 +1,9 @@
 # BruhQuest
-A 2D RPG game made by  Java
+Javaで作られた2D RPGゲーム
 
-# Guidelines
+# ガイドライン
 
 
-1. Clone this repository
+1. このリポジトリをクローンする
 
-2. Run Main.java
-
+2. Main.javaを実行する。
