@@ -61,6 +61,24 @@ public class TileManager {
         setup(40, "light", false);
         setup(41, "dirt", false);
         setup(42, "block", true);
+        setup(43, "tree1", true);
+        setup(44, "tree2", true);
+        setup(45, "tree3", true);
+        setup(46, "tree4", true);
+        setup(47, "house1", true);
+        setup(48, "house2", true);
+        setup(49, "house3", true);
+        setup(50, "house4", true);
+        setup(51, "house5", true);
+        setup(52, "house6", true);
+        setup(53, "house7", true);
+        setup(54, "house8", true);
+        setup(55, "house9", true);
+        setup(56, "house10", true);
+        setup(57, "house11", true);
+        setup(58, "house12", true);
+        setup(59, "basket", true);
+
     }
 
     public void setup(int index, String imageName, boolean collision) {

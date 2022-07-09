@@ -36,7 +36,7 @@ public class Chest extends Item {
                 sb.append("\nカバンがいっぱいになった。");
             } else {
                 gp.player.inventory.add(loot);
-                sb.append("\nYou obtained " + loot.getName() + ".");
+                sb.append("\n" + loot.getName() + "を取得しました。");
                 down1 = getImage2();
                 opened = true;
             }

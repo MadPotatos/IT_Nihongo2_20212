@@ -64,13 +64,18 @@ public class AssetSetter {
         int i = 0;
         // map 0
 
+        gp.npc[mapNum][i] = new NPC_merchant(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 20;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 22;
+        i++;
+        gp.npc[mapNum][i] = new NPC_ninja(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 23;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 30;
+        i++;
         gp.npc[mapNum][i] = new NPC_oldman(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 35;
+        gp.npc[mapNum][i].worldX = gp.tileSize * 26;
         gp.npc[mapNum][i].worldY = gp.tileSize * 15;
         i++;
-        gp.npc[mapNum][i] = new NPC_merchant(gp);
-        gp.npc[mapNum][i].worldX = gp.tileSize * 25;
-        gp.npc[mapNum][i].worldY = gp.tileSize * 18;
     }
 
     public void setMonster() {
@@ -116,6 +121,10 @@ public class AssetSetter {
         gp.iTile[mapNum][i] = new Gate(gp, 22, 9);
         i++;
         gp.iTile[mapNum][i] = new Stair(gp, 23, 12);
+        i++;
+        gp.iTile[mapNum][i] = new Statue(gp, 27, 10);
+        i++;
+        gp.iTile[mapNum][i] = new Statue(gp, 20, 10);
         i++;
 
     }

@@ -35,6 +35,8 @@ public class LoadSave {
 	// NPC
 	public static final String NPC_OLDMAN = "/NPC/oldman/Oldman.png";
 	public static final String NPC_MERCHANT = "/NPC/merchant/Merchant.png";
+	public static final String NPC_NINJA = "/NPC/ninja/Ninja.png";
+	public static final String NPC_MONK = "/NPC/monk/Monk.png";
 
 	// PROJECTILE
 	public static final String PROTILE_ENERGYBALL = "/projectile/energyball.png";

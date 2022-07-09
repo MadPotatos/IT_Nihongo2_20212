@@ -4,20 +4,18 @@ import main.GamePanel;
 
 import utilz.LoadSave;
 
-import java.util.Random;
-
 import entity.Entity;
 
 public class NPC_oldman extends Entity {
-	private GamePanel gp;
-	
+    private GamePanel gp;
+
     public NPC_oldman(GamePanel gp) {
         super(gp);
-    	this.gp = gp;
+        this.gp = gp;
         setName("Oldman");
         direction = "down";
         setType(LoadSave.TYPE_NPC);
-        speed = 1;
+        speed = 0;
         avatar = LoadSave.setup("/NPC/oldman/oldman_avatar", gp.tileSize, gp.tileSize);
         loadAnimations(LoadSave.NPC_OLDMAN);
         setDialogue();
@@ -25,30 +23,9 @@ public class NPC_oldman extends Entity {
 
     public void setDialogue() {
         dialogues[0] = "Ho ho ho";
-        dialogues[1] = "I am Yoshi the wise";
-        dialogues[2] = "I am the one who can \ntell you the truth";
-        dialogues[3] = "But you have to wait \nfor game to update";
-    }
-
-    public void setAction() {
-        setActionLockCounter(getActionLockCounter() + 1);
-        if (getActionLockCounter() == 120) {
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;
-            if (i < 25) {
-                direction = "up";
-            }
-            if (i > 25 && i < 50) {
-                direction = "down";
-            }
-            if (i > 50 && i < 75) {
-                direction = "left";
-            }
-            if (i > 75) {
-                direction = "right";
-            }
-            setActionLockCounter(0);
-        }
+        dialogues[1] = "目の前にはダンジョンに続く\nゲートがあります。";
+        dialogues[2] = "その中にあなたの答えがある\nはずです";
+        dialogues[3] = "本当に勇気のある方は\nご入場ください";
     }
 
     public void speak() {

@@ -46,7 +46,7 @@ public class UI {
         this.gp = gp;
 
         try {
-            InputStream is = getClass().getResourceAsStream("/Font/japanese.otf");
+            InputStream is = getClass().getResourceAsStream("/Font/japanese.ttf");
             MineCraft = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (FontFormatException e) {
             e.printStackTrace();
@@ -365,7 +365,7 @@ public class UI {
 
     private void drawOptionsScreen() {
 
-        g2.setFont(g2.getFont().deriveFont(30F));
+        g2.setFont(g2.getFont().deriveFont(35F));
         // SUB WINDOW
         int frameX = gp.tileSize * 6;
         int frameY = gp.tileSize;
@@ -402,7 +402,7 @@ public class UI {
         // FULL SCREEN ON/OFF
         textX = frameX + gp.tileSize;
         textY += gp.tileSize * 2;
-        g2.drawString("Full Screen", textX, textY);
+        g2.drawString("フルスクリーン", textX, textY);
         if (commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
@@ -452,7 +452,7 @@ public class UI {
         }
         // BACK
         textY += gp.tileSize * 2;
-        g2.drawString("Back", textX, textY);
+        g2.drawString("バック", textX, textY);
         if (commandNum == 5) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
@@ -676,7 +676,7 @@ public class UI {
             // description
             int textX = dFrameX + 20;
             int textY = dFrameY + gp.tileSize;
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
 
             int itemIndex = getItemIndexonSlot(slotCol, slotRow);
 
@@ -796,7 +796,7 @@ public class UI {
             g2.drawImage(gp.player.avatar, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
             // MENU
-            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40F));
             text = "ニューゲーム";
             x = getXforCenteredText(text);
             y += gp.tileSize * 3.5;
@@ -852,10 +852,10 @@ public class UI {
         image = LoadSave.KB_B;
         x = gp.tileSize / 2;
         y = gp.tileSize / 2;
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 20));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 25));
         g2.drawImage(image, x, y, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.setColor(Color.white);
-        g2.drawString("背面 (B)", x + 30, y + 18);
+        g2.drawString("バック (B)", x + 30, y + 18);
 
         // W,A,S,D
         image = LoadSave.KB_W;
@@ -996,39 +996,39 @@ public class UI {
 
         // TEXT
         g2.setColor(Color.black);
-        g2.setFont(g2.getFont().deriveFont(24F));
+        g2.setFont(g2.getFont().deriveFont(28F));
         int textX = frameX + 24;
         int textY = frameY + 40;
         final int lineHeight = 36;
 
         // NAMES
-        g2.drawString("Level", textX, textY);
+        g2.drawString("レベル", textX, textY);
         textY += lineHeight;
-        g2.drawString("Vigor", textX, textY);
+        g2.drawString("活力", textX, textY);
         textY += lineHeight;
-        g2.drawString("Mind", textX, textY);
+        g2.drawString("精神", textX, textY);
         textY += lineHeight;
-        g2.drawString("Strength", textX, textY);
+        g2.drawString("強さ", textX, textY);
         textY += lineHeight;
-        g2.drawString("Endurance", textX, textY);
+        g2.drawString("耐久性", textX, textY);
         textY += lineHeight;
-        g2.drawString("Attack", textX, textY);
-        textY += lineHeight;
-
-        g2.drawString("Defense", textX, textY);
+        g2.drawString("攻撃力", textX, textY);
         textY += lineHeight;
 
-        g2.drawString("Exp", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Next level", textX, textY);
+        g2.drawString("防衛力", textX, textY);
         textY += lineHeight;
 
-        g2.drawString("Coin", textX, textY);
+        g2.drawString("経験値", textX, textY);
+        textY += lineHeight;
+        g2.drawString("次のレベル", textX, textY);
+        textY += lineHeight;
+
+        g2.drawString("硬貨", textX, textY);
         textY += lineHeight + 12;
 
-        g2.drawString("Weapon", textX, textY);
+        g2.drawString("武器", textX, textY);
         textY += lineHeight + 8;
-        g2.drawString("Shield", textX, textY);
+        g2.drawString("シールド", textX, textY);
         textY += lineHeight;
 
         // VALUES

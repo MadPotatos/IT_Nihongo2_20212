@@ -87,8 +87,8 @@ public class EventHandler {
 
             } else if (hit(1, 19, 48, "any") == true) {
                 teleport(0, 24, 11);
-            } else if (hit(1, 10, 8, "up") == true) {
-                speak(gp.npc[1][0]);
+            } else if (hit(0, 20, 24, "up") == true) {
+                speak(gp.npc[0][0]);
 
             }
         }
