@@ -14,11 +14,10 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import entity.Entity;
-
-import object.Coin;
-import object.Heart;
-import object.Item;
-import object.Mana;
+import entity.object.item.Coin;
+import entity.object.item.Heart;
+import entity.object.item.Item;
+import entity.object.item.Mana;
 import utilz.LoadSave;
 
 public class UI {

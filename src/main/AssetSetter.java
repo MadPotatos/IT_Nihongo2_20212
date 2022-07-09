@@ -1,19 +1,19 @@
 package main;
 
-import entity.NPC_merchant;
-import entity.NPC_oldman;
-import monster.Boss_GiantFlam;
-import monster.Mole;
-import monster.Slime;
-import monster.Tanuki;
-import object.Axe;
-import object.Chest;
-import object.Coin;
-import object.Door;
-import object.Heart;
-import object.Key;
-import object.Mana;
-import object.SteelShield;
+import entity.monster.Boss_GiantFlam;
+import entity.monster.Mole;
+import entity.monster.Slime;
+import entity.monster.Tanuki;
+import entity.npc.NPC_merchant;
+import entity.npc.NPC_oldman;
+import entity.object.item.Chest;
+import entity.object.item.Coin;
+import entity.object.item.Door;
+import entity.object.item.Heart;
+import entity.object.item.Key;
+import entity.object.item.Mana;
+import entity.object.weapon.Axe;
+import entity.object.weapon.SteelShield;
 import tile_interactive.BreakableStone;
 
 public class AssetSetter {

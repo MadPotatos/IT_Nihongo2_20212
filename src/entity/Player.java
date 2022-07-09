@@ -3,16 +3,17 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+
+import entity.object.item.HealingPotion;
+import entity.object.item.Item;
+import entity.object.item.Key;
+import entity.object.projectile.Shuriken;
+import entity.object.weapon.BeginnerSword;
+import entity.object.weapon.WoodenShield;
+
 import java.awt.AlphaComposite;
 import main.GamePanel;
 import main.KeyHandler;
-import object.BeginnerSword;
-import object.HealingPotion;
-import object.Item;
-import object.Key;
-import object.Shuriken;
-import object.WoodenShield;
-
 import utilz.LoadSave;
 
 public class Player extends Entity {
