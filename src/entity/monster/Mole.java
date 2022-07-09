@@ -2,8 +2,12 @@ package entity.monster;
 
 import java.util.Random;
 
-import entity.object.projectile.Rock;
+import entity.item.Coin;
+import entity.item.Heart;
+import entity.item.Mana;
+import entity.projectile.Rock;
 import main.GamePanel;
+
 import utilz.LoadSave;
 
 public class Mole extends Monster {
@@ -65,6 +69,30 @@ public class Mole extends Monster {
             }
 
         }
+    }
+
+    @Override
+    public void damageReaction() {
+
+        setActionLockCounter(0);
+        onPath = true;
+
+    }
+
+    @Override
+    public void checkDrop() {
+        int i = new Random().nextInt(100) + 1;
+        // Set monster drop
+        if (i < 50) {
+            dropItem(new Coin(gp));
+        }
+        if (i > 50 && i < 75) {
+            dropItem(new Heart(gp));
+        }
+        if (i > 75) {
+            dropItem(new Mana(gp));
+        }
+
     }
 
 }

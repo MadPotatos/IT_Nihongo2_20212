@@ -3,16 +3,17 @@ package entity.npc;
 import java.awt.image.BufferedImage;
 
 import entity.Entity;
-import entity.object.item.HealingPotion;
-import entity.object.item.Key;
-import entity.object.weapon.Axe;
-import entity.object.weapon.BeginnerSword;
-import entity.object.weapon.SteelShield;
+import entity.item.HealingPotion;
+import entity.item.Key;
+import entity.weapon.Axe;
+import entity.weapon.BeginnerSword;
+import entity.weapon.SteelShield;
 import main.GamePanel;
 import utilz.LoadSave;
 
 public class NPC_merchant extends Entity {
-	private GamePanel gp;
+    private GamePanel gp;
+
     public NPC_merchant(GamePanel gp) {
         super(gp);
         this.gp = gp;

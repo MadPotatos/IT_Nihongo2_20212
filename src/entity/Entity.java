@@ -3,8 +3,8 @@ package entity;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import entity.object.item.Item;
-import entity.object.projectile.Projectile;
+import entity.item.Item;
+import entity.projectile.Projectile;
 
 import java.awt.Graphics2D;
 import java.awt.AlphaComposite;
@@ -202,23 +202,6 @@ public abstract class Entity {
 
 	public boolean use(Entity entity) {
 		return false;
-	}
-
-	public void generateParticle(Entity generator, Entity target) {
-		Color color = generator.getParticleColor();
-		int size = generator.getParticleSize();
-		int speed = generator.getParticleSpeed();
-		int maxLife = generator.getParticleMaxLife();
-
-		Particle p1 = new Particle(gp, target, color, size, speed, maxLife, -2, -1);
-		Particle p2 = new Particle(gp, target, color, size, speed, maxLife, 2, -1);
-		Particle p3 = new Particle(gp, target, color, size, speed, maxLife, -2, 1);
-		Particle p4 = new Particle(gp, target, color, size, speed, maxLife, 2, 1);
-		gp.particleList.add(p1);
-		gp.particleList.add(p2);
-		gp.particleList.add(p3);
-		gp.particleList.add(p4);
-
 	}
 
 	public void checkCollision() {
@@ -453,26 +436,6 @@ public abstract class Entity {
 
 	private void changeAlpha(Graphics2D g2, float alphaValue) {
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
-	}
-
-	private Color getParticleColor() {
-		Color color = null;
-		return color;
-	}
-
-	private int getParticleSize() {
-		int size = 0;
-		return size;
-	}
-
-	private int getParticleSpeed() {
-		int speed = 0;
-		return speed;
-	}
-
-	private int getParticleMaxLife() {
-		int maxLife = 0;
-		return maxLife;
 	}
 
 	// Getter and Setter

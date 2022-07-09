@@ -14,10 +14,10 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import entity.Entity;
-import entity.object.item.Coin;
-import entity.object.item.Heart;
-import entity.object.item.Item;
-import entity.object.item.Mana;
+import entity.item.Coin;
+import entity.item.Heart;
+import entity.item.Item;
+import entity.item.Mana;
 import utilz.LoadSave;
 
 public class UI {
@@ -175,7 +175,7 @@ public class UI {
                 commandNum = 0;
                 gp.gameState = gp.dialogueState;
                 // gp.ui.currentDialogue = "Come again soon";
-                gp.ui.currentDialogue = "またのお越しをお待ちしております";
+                gp.ui.currentDialogue = "またのお越しをお待ちして\nおります";
             }
         }
     }
@@ -519,21 +519,21 @@ public class UI {
         int textX;
         int textY;
         // TITLE
-        String text = "Control";
+        String text = "コントロール";
         textX = getXforCenteredText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
         textX = frameX + gp.tileSize;
         textY += gp.tileSize;
-        g2.drawString("Move", textX, textY);
+        g2.drawString("移動", textX, textY);
         textY += gp.tileSize;
-        g2.drawString("Confirm/Attack", textX, textY);
+        g2.drawString("攻撃/相互作用", textX, textY);
         textY += gp.tileSize;
-        g2.drawString("Shoot/Cast", textX, textY);
+        g2.drawString("撃つ", textX, textY);
         textY += gp.tileSize;
-        g2.drawString("Character Detail", textX, textY);
+        g2.drawString("キャラクター詳細", textX, textY);
         textY += gp.tileSize;
-        g2.drawString("Options", textX, textY);
+        g2.drawString("オプション", textX, textY);
         textY += gp.tileSize;
 
         textX = frameX + gp.tileSize * 6;
@@ -839,9 +839,9 @@ public class UI {
         g2.setColor(new Color(0, 0, 0, 160));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         // TITLE NAME
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 60F));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50F));
         g2.setColor(Color.white);
-        String text = "KEYBOARD CONTROLS";
+        String text = "キーボード操作";
         int x = getXforCenteredText(text);
         int y = gp.tileSize;
 
@@ -855,7 +855,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 20));
         g2.drawImage(image, x, y, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.setColor(Color.white);
-        g2.drawString("BACK (B)", x + 30, y + 18);
+        g2.drawString("背面 (B)", x + 30, y + 18);
 
         // W,A,S,D
         image = LoadSave.KB_W;
@@ -928,15 +928,15 @@ public class UI {
         y = gp.tileSize * 3;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 36));
         g2.setColor(Color.white);
-        g2.drawString(" - MOVE", x, y);
+        g2.drawString(" - 移動", x, y);
         y += gp.tileSize * 2 + 28;
-        g2.drawString(" - ATTACK / INTERACT", x, y);
+        g2.drawString(" - 攻撃/相互作用", x, y);
         y += gp.tileSize + 30;
-        g2.drawString(" - INVENTORY", x, y);
+        g2.drawString(" - インベントリ", x, y);
         y += gp.tileSize + 30;
-        g2.drawString(" - SHOOT", x, y);
+        g2.drawString(" - 撃つ", x, y);
         y += gp.tileSize + 30;
-        g2.drawString(" - SETTING", x, y);
+        g2.drawString(" - オプション", x, y);
     }
 
     public void drawPopUpMessage() {

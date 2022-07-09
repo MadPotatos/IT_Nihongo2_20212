@@ -4,16 +4,14 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import entity.object.item.HealingPotion;
-import entity.object.item.Item;
-import entity.object.item.Key;
-import entity.object.projectile.Shuriken;
-import entity.object.weapon.BeginnerSword;
-import entity.object.weapon.WoodenShield;
+import entity.item.*;
+import entity.weapon.*;
+import entity.projectile.*;
 
 import java.awt.AlphaComposite;
 import main.GamePanel;
 import main.KeyHandler;
+
 import utilz.LoadSave;
 
 public class Player extends Entity {
@@ -52,8 +50,9 @@ public class Player extends Entity {
 	}
 
 	public void setDefaultPositions() {
-		worldX = gp.tileSize * 11;
-		worldY = gp.tileSize * 11;
+		gp.currentMap = 0;
+		worldX = gp.tileSize * 24;
+		worldY = gp.tileSize * 44;
 
 	}
 
@@ -313,11 +312,7 @@ public class Player extends Entity {
 			gp.iTile[gp.currentMap][i].playSE();
 			gp.iTile[gp.currentMap][i].life--;
 			gp.iTile[gp.currentMap][i].invincible = true;
-			// Generate particle
-			generateParticle(gp.iTile[gp.currentMap][i], gp.iTile[gp.currentMap][i]);
-			if (gp.iTile[gp.currentMap][i].life == 0) {
-				gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
-			}
+
 		}
 	}
 
@@ -333,7 +328,7 @@ public class Player extends Entity {
 					damage = 0;
 				}
 				gp.monster[gp.currentMap][i].life -= damage;
-				gp.ui.addMessage(damage + " ダメージ!");
+				gp.ui.addMessage(damage + " damage!");
 				gp.monster[gp.currentMap][i].invincible = true;
 				gp.monster[gp.currentMap][i].damageReaction();
 				if (gp.monster[gp.currentMap][i].life <= 0) {
@@ -362,7 +357,7 @@ public class Player extends Entity {
 			mana = maxMana;
 			gp.playSE(8);
 			gp.gameState = gp.informState;
-			gp.ui.currentDialogue = "レベルアップ\n 全属性を1ポイント上げる。 \n Enterキーを押して続行します。";
+			gp.ui.currentDialogue = "Level Up! \n Raise all attributes by 1 point. \n Press Enter to continue.";
 		}
 	}
 
@@ -424,9 +419,9 @@ public class Player extends Entity {
 				if (inventory.size() != maxInventorySize) {
 					inventory.add(gp.obj[gp.currentMap][i]);
 					gp.playSE(1);
-					text = "" + gp.obj[gp.currentMap][i].getName() + "を手に入れた!";
+					text = "You got a " + gp.obj[gp.currentMap][i].getName() + "!";
 				} else {
-					text = "持ち運びができない!";
+					text = "Can't carry more items!";
 				}
 				gp.ui.addMessage(text);
 				gp.obj[gp.currentMap][i] = null;
@@ -543,7 +538,6 @@ public class Player extends Entity {
 			tempScreenX = worldX - (screenX - tempScreenX);
 		if (screenY > worldY)
 			tempScreenY = worldY - (screenY - tempScreenY);
-
 		int rightOffset = gp.screenWidth - screenX;
 		if (rightOffset > gp.worldWidth - worldX) {
 			tempScreenX = (gp.screenWidth - (gp.worldWidth - worldX)) - (screenX - tempScreenX);

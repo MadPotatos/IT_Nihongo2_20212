@@ -1,16 +1,12 @@
 package entity.monster;
 
-import java.util.Random;
-
 import entity.Entity;
-import entity.object.item.Coin;
-import entity.object.item.Heart;
-import entity.object.item.Item;
-import entity.object.item.Mana;
+import entity.item.Item;
 import main.GamePanel;
+
 import utilz.LoadSave;
 
-public abstract class Monster extends Entity {
+public abstract class Monster extends Entity implements Behavior {
     private GamePanel gp;
 
     public Monster(GamePanel gp) {
@@ -28,36 +24,10 @@ public abstract class Monster extends Entity {
         super.update();
         int xDistance = Math.abs(worldX - gp.player.worldX);
         int yDistance = Math.abs(worldY - gp.player.worldY);
-        int tileDistance = (int) (Math.sqrt(xDistance * xDistance + yDistance * yDistance) / gp.tileSize);
-
-        if (onPath == false && tileDistance < 5) {
-            int i = new Random().nextInt(100) + 1;
-            if (i > 50) {
-                gp.playSE(15);
-                onPath = true;
-            }
-        }
+        int tileDistance = (int) (Math.sqrt(xDistance * xDistance + yDistance *
+                yDistance) / gp.tileSize);
         if (onPath == true && tileDistance > 10) {
             onPath = false;
-        }
-    }
-
-    public void damageReaction() {
-        setActionLockCounter(0);
-        onPath = true;
-    }
-
-    public void checkDrop() {
-        int i = new Random().nextInt(100) + 1;
-        // Set monster drop
-        if (i < 50) {
-            dropItem(new Coin(gp));
-        }
-        if (i > 50 && i < 75) {
-            dropItem(new Heart(gp));
-        }
-        if (i > 75) {
-            dropItem(new Mana(gp));
         }
     }
 
@@ -70,35 +40,6 @@ public abstract class Monster extends Entity {
                 break;
             }
         }
-    }
-
-    public void setAction() {
-        if (onPath == true) {
-            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
-            searchPath(goalCol, goalRow);
-
-        } else {
-            setActionLockCounter(getActionLockCounter() + 1);
-            if (getActionLockCounter() == 120) {
-                Random random = new Random();
-                int i = random.nextInt(100) + 1;
-                if (i < 25) {
-                    direction = "up";
-                }
-                if (i > 25 && i < 50) {
-                    direction = "down";
-                }
-                if (i > 50 && i < 75) {
-                    direction = "left";
-                }
-                if (i > 75) {
-                    direction = "right";
-                }
-                setActionLockCounter(0);
-            }
-        }
-
     }
 
     public void searchPath(int goalCol, int goalRow) {

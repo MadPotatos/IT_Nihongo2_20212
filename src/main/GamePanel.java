@@ -16,10 +16,10 @@ import javax.swing.JPanel;
 import ai.PathFinder;
 import entity.Entity;
 import entity.Player;
+import entity.item.Item;
 import entity.monster.Monster;
-import entity.object.item.Item;
+import entity.tile_interactive.InteractiveTile;
 import tile.TileManager;
-import tile_interactive.InteractiveTile;
 
 public class GamePanel extends JPanel implements Runnable {
 
