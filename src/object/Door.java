@@ -25,6 +25,6 @@ public class Door extends Item {
 
     public void interact() {
         gp.gameState = gp.informState;
-        gp.ui.currentDialogue = "You need a key to open the door.";
+        gp.ui.currentDialogue = "扉を開けるには鍵が必要です。";
     }
 }

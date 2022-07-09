@@ -47,7 +47,7 @@ public class UI {
         this.gp = gp;
 
         try {
-            InputStream is = getClass().getResourceAsStream("/Font/determination.ttf");
+            InputStream is = getClass().getResourceAsStream("/Font/japanese.otf");
             MineCraft = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (FontFormatException e) {
             e.printStackTrace();
@@ -175,7 +175,8 @@ public class UI {
             if (gp.keyH.enterPressed == true) {
                 commandNum = 0;
                 gp.gameState = gp.dialogueState;
-                gp.ui.currentDialogue = "Come again soon";
+                // gp.ui.currentDialogue = "Come again soon";
+                gp.ui.currentDialogue = "またのお越しをお待ちしております";
             }
         }
     }
@@ -226,13 +227,14 @@ public class UI {
                 if (npc.inventory.get(itemIndex).getPrice() > gp.player.coin) {
                     subState = 0;
                     gp.gameState = gp.dialogueState;
-                    gp.ui.currentDialogue = "You don't have enough coin";
+                    // gp.ui.currentDialogue = "You don't have enough coin";
+                    gp.ui.currentDialogue = "コインが足りない。";
                     drawdialogueScreen();
                 } else if (gp.player.inventory.size() == gp.player.maxInventorySize) {
                     subState = 0;
                     gp.gameState = gp.dialogueState;
-                    gp.ui.currentDialogue = "You can't carry more items";
-
+                    // gp.ui.currentDialogue = "You can't carry more items";
+                    gp.ui.currentDialogue = "これ以上アイテムを持参できない。";
                 } else {
                     gp.playSE(9);
                     gp.player.coin -= npc.inventory.get(itemIndex).getPrice();
@@ -291,7 +293,8 @@ public class UI {
                     commandNum = 0;
                     subState = 0;
                     gp.gameState = gp.dialogueState;
-                    gp.ui.currentDialogue = "You can't sell this item";
+                    // gp.ui.currentDialogue = "You can't sell this item";
+                    gp.ui.currentDialogue = "この商品は販売できない";
                 } else {
                     gp.playSE(9);
                     gp.player.coin += price;
@@ -332,7 +335,7 @@ public class UI {
         int y;
         String text;
 
-        text = "You died";
+        text = "君は死んだ";
         // shadow
         g2.setColor(Color.black);
         x = getXforCenteredText(text);
@@ -344,7 +347,7 @@ public class UI {
         // retry
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40f));
-        text = "Retry";
+        text = "リトライ";
         x = getXforCenteredText(text);
         y += gp.tileSize * 4;
         g2.drawString(text, x, y);
@@ -352,7 +355,7 @@ public class UI {
             g2.drawString(">", x - 40, y);
         }
         // quit
-        text = "Quit";
+        text = "辞める";
         x = getXforCenteredText(text);
         y += 55;
         g2.drawString(text, x, y);
@@ -491,7 +494,9 @@ public class UI {
         int textX = frameX + gp.tileSize;
         int textY = frameY + gp.tileSize;
         g2.setColor(Color.black);
-        currentDialogue = "The change will \n take effect after \n restarting the game.";
+        // currentDialogue = "The change will \n take effect after \n restarting the
+        // game.";
+        currentDialogue = "この変更は\n、ゲームを再起動した\n後に有効になります。";
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
             textY += 40;
@@ -564,13 +569,14 @@ public class UI {
         int textX = frameX + (int) (gp.tileSize * 1.5);
         int textY = frameY + gp.tileSize * 3;
         g2.setColor(Color.black);
-        currentDialogue = "Are you sure you \n want to quit?";
+        // currentDialogue = "Are you sure you \n want to quit?";
+        currentDialogue = "本当に辞めたいのか？";
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
             textY += 40;
         }
         // YES
-        String text = "Yes";
+        String text = "はい";
         textX = getXforCenteredText(text);
         textY += gp.tileSize * 3;
         g2.drawString(text, textX, textY);
@@ -585,7 +591,7 @@ public class UI {
             }
         }
         // NO
-        text = "No";
+        text = "いいえ";
         textX = getXforCenteredText(text);
         textY += gp.tileSize;
         g2.drawString(text, textX, textY);
@@ -792,7 +798,7 @@ public class UI {
 
             // MENU
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
-            text = "NEW GAME";
+            text = "ニューゲーム";
             x = getXforCenteredText(text);
             y += gp.tileSize * 3.5;
             if (commandNum == 0) {
@@ -802,7 +808,7 @@ public class UI {
                 g2.setColor(Color.white);
             }
             g2.drawString(text, x, y);
-            text = "HOW TO PLAY";
+            text = "ガイド";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             if (commandNum == 1) {
@@ -812,7 +818,7 @@ public class UI {
                 g2.setColor(Color.white);
             }
             g2.drawString(text, x, y);
-            text = "QUIT";
+            text = "クィット";
             x = getXforCenteredText(text);
             y += gp.tileSize;
             if (commandNum == 2) {

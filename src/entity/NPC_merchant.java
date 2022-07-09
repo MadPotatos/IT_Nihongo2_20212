@@ -26,7 +26,7 @@ public class NPC_merchant extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0] = "Welcome customer.\nWhat can I do for you?";
+        dialogues[0] = "いらっしゃいませ.\n何になさいますか?";
     }
 
     public void setItems() {

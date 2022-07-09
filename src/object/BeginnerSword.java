@@ -12,7 +12,7 @@ public class BeginnerSword extends Item {
         setName("Beginner Sword");
         down1 = LoadSave.setup("/Objects/sword_beginner", gp.tileSize, gp.tileSize);
         setAttackValue(1);
-        setDescription("[" + getName() + "]\n" + "A simple sword.");
+        setDescription("[" + getName() + "]\n" + "シンプルな剣だ。");
         attackArea.width = 36;
         attackArea.height = 36;
         setPrice(30);

@@ -11,7 +11,7 @@ public class Axe extends Item {
         setName("Axe");
         down1 = LoadSave.setup("/Objects/axe", gp.tileSize, gp.tileSize);
         setAttackValue(2);
-        setDescription("[" + getName() + "]\n" + "Can be used to chop\ndown tree.");
+        setDescription("[" + getName() + "]\n" + "木の切り倒しに使用\nきます。");
         attackArea.width = 28;
         attackArea.height = 28;
         setPrice(100);

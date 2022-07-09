@@ -12,7 +12,7 @@ public class SteelShield extends Item {
         setName("Steel Shield");
         down1 = LoadSave.setup("/Objects/shield_steel", gp.tileSize, gp.tileSize);
         setDefenseValue(2);
-        setDescription("[" + getName() + "]\n" + "A shield made of\nsteel.");
+        setDescription("[" + getName() + "]\n" + "鋼鉄でできた盾。");
     }
 
 }

@@ -31,9 +31,9 @@ public class Chest extends Item {
         if (opened == false) {
             gp.playSE(3);
             StringBuilder sb = new StringBuilder();
-            sb.append("You opened the chest and find a" + loot.getName() + "!");
+            sb.append("あなたは胸を開いた。　" + loot.getName() + "を見つける。!");
             if (gp.player.inventory.size() == gp.player.maxInventorySize) {
-                sb.append("\nYour inventory is full.");
+                sb.append("\nカバンがいっぱいになった。");
             } else {
                 gp.player.inventory.add(loot);
                 sb.append("\nYou obtained " + loot.getName() + ".");
@@ -42,7 +42,7 @@ public class Chest extends Item {
             }
             gp.ui.currentDialogue = sb.toString();
         } else {
-            gp.ui.currentDialogue = "The chest is empty.";
+            gp.ui.currentDialogue = "中には何もない";
         }
     }
 }

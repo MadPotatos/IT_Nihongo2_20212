@@ -13,7 +13,7 @@ public class Key extends Item {
         setName("Key");
         setType(LoadSave.TYPE_CONSUMABLE);
         down1 = LoadSave.setup("/Objects/key", gp.tileSize, gp.tileSize);
-        setDescription("[" + getName() + "]\n" + "Can be used to open\ndoors.");
+        setDescription("[" + getName() + "]\n" + "ドア開閉に使用可能");
         setPrice(100);
     }
 
@@ -21,12 +21,12 @@ public class Key extends Item {
         gp.gameState = gp.informState;
         int objIndex = getDetected(entity, gp.obj, "Door");
         if (objIndex != 999) {
-            gp.ui.currentDialogue = "You used the key to open the door.";
+            gp.ui.currentDialogue = "鍵を使ってドアを開けたんですね。";
             gp.playSE(3);
             gp.obj[gp.currentMap][objIndex] = null;
             return true;
         } else {
-            gp.ui.currentDialogue = "There is no door to open.";
+            gp.ui.currentDialogue = "開けるべき扉はない。";
             return false;
         }
     }
