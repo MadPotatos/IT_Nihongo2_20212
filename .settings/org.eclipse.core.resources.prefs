@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/entity/NPC_merchant.java=UTF-8
+encoding//src/entity/Player.java=UTF-8
 encoding//src/main/UI.java=UTF-8
 encoding//src/object/Axe.java=UTF-8
 encoding//src/object/BeginnerSword.java=UTF-8

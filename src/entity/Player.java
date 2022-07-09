@@ -338,7 +338,7 @@ public class Player extends Entity {
 				if (gp.monster[gp.currentMap][i].life <= 0) {
 					gp.playSE(7);
 					gp.monster[gp.currentMap][i].dying = true;
-					gp.ui.addMessage(gp.monster[gp.currentMap][i].getName() + " が殺される!");
+					gp.ui.addMessage(gp.monster[gp.currentMap][i].getName() + " は殺される!");
 					gp.ui.addMessage("Exp + " + gp.monster[gp.currentMap][i].exp);
 					exp += gp.monster[gp.currentMap][i].exp;
 					checkLevelUp();
@@ -361,7 +361,7 @@ public class Player extends Entity {
 			mana = maxMana;
 			gp.playSE(8);
 			gp.gameState = gp.informState;
-			gp.ui.currentDialogue = "レベルアップ! \n 全属性を1ポイント上昇させる \n Enterキーを押して続行します。";
+			gp.ui.currentDialogue = "レベルアップ\n 全属性を1ポイント上げる。 \n Enterキーを押して続行します。";
 		}
 	}
 
@@ -423,9 +423,9 @@ public class Player extends Entity {
 				if (inventory.size() != maxInventorySize) {
 					inventory.add(gp.obj[gp.currentMap][i]);
 					gp.playSE(1);
-					text = "" + gp.obj[gp.currentMap][i].getName() + "を手に入れたのか!";
+					text = "" + gp.obj[gp.currentMap][i].getName() + "を手に入れた!";
 				} else {
-					text = "これ以上アイテムを取得する\nことはできません!";
+					text = "持ち運びができない!";
 				}
 				gp.ui.addMessage(text);
 				gp.obj[gp.currentMap][i] = null;

@@ -395,7 +395,7 @@ public class UI {
         int textY;
         // TITLE
         g2.setColor(Color.black);
-        String text = "Options";
+        String text = "オプション";
         textX = getXforCenteredText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
@@ -420,7 +420,7 @@ public class UI {
 
         // MUSIC
         textY += gp.tileSize;
-        g2.drawString("Music", textX, textY);
+        g2.drawString("音楽", textX, textY);
         if (commandNum == 1) {
             g2.drawString(">", textX - 25, textY);
         }
@@ -432,7 +432,7 @@ public class UI {
         }
         // CONTROL
         textY += gp.tileSize;
-        g2.drawString("Control", textX, textY);
+        g2.drawString("制御", textX, textY);
         if (commandNum == 3) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
@@ -442,7 +442,7 @@ public class UI {
         }
         // QUIT GAME
         textY += gp.tileSize;
-        g2.drawString("Quit game", textX, textY);
+        g2.drawString("ゲームを終了する", textX, textY);
         if (commandNum == 4) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed == true) {
