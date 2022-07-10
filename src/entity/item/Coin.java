@@ -11,7 +11,7 @@ public class Coin extends Item {
         super(gp);
         this.gp = gp;
         setType(LoadSave.TYPE_PICKUPONLY);
-        setName("Coin");
+        setName("硬貨");
         setValue(1);
         down1 = LoadSave.setup("/Objects/coin", gp.tileSize / 3, gp.tileSize / 3);
         setImage(LoadSave.setup("/Objects/coin", gp.tileSize, gp.tileSize));

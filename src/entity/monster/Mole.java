@@ -20,10 +20,10 @@ public class Mole extends Monster {
         setName("Mole");
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 5;
+        maxLife = 10;
         life = maxLife;
         attack = 3;
-        defense = 1;
+        defense = 0;
         exp = 3;
         projectile = new Rock(gp);
 

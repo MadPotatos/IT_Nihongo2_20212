@@ -28,6 +28,7 @@ public class LoadSave {
 	public static final String MONSTER_MOLE = "/monsters/mole/Mole.png";
 	public static final String MONSTER_SLIME = "/monsters/slime/Slime.png";
 	public static final String MONSTER_TANUKI = "/monsters/tanuki/Tanuki.png";
+	public static final String MONSTER_FLAM = "/monsters/flam/Flam.png";
 
 	// BOSS
 	public static final String BOSS_GIANTFLAM = "/monsters/boss/GaintFlam.png";

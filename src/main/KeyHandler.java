@@ -52,6 +52,18 @@ public class KeyHandler implements KeyListener {
         else if (gp.gameState == gp.informState) {
             dialogueState(code);
         }
+        // WIN
+        else if (gp.gameState == gp.winState) {
+            winState(code);
+        }
+    }
+
+    private void winState(int code) {
+        if (code == KeyEvent.VK_ENTER) {
+            gp.playMusic(0);
+            gp.gameState = gp.titleState;
+            gp.restart();
+        }
     }
 
     private void tradingState(int code) {

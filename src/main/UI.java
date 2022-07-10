@@ -121,6 +121,43 @@ public class UI {
         if (gp.gameState == gp.tradingState) {
             drawTradeScreen();
         }
+        // WIN STATE
+        if (gp.gameState == gp.winState) {
+            drawWinScreen();
+        }
+    }
+
+    private void drawWinScreen() {
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 90f));
+        int x;
+        int y;
+        String text;
+
+        text = "おめでとうございます!!!";
+        // shadow
+        g2.setColor(Color.black);
+        x = getXforCenteredText(text);
+        y = gp.tileSize * 4;
+        g2.drawString(text, x, y);
+        // text
+        g2.setColor(Color.green);
+        g2.drawString(text, x - 4, y - 4);
+        // text
+        g2.setColor(Color.green);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50f));
+        text = "あなたは家に帰る道を見つけた";
+        x = getXforCenteredText(text);
+        y += gp.tileSize * 2;
+        g2.drawString(text, x, y);
+        // return to title screen
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 40f));
+        text = "ENTERキーでメニューに戻る";
+        x = getXforCenteredText(text);
+        y += gp.tileSize * 4;
+        g2.drawString(text, x, y);
     }
 
     private void drawTradeScreen() {
@@ -948,7 +985,7 @@ public class UI {
         drawSubWindow(x, y, width, height);
         x += gp.tileSize;
         y += gp.tileSize;
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 35F));
         g2.setColor(Color.black);
         for (String line : currentDialogue.split("\n")) {
 
@@ -970,13 +1007,13 @@ public class UI {
 
         g2.drawImage(npc.avatar, x, y, (int) (gp.tileSize * 2.5), (int) (gp.tileSize * 2.5), null);
         g2.setColor(Color.black);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
 
         x += gp.tileSize * 3;
         y += 16;
-        g2.drawString(npc.getName() + ":", x, y);
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 30F));
-        y += 36;
+        g2.drawString(npc.getName() + " :", x, y);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 35F));
+        y += gp.tileSize;
         for (String line : currentDialogue.split("\n")) {
 
             g2.drawString(line, x, y);

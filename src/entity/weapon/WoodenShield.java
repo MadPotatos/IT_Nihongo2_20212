@@ -10,7 +10,7 @@ public class WoodenShield extends Item {
         super(gp);
         // TODO Auto-generated constructor stub
         setType(LoadSave.TYPE_SHIELD);
-        setName("Wooden Shield");
+        setName("木製シールド");
         down1 = LoadSave.setup("/Objects/shield_wood", gp.tileSize, gp.tileSize);
         setDefenseValue(1);
         setDescription("[" + getName() + "]\n" + "シンプルなシールド");

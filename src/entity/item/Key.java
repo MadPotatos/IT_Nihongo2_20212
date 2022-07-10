@@ -10,7 +10,7 @@ public class Key extends Item {
     public Key(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        setName("Key");
+        setName("鍵");
         setType(LoadSave.TYPE_CONSUMABLE);
         down1 = LoadSave.setup("/Objects/key", gp.tileSize, gp.tileSize);
         setDescription("[" + getName() + "]\n" + "ドア開閉に使用可能");
@@ -19,7 +19,7 @@ public class Key extends Item {
 
     public boolean use(Entity entity) {
         gp.gameState = gp.informState;
-        int objIndex = getDetected(entity, gp.obj, "Door");
+        int objIndex = getDetected(entity, gp.obj, "ドア");
         if (objIndex != 999) {
             gp.ui.currentDialogue = "鍵を使ってドアを開けたんですね。";
             gp.playSE(3);

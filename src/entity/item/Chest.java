@@ -13,7 +13,7 @@ public class Chest extends Item {
         this.gp = gp;
         this.loot = loot;
         setType(LoadSave.TYPE_OBSTACLE);
-        setName("Chest");
+        setName("チェスト");
         setImage(LoadSave.setup("/Objects/chest", gp.tileSize, gp.tileSize));
         setImage2(LoadSave.setup("/Objects/chest_opened", gp.tileSize, gp.tileSize));
         down1 = LoadSave.setup("/Objects/chest", gp.tileSize, gp.tileSize);

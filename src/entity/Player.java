@@ -67,9 +67,6 @@ public class Player extends Entity {
 		inventory.clear();
 		inventory.add(currentWeapon);
 		inventory.add(currentShield);
-		inventory.add(new Key(gp));
-		inventory.add(new HealingPotion(gp));
-		inventory.add(new HealingPotion(gp));
 
 	}
 
@@ -88,8 +85,7 @@ public class Player extends Entity {
 		strength = 1;
 		endurance = 1;
 		exp = 0;
-		nextLevelExp = 10;
-		coin = 500;
+		nextLevelExp = 20;
 		currentWeapon = new BeginnerSword(gp);
 		currentShield = new WoodenShield(gp);
 
@@ -312,7 +308,9 @@ public class Player extends Entity {
 			gp.iTile[gp.currentMap][i].playSE();
 			gp.iTile[gp.currentMap][i].life--;
 			gp.iTile[gp.currentMap][i].invincible = true;
-
+			if (gp.iTile[gp.currentMap][i].life == 0) {
+				gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
+			}
 		}
 	}
 
@@ -328,14 +326,14 @@ public class Player extends Entity {
 					damage = 0;
 				}
 				gp.monster[gp.currentMap][i].life -= damage;
-				gp.ui.addMessage(damage + " damage!");
+				gp.ui.addMessage(damage + " ダメージ!");
 				gp.monster[gp.currentMap][i].invincible = true;
 				gp.monster[gp.currentMap][i].damageReaction();
 				if (gp.monster[gp.currentMap][i].life <= 0) {
 					gp.playSE(7);
 					gp.monster[gp.currentMap][i].dying = true;
 					gp.ui.addMessage(gp.monster[gp.currentMap][i].getName() + " は殺される!");
-					gp.ui.addMessage("Exp + " + gp.monster[gp.currentMap][i].exp);
+					gp.ui.addMessage("経験値 + " + gp.monster[gp.currentMap][i].exp);
 					exp += gp.monster[gp.currentMap][i].exp;
 					checkLevelUp();
 				}
@@ -419,9 +417,9 @@ public class Player extends Entity {
 				if (inventory.size() != maxInventorySize) {
 					inventory.add(gp.obj[gp.currentMap][i]);
 					gp.playSE(1);
-					text = "You got a " + gp.obj[gp.currentMap][i].getName() + "!";
+					text = gp.obj[gp.currentMap][i].getName() + "を手に入れました!";
 				} else {
-					text = "Can't carry more items!";
+					text = "持ち運びができない!";
 				}
 				gp.ui.addMessage(text);
 				gp.obj[gp.currentMap][i] = null;

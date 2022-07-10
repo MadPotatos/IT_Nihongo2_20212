@@ -7,17 +7,17 @@ import main.GamePanel;
 
 import utilz.LoadSave;
 
-public class Tanuki extends Monster {
+public class Flam extends Monster {
     private GamePanel gp;
 
-    public Tanuki(GamePanel gp) {
+    public Flam(GamePanel gp) {
         super(gp);
         this.gp = gp;
 
-        setName("Tanuki");
+        setName("Flam");
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 8;
+        maxLife = 6;
         life = maxLife;
         attack = 2;
         defense = 0;
@@ -25,7 +25,7 @@ public class Tanuki extends Monster {
 
         solidArea.width = 36;
         solidArea.height = 30;
-        loadAnimations(LoadSave.MONSTER_TANUKI);
+        loadAnimations(LoadSave.MONSTER_FLAM);
 
     }
 

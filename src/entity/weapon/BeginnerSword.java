@@ -10,7 +10,7 @@ public class BeginnerSword extends Item {
         super(gp);
         setType(LoadSave.TYPE_SWORD);
         // TODO Auto-generated constructor stub
-        setName("Beginner Sword");
+        setName("ビギナーソード");
         down1 = LoadSave.setup("/Objects/sword_beginner", gp.tileSize, gp.tileSize);
         setAttackValue(1);
         setDescription("[" + getName() + "]\n" + "シンプルな剣です。");

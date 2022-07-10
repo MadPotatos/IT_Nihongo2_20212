@@ -14,8 +14,8 @@ public class EnergyBall extends Projectile {
         this.gp = gp;
         setName("EnergyBall");
         setType(LoadSave.TYPE_PROJECTTILE);
-        speed = 10;
-        maxLife = 40;
+        speed = 7;
+        maxLife = 60;
         life = maxLife;
         attack = 2;
         setUseCost(1);

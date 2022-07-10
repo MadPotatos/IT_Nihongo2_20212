@@ -12,7 +12,7 @@ public class NPC_oldman extends Entity {
     public NPC_oldman(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        setName("Oldman");
+        setName("古人");
         direction = "down";
         setType(LoadSave.TYPE_NPC);
         speed = 0;
@@ -22,10 +22,9 @@ public class NPC_oldman extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0] = "Ho ho ho";
-        dialogues[1] = "目の前にはダンジョンに続く\nゲートがあります。";
-        dialogues[2] = "その中にあなたの答えがある\nはずです";
-        dialogues[3] = "本当に勇気のある方は\nご入場ください";
+        dialogues[0] = "目の前にはダンジョンに続く\nゲートがあります。";
+        dialogues[1] = "その中にあなたの答えがある\nはずです";
+        dialogues[2] = "本当に勇気のある方は\nご入場ください";
     }
 
     public void speak() {

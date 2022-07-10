@@ -10,10 +10,11 @@ public class SteelShield extends Item {
         super(gp);
         // TODO Auto-generated constructor stub
         setType(LoadSave.TYPE_SHIELD);
-        setName("Steel Shield");
+        setName("鋼鉄製シールド");
         down1 = LoadSave.setup("/Objects/shield_steel", gp.tileSize, gp.tileSize);
         setDefenseValue(2);
         setDescription("[" + getName() + "]\n" + "鋼鉄でできた盾。");
+        setPrice(8);
     }
 
 }

@@ -10,11 +10,11 @@ public class Door extends Item {
         super(gp);
         this.gp = gp;
         setType(LoadSave.TYPE_OBSTACLE);
-        setName("Door");
+        setName("ドア");
         down1 = LoadSave.setup("/Objects/door", gp.tileSize, gp.tileSize);
         setCollision(true);
 
-        solidArea.x = 0;
+        solidArea.x = 10;
         solidArea.y = 10;
         solidArea.width = 32;
         solidArea.height = 32;

@@ -18,7 +18,7 @@ public class NPC_merchant extends Entity {
         super(gp);
         this.gp = gp;
         // TODO Auto-generated constructor stub
-        setName("Merchant");
+        setName("マーチャント");
         setType(LoadSave.TYPE_NPC);
         direction = "down";
         speed = 0;
@@ -34,7 +34,6 @@ public class NPC_merchant extends Entity {
 
     public void setItems() {
         inventory.add(new HealingPotion(gp));
-        inventory.add(new BeginnerSword(gp));
         inventory.add(new Axe(gp));
         inventory.add(new Key(gp));
         inventory.add(new SteelShield(gp));

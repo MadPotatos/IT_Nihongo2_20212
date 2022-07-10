@@ -13,7 +13,7 @@ public class NPC_ninja extends Entity {
     public NPC_ninja(GamePanel gp) {
         super(gp);
         this.gp = gp;
-        setName("Ninja");
+        setName("忍者");
         setType(LoadSave.TYPE_NPC);
         direction = "down";
         speed = 1;

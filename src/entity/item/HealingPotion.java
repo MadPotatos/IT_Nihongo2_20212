@@ -13,10 +13,10 @@ public class HealingPotion extends Item {
         this.gp = gp;
         setValue(5);
         setType(LoadSave.TYPE_CONSUMABLE);
-        setName("Healing Potion");
+        setName("ヒーリングポーション");
         down1 = LoadSave.setup("/Objects/healingPotion", gp.tileSize, gp.tileSize);
         setDescription("[" + getName() + "]\n" + "ヒーリングに使用で\nきる" + getValue() + " HP.");
-        setPrice(10);
+        setPrice(2);
     }
 
     public boolean use(Entity entity) {

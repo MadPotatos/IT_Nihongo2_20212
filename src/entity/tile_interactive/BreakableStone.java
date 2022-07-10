@@ -4,8 +4,6 @@ import entity.Entity;
 import main.GamePanel;
 import utilz.LoadSave;
 
-import java.awt.Color;
-
 public class BreakableStone extends InteractiveTile {
     private GamePanel gp;
 
@@ -16,14 +14,14 @@ public class BreakableStone extends InteractiveTile {
         this.worldX = gp.tileSize * col;
         this.worldY = gp.tileSize * row;
 
-        down1 = LoadSave.setup("/tiles_interactive/breakable_stone", gp.tileSize, gp.tileSize);
+        down1 = LoadSave.setup("/Tiles/block", gp.tileSize, gp.tileSize);
         setDestructible(true);
         life = 3;
     }
 
     public boolean isCorrectItem(Entity entity) {
         boolean isCorrectItem = false;
-        if (entity.currentWeapon.getType() == LoadSave.TYPE_AXE) {
+        if (entity.currentWeapon.getType() == LoadSave.TYPE_SWORD) {
             isCorrectItem = true;
         }
         return isCorrectItem;
