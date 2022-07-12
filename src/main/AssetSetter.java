@@ -14,9 +14,15 @@ public class AssetSetter {
     }
 
     public void setObject() {
-        int mapNum = 1;
+    	
+    	int mapNum = 1;
+        
         int i = 0;
-
+        gp.obj[0][i] = new Key(gp);
+        gp.obj[0][i].worldX = gp.tileSize * 25;
+        gp.obj[0][i].worldY = gp.tileSize * 44;
+        i++;
+        
         gp.obj[mapNum][i] = new Chest(gp, new HealingPotion(gp));
         gp.obj[mapNum][i].worldX = gp.tileSize * 3;
         gp.obj[mapNum][i].worldY = gp.tileSize * 33;
@@ -67,15 +73,19 @@ public class AssetSetter {
         gp.npc[mapNum][i].worldX = gp.tileSize * 26;
         gp.npc[mapNum][i].worldY = gp.tileSize * 15;
         i++;
+
     }
 
     public void setMonster() {
         int mapNum = 1;
         int i = 0;
+        
+
         gp.monster[mapNum][i] = new Boss_GiantFlam(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 10;
         gp.monster[mapNum][i].worldY = gp.tileSize * 5;
         i++;
+
         gp.monster[mapNum][i] = new Flam(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 12;
         gp.monster[mapNum][i].worldY = gp.tileSize * 3;

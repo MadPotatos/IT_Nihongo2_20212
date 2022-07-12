@@ -16,7 +16,7 @@ public class Tanuki extends Monster {
 
         setName("Tanuki");
         defaultSpeed = 2;
-        speed = defaultSpeed;
+        speed = defaultSpeed + 1;
         maxLife = 8;
         life = maxLife;
         attack = 2;

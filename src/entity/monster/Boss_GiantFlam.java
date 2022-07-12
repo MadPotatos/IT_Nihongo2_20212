@@ -19,7 +19,7 @@ public class Boss_GiantFlam extends Monster {
         setAniSpeed(6);
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 40;
+        maxLife = 10;
         life = maxLife;
         attack = 2;
         defense = 0;

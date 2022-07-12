@@ -355,9 +355,15 @@ public abstract class Entity {
 		// Monster HP bar
 		if (type == LoadSave.TYPE_MONSTER && hpBarOn == true) {
 			double oneScale = (double) gp.tileSize / maxLife;
+			int hpBarwidth = gp.tileSize;
+
+			if (getName() == "GiantFlam") {
+				hpBarwidth = 3 * gp.tileSize + 2;
+				oneScale = (double) 3 * gp.tileSize / maxLife;
+			}
 			double hpBarValue = oneScale * life;
 			g2.setColor(new Color(35, 35, 35));
-			g2.fillRect(screenX - 1, screenY - 16, gp.tileSize + 2, 12);
+			g2.fillRect(screenX - 1, screenY - 16, hpBarwidth + 2, 12);
 			g2.setColor(new Color(255, 0, 30));
 			g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
 			hpBarCounter++;

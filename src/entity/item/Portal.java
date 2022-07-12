@@ -12,7 +12,7 @@ public class Portal extends Item {
         super(gp);
         this.gp = gp;
         setType(LoadSave.TYPE_OBSTACLE);
-        setName("ポータル");
+        setName("Portal");
         setImage(LoadSave.setup("/Objects/portal", gp.tileSize, gp.tileSize));
         down1 = LoadSave.setup("/Objects/portal", gp.tileSize * 3, gp.tileSize * 3);
         setCollision(true);
